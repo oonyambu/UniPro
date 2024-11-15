@@ -1,0 +1,289 @@
+[
+    {
+        "file": "D:/Work/fortran/UniPro/UniPro/src/utils.cpp",
+        "file_last_write": 1731689118.0,
+        "definitions": [
+            {
+                "usr": "c:@F@C_William#*1d#I#I#*d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "C_William(const double *, int, int, double *)",
+                "file": "D:/Work/fortran/UniPro/UniPro/src/utils.cpp",
+                "line": 11,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@C_WilliamInv#*1d#I#I#*d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "C_WilliamInv(const double *, int, int, double *)",
+                "file": "D:/Work/fortran/UniPro/UniPro/src/utils.cpp",
+                "line": 18,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@WilliamC#&1$@N@Rcpp@S@Matrix>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "WilliamC(const Rcpp::NumericMatrix &)",
+                "file": "D:/Work/fortran/UniPro/UniPro/src/utils.cpp",
+                "line": 31,
+                "column": 21,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@William#&1$@N@Rcpp@S@Matrix>#VI13#@N@Rcpp@ST>1#T@PreserveStorage#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "William(const Rcpp::IntegerMatrix &)",
+                "file": "D:/Work/fortran/UniPro/UniPro/src/utils.cpp",
+                "line": 43,
+                "column": 21,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@WilliamInv#&1$@N@Rcpp@S@Vector>#VI13#@N@Rcpp@ST>1#T@PreserveStorage#I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "WilliamInv(const Rcpp::IntegerVector &, int)",
+                "file": "D:/Work/fortran/UniPro/UniPro/src/utils.cpp",
+                "line": 59,
+                "column": 21,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@is_prime#I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "is_prime(int)",
+                "file": "D:/Work/fortran/UniPro/UniPro/src/utils.cpp",
+                "line": 69,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@C_d2#*1d#I#I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "C_d2(const double *, int, int)",
+                "file": "D:/Work/fortran/UniPro/UniPro/src/utils.cpp",
+                "line": 82,
+                "column": 8,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@d2#&1$@N@Rcpp@S@Matrix>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "d2(const Rcpp::NumericMatrix &)",
+                "file": "D:/Work/fortran/UniPro/UniPro/src/utils.cpp",
+                "line": 104,
+                "column": 8,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@rho_ave#&1$@N@Rcpp@S@Matrix>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "rho_ave(const Rcpp::NumericMatrix &)",
+                "file": "D:/Work/fortran/UniPro/UniPro/src/utils.cpp",
+                "line": 123,
+                "column": 8,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@CD#&1$@N@Rcpp@S@Matrix>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "CD(const Rcpp::NumericMatrix &)",
+                "file": "D:/Work/fortran/UniPro/UniPro/src/utils.cpp",
+                "line": 141,
+                "column": 8,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@C_CD#*1d#I#I#*d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "C_CD(const double *, int, int, double *)",
+                "file": "D:/Work/fortran/UniPro/UniPro/src/utils.cpp",
+                "line": 179,
+                "column": 8,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@CD2#&1$@N@Rcpp@S@Matrix>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "CD2(const Rcpp::NumericMatrix &)",
+                "file": "D:/Work/fortran/UniPro/UniPro/src/utils.cpp",
+                "line": 221,
+                "column": 8,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@C_construct#I#*d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "C_construct(int, double *)",
+                "file": "D:/Work/fortran/UniPro/UniPro/src/utils.cpp",
+                "line": 232,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@construct#I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "construct(int)",
+                "file": "D:/Work/fortran/UniPro/UniPro/src/utils.cpp",
+                "line": 245,
+                "column": 21,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@get_cols#$@N@Rcpp@S@Matrix>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#$@N@Rcpp@S@Vector>#VI13#@N@Rcpp@ST>1#T@PreserveStorage#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "get_cols(Rcpp::NumericMatrix, Rcpp::IntegerVector)",
+                "file": "D:/Work/fortran/UniPro/UniPro/src/utils.cpp",
+                "line": 255,
+                "column": 21,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@get_rows#$@N@Rcpp@S@Matrix>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#$@N@Rcpp@S@Vector>#VI13#@N@Rcpp@ST>1#T@PreserveStorage#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "get_rows(Rcpp::NumericMatrix, Rcpp::IntegerVector)",
+                "file": "D:/Work/fortran/UniPro/UniPro/src/utils.cpp",
+                "line": 264,
+                "column": 21,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@phi#&1$@N@Rcpp@S@Matrix>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "phi(const Rcpp::NumericMatrix &, int)",
+                "file": "D:/Work/fortran/UniPro/UniPro/src/utils.cpp",
+                "line": 342,
+                "column": 8,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@phi2#&1$@N@Rcpp@S@Matrix>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "phi2(const Rcpp::NumericMatrix &, int)",
+                "file": "D:/Work/fortran/UniPro/UniPro/src/utils.cpp",
+                "line": 356,
+                "column": 8,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@phi3#&1$@N@Rcpp@S@Matrix>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "phi3(const Rcpp::NumericMatrix &, int)",
+                "file": "D:/Work/fortran/UniPro/UniPro/src/utils.cpp",
+                "line": 369,
+                "column": 8,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@phi_smallest#&1$@N@Rcpp@S@Matrix>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "phi_smallest(const Rcpp::NumericMatrix &, int)",
+                "file": "D:/Work/fortran/UniPro/UniPro/src/utils.cpp",
+                "line": 403,
+                "column": 21,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@phi2D#&1$@N@Rcpp@S@Matrix>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "phi2D(const Rcpp::NumericMatrix &, int)",
+                "file": "D:/Work/fortran/UniPro/UniPro/src/utils.cpp",
+                "line": 447,
+                "column": 8,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@phiEff#&1$@N@Rcpp@S@Matrix>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "phiEff(const Rcpp::NumericMatrix &, int)",
+                "file": "D:/Work/fortran/UniPro/UniPro/src/utils.cpp",
+                "line": 481,
+                "column": 8,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@psi#&1$@N@Rcpp@S@Matrix>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "psi(const Rcpp::NumericMatrix &)",
+                "file": "D:/Work/fortran/UniPro/UniPro/src/utils.cpp",
+                "line": 496,
+                "column": 8,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@psi2#1$@N@Rcpp@S@Matrix>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "psi2(const Rcpp::NumericMatrix)",
+                "file": "D:/Work/fortran/UniPro/UniPro/src/utils.cpp",
+                "line": 510,
+                "column": 8,
+                "hidden": false
+            },
+            {
+                "usr": "c:utils.cpp@14391@F@Db#&1$@N@Rcpp@S@Matrix>#VI13#@N@Rcpp@ST>1#T@PreserveStorage#I#@Sa@F@operator()<#I>#I#1",
+                "kind": 7,
+                "parent_name": "",
+                "name": "operator<>(int)",
+                "file": "D:/Work/fortran/UniPro/UniPro/src/utils.cpp",
+                "line": 534,
+                "column": 44,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@Db#&1$@N@Rcpp@S@Matrix>#VI13#@N@Rcpp@ST>1#T@PreserveStorage#I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "Db(const Rcpp::IntegerMatrix &, int)",
+                "file": "D:/Work/fortran/UniPro/UniPro/src/utils.cpp",
+                "line": 532,
+                "column": 21,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@Eb#&1$@N@Rcpp@S@Matrix>#VI13#@N@Rcpp@ST>1#T@PreserveStorage#I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "Eb(const Rcpp::IntegerMatrix &, int)",
+                "file": "D:/Work/fortran/UniPro/UniPro/src/utils.cpp",
+                "line": 545,
+                "column": 22,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@Eb2#&1$@N@Rcpp@S@Matrix>#VI13#@N@Rcpp@ST>1#T@PreserveStorage#I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "Eb2(const Rcpp::IntegerMatrix &, int)",
+                "file": "D:/Work/fortran/UniPro/UniPro/src/utils.cpp",
+                "line": 562,
+                "column": 21,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    }
+]

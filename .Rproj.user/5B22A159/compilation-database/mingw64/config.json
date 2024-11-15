@@ -1,0 +1,24 @@
+{
+    "args": [
+        "-std=gnu++17",
+        "-ID:/Programs/R/R-4.4.2/include",
+        "-DNDEBUG",
+        "-ID:/Programs/R/R-4.4.2/library/Rcpp/include",
+        "-DEIGEN_DONT_VECTORIZE",
+        "-nostdinc",
+        "-Ic:/rbuild~1/4.3/x86_64~1.pos/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/12.3.0/include/c++",
+        "-Ic:/rbuild~1/4.3/x86_64~1.pos/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/12.3.0/include/c++/x86_64-w64-mingw32.static.posix",
+        "-Ic:/rbuild~1/4.3/x86_64~1.pos/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/12.3.0/include/c++/backward",
+        "-Ic:/rbuild~1/4.3/x86_64~1.pos/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/12.3.0/include",
+        "-Ic:/rbuild~1/4.3/x86_64~1.pos/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/12.3.0/../../../../include",
+        "-Ic:/rbuild~1/4.3/x86_64~1.pos/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/12.3.0/include-fixed",
+        "-include",
+        "D:/Work/fortran/UniPro/UniPro/.Rproj.user/5B22A159/compilation-database/mingw64/cpp-definitions.h"
+    ],
+    "pch": "Rcpp",
+    "is_cpp": true,
+    "hash": "1731689118",
+    "compiler": "15564962090173649637",
+    "rversion": "4.4.2",
+    "dbversion": 4
+}
