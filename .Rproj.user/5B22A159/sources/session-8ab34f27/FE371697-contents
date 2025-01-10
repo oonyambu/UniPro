@@ -1,10 +1,17 @@
-a <- function(n, m, s=n, NP=100,
-              itermax=1500, pMut=0.2, pCR=0.3, pGBest=0.9,
-              replicates = 1, method = c('C', 'Call', 'Fortran'))
-{ 
-  method <- paste0(method, "Routine")[1]
-  x <- match.call()
-  x$method <- NULL
-  class(x[[2]]) <- method
-  eval(x)
+a <- replicate(100, replicate(3, sample(30)), F)
+phi <- function (xx, a = 20, b = 0.2, c = 2 * pi){
+  d <- length(xx)
+  sum1 <- sum(xx^2)
+  sum2 <- sum(cos(c * xx))
+  term1 <- -a * exp(-b * sqrt(sum1/d))
+  term2 <- -exp(sum2/d)
+  y <- term1 + term2 + a + exp(1)
+  return(y)
+}
+
+mutation <- function(X){
+  #global
+  if(runif() < 0.9){
+    
+  }
 }

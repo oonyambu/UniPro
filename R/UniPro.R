@@ -36,12 +36,20 @@ UniPro<- function(n, m, s=n, NP=100,
 UniPro.numeric <- function(n, m, s=n, NP=100,
                    itermax=1500, pMut=0.2, pCR=0.3, pGBest=0.9,
                    replicates = 1, method = c('C', 'Call', 'Fortran')){
-  x <-match.call()
-  method <- paste0(method[1], "Routine")
-  x[[2]] <- structure(x[[2]], class = method)
-  x[[1]] <- quote(UniPro)
-  x$method <- NULL
-  structure(eval(x), method = method)
+  #x <-match.call()
+  #method <- paste0(method[1], "Routine")
+  #x[[2]] <- structure(x[[2]], class = method)
+  #x[[1]] <- quote(UniPro)
+  #x$method <- NULL
+  #structure(eval(x), method = method)
+  if(s>n) stop("s can not be greater than n")
+  if(n%%s) stop("n must be a multiple of s")
+  if(m > n) stop("m must be less than n")
+  if(n < 2) stop("n must be greater than 1")
+  stopifnot(c(n, m, s, NP, itermax) > 1)
+  stopifnot(c(pMut, pGBest, pCR) > 0 )
+  class(n) <- paste0(method[1], "Routine")
+  UniPro(n, m, s, NP, itermax, pMut, pCR, pGBest, replicates)
 }
 
 
@@ -91,12 +99,10 @@ phi <- function(X, s = nrow(X), method = c('C', 'Call', 'Fortran')){
 
 #' @export
 phi.numeric <- function(X, s = nrow(X), method = c('C', 'Call', 'Fortran')){
-  x <-match.call()
-  method <- paste0(method[1], "Routine")
-  x[[2]] <- structure(x[[2]], class = method)
-  x[[1]] <- quote(phi)
-  x$method <- NULL
-  structure(eval(x), method = method)
+  mode(X) <- "integer"
+  if(is.null(dim(X))) stop("X must be a matrix")
+  class(X) <- paste0(method[[1]], "Routine")
+  phi(X, s)
 }
 #' @export
 phi.FortranRoutine <- function(X, s = nrow(X)){
@@ -114,7 +120,6 @@ phi.CRoutine <- function(X, s = nrow(X)){
 
 #' @export
 phi.CallRoutine <- function(X, s = nrow(X)){
-  storage.mode(X) <- "integer"
   .Call("phi_Call", X, as.integer(s))
 }
 
