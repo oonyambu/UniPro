@@ -1,0 +1,22 @@
+{
+    "type": [
+        0,
+        1,
+        2,
+        0,
+        1,
+        2,
+        3,
+        2
+    ],
+    "data": [
+        "> ",
+        "new.env",
+        "function (hash = TRUE, parent = parent.frame(), size = 29L) \n.Internal(new.env(hash, parent, size))\n<bytecode: 0x000001fb8fa0cfa8>\n<environment: namespace:base>\n",
+        "> ",
+        "install.packages('pryr')",
+        "Warning in install.packages :\n  'lib = \"D:/Programs/R/R-4.4.2/R-4.4.2/library\"' is not writable\n",
+        "Error in data[[1]] : subscript out of bounds\n",
+        "Error in install.packages : unable to install packages\n\nRestarting R session...\n\n"
+    ]
+}

@@ -1,0 +1,512 @@
+a
+v <- read.table(sprintf("data/results%dx%d.txt", n, m), h=TRUE)
+mn <- slice_min(subset(v, method == 'RSO'), values,with_ties = FALSE)
+mn
+v <- read.table(sprintf("data/results%dx%d.txt", n, m), h=TRUE)
+mn <- slice_min(subset(v, method == 'RSO'), values,with_ties = FALSE)
+mn
+v <- results70x7
+v$a[[mn$method]][[parse_number(mn$ind)]]$par
+s <- read.table(sprintf("data/results%dx%d_par.txt", n, m), header = TRUE)
+s[10,]
+n <- 3
+n <- 30
+m<-3
+K<-100
+nm <- sprintf("data/results%dx%d.Rda", n, m)
+load(nm)
+nm <- sprintf("data/New folder/results%dx%d.Rda", n, m)
+load(nm)
+v <- get(sub(".Rda", "", basename(nm)))
+get_par <- function(n, m, K=100){
+nm <- sprintf("data/New folder/results%dx%d.Rda", n, m)
+load(nm)
+v <- get(sub(".Rda", "", basename(nm)))
+mn <- slice_min(subset(v$b, method == 'RSO'), values,with_ties = FALSE);
+v$a[[mn$method]][[mn$ind]]$par%>%
+setNames(c("NP","itermax","pMut","pCR","pGBest"))
+}
+get_par(30,3)
+get_par <- function(n, m, K=100){
+nm <- sprintf("data/New folder/results%dx%d.Rda", n, m)
+load(nm)
+v <- get(sub(".Rda", "", basename(nm)))
+v <- read.table(sprintf("data/results%dx%d.txt", n, m), h=TRUE)
+s <- read.table(sprintf("data/results%dx%d_par.txt", n, m), header = TRUE)
+mn <- slice_min(subset(v, method == 'RSO'), values,with_ties = FALSE);
+v$a[[mn$method]][[mn$ind]]$par%>%
+setNames(c("NP","itermax","pMut","pCR","pGBest"))
+}
+get_par <- function(n, m, K=100){
+nm <- sprintf("data/New folder/results%dx%d.Rda", n, m)
+load(nm)
+v <- get(sub(".Rda", "", basename(nm)))
+v <- read.table(sprintf("data/results%dx%d.txt", n, m), h=TRUE)
+s <- read.table(sprintf("data/results%dx%d_par.txt", n, m), header = TRUE)
+mn <- slice_min(subset(v, method == 'RSO'), values,with_ties = FALSE);
+v$a[[mn$method]][[mn$ind]]$par%>%
+setNames(c("NP","itermax","pMut","pCR","pGBest"))
+s[parse_number(mn$ind),]
+}
+get_par(30,3)
+get_par <- function(n, m, K=100){
+nm <- sprintf("data/New folder/results%dx%d.Rda", n, m)
+load(nm)
+v <- get(sub(".Rda", "", basename(nm)))
+v <- read.table(sprintf("data/results%dx%d.txt", n, m), h=TRUE)
+s <- read.table(sprintf("data/results%dx%d_par.txt", n, m), header = TRUE)
+mn <- slice_min(subset(v, method == 'RSO'), values,with_ties = FALSE);
+s[parse_number(mn$ind),]
+}
+get_par(30,3)
+intToBits(2)
+intToBits(2) & intToBits(5)
+intToBits(3) & intToBits(5)
+bitwAnd(3,5)
+bitwAnd(3,4)
+bitwAnd(3,6)
+n <- (4-1)^2 - 1
+bitwAnd(n, 1:n)
+bitwAnd(n, 1:(n-1))
+n
+n <- 2^4 - 1
+bitwAnd(n, 1:(n-1))
+bitwOr(15,1)
+bitwAnd(15,1)
+bitwAnd(15,2)
+mdat <- matrix(c(1,2,3, 11,12,13),
+nrow = 2, ncol = 3, byrow = TRUE,
+dimnames = list('rows'=c("row1", "row2"),
+)
+mdat <- matrix(c(1,2,3, 11,12,13),
+nrow = 2, ncol = 3, byrow = TRUE,
+dimnames = list('rows'=c("row1", "row2"),
+c("C.1", "C.2", "C.3"))); mdat
+colnames(mdat)
+colnames(mdat) <- list(a=colnames(mdat))
+dimnames(mdat)
+dimnames(mdat)[1]
+dimnames(mdat)[1] <- list(a=rownames(mdat))
+name(dimnames(mdat))[1] <- list(a=rownames(mdat))
+names(dimnames(mdat))[1] <- list(a=rownames(mdat))
+names(dimnames(mdat))[1] <- "y"
+mdat
+mat <- matrix(sample(3), 3)
+matrix(data, nrow = rows, ncol = cols)
+mat
+colnames(mat) <- "numbers"
+mat
+rownames(mat) <- letters[1:3]
+mat
+names(dimnames(mat))[1] <- "row_name"
+mat
+names(dimnames(mat))[2] <-"columns"
+names(dimnames(mat))[1] <- "rows"
+mat <- matrix(sample(3), 3)
+mat
+colnames(mat) <- "numbers"
+mat
+rownames(mat) <- letters[1:3]
+mat
+names(dimnames(mat))[2] <-"columns"
+mat
+names(dimnames(mat))[1] <- "rows"
+mat
+names(dimnames(mat)) <- c("AA", "BB")
+mat
+install.packages('SLHD')
+SLHD:::.__NAMESPACE__.
+SLHD:::.__NAMESPACE__.$DLLs
+SLHD:::.__NAMESPACE__.$dynlibs
+SLHD:::.__NAMESPACE__.$imports
+UniPro:::.__NAMESPACE__.
+UniPro:::.__NAMESPACE__.$lazydata
+UniPro:::.__NAMESPACE__.$lazydata|>names()
+UniPro:::.__NAMESPACE__.$S3methods
+?SLHD::maximinSLHD()
+iris %>% filter()
+library(tidyverse)
+iris %>% filter(duplicated(.))
+iris %>% filter(n()>1)
+iris %>% filter(n()>1, .by = ..all..)
+iris %>% filter(n()>1, .by = .)
+iris %>% filter(n()>1, .by = names(.))
+iris %>% filter(row_number()>1, .by = names(.))
+iris %>% pick
+iris %>% filter(row_number()>1, .by = pick(., Species))
+iris %>% filter(row_number()>1, .by = across(., Species))
+0**0
+0**4.567
+0^-1
+0^0.2
+reticulate::repl_python()
+import numpy as np
+arr = np.array([
+[1, 2, 3],
+[4, -5, 6],
+[-1, -1, -1]
+])
+arr >0
+np.argwhere(arr >0)
+s = np.asarray(5)
+m = np.asarray([[1,2],[3,4]])
+m
+np.c_[5, m.ravel()]
+np.concatenate([5, m.ravel()])
+np.hstack([5, m.ravel()])
+np.vstack([5, m.ravel()])
+np.vstack([[5], m.ravel()])
+np.column_stack([5,1])
+np.column_stack([5,m])
+np.column_stack([5,m.ravel()])
+np.column_stack([np.ones(m.size)*5,m.ravel()])
+exit()
+exit
+.set_row_names(100)
+data.frame(a=1:200).set_row_names(100)
+data.frame(a=1:200)->a#.set_row_names(100)
+a
+data.frame(a=1:20)->a#.set_row_names(100)
+a
+data.frame(a=1:10)->a#.set_row_names(100)
+a
+attr(a, 'row')
+attr(a, 'row') <- letters[1:10]
+a
+attr(a, 'row')
+attr(a, 'row.names')
+attr(a, 'row.names') <- letters[1:10]
+a
+attr(a, 'row.names') <- .set_row_names(10)
+a
+row.names(a)
+str(a)
+structure(a)
+dput(a)
+.set_row_names(10)
+.set_row_names
+dput(a)
+structure(a)
+str(a)
+str(iris)
+structure(1:10, row.names = c(NA, 10L))
+structure(data.frame(3), row.names = c(NA, 10L))
+data.frame
+attr(iris, 'row.names')
+attr(iris, 'row.names')|>class()
+row.names
+base:::row.names.data.frame
+base:::row.names.default
+base:::`row.names<-.data.frame`
+base:::.row_names_info
+base:::`.rowNamesDF<-`
+.row_names_info(iris, 2L)
+.row_names_info(iris)
+.row_names_info
+install.packages('pryr')
+pryr::show_c_source(Internal(shortRowNames(x)))
+pryr::show_c_source(.Internal(shortRowNames(x)))
+?.row_names_info
+`rownames<-`
+.row_names_info
+.row_names_info(iris, 0)
+.row_names_info(iris, 1)
+.row_names_info(iris, 2)
+.row_names_info(iris, 3)
+.row_names_info(iris, -1)
+.row_names_info(iris, 0.3)
+.row_names_info
+data.frame(1:3)
+data.frame(a=1:3)
+`attr<-`(data.frame(a=1:3), "row.names", c(NA, -3L))
+`attr<-`(data.frame(a=1:3), "row.names", c(NA, -3))
+`attr<-`(data.frame(a=1:3), "row.names", c(NA, 3))
+`attr<-`(data.frame(a=1:3), "row.names", c(NA, 10))
+`attr<-`(data.frame(a=1:3), "row.names", c(NA, -33))
+`attr<-`(data.frame(a=1:3), "row.names", c(NA, -4))
+`attr<-`(data.frame(a=1:3), "row.names", c(NA, 4))
+rownames
+dimnames(iris)[[1L]]
+dimnames(iris)[[1L]] %||% if (TRUE) NULL
+dimnames
+pryr::show_c_source(.Primitive(dimnames(x)))
+base::row.names.data.frame
+base:::attr
+pryr::show_c_source(.Primitive(attr(x)))
+base::row.names.data.frame
+df <- data.frame(a = 1:3, b = 4:6)
+# Compact representation is used internally
+attr(df, "row.names")  # Outputs: [1] NA  3
+row.names.data.frame
+attr
+.Internal(.shortRowName)
+.Internal(.shortRowName(x))
+.Internal(.shortRowName(x)) .Internal(shortRowNames(x, type))
+.Internal(shortRowNames(x, type))
+.Internal(shortRowNames(iris))
+.Internal(shortRowNames(iris, 2))
+.Internal(shortRowNames(iris, 1))
+.Internal(shortRowNames(iris, 0))
+.Internal(shortRowNames(as.matrix(iris), 0))
+dimnames(iris)[1]
+dimnames(iris)[1] <- NULL
+dimnames(iris)[[1]] <- NULL
+rownames(iris)
+rownames(iris) <- NULL
+rownames(iris)
+dimnames(iris)[[1]]
+rownames
+base:::`row.names<-.data.frame`
+base:::`.rowNamesDF<-`
+help(".row_names_info")
+.row_names_info
+base:::`.rowNamesDF<-`
+.set_row_names
+comp <- function (fun, lower, upper, ..., p = NULL, rho = 0.3, maximize = FALSE,
+reps = 20L, file = NULL, control = list(), overwrite = FALSE)
+{
+fun_name <- gsub("\\W", "", deparse1(substitute(fun)))
+time_file <- sub("\\.([^.]+$)", "_time.\\1", file)
+nsteps <- if (is.null(nsteps <- control$nsteps))
+5
+else nsteps
+if (is.null(control$budget))
+control$budget <- 50
+if (!is.null(file)) {
+if (file.exists(file) && overwrite) {
+file.remove(c(file, time_file))
+}
+cat("\n", strrep("\n#", 80), "\n", sep = "", file = time_file,
+append = TRUE)
+cat(strrep("#", 80), "\n# nsteps: ", nsteps, "\n# rho: ",
+rho, "\n# Lower Bound: (", toString(lower), ")",
+"\n# Upper Bound: (", toString(upper), ")", "\n# Budget: ",
+control$budget, "\n", file = file, append = TRUE,
+sep = "")
+}
+optimal <- control$trueglobal
+if (missing(lower)) {
+dom <- domain(fun)
+fun <- getFromNamespace(fun, "egoOptim")
+if (is.function(dom)) {
+if (is.null(p))
+stop("the dimension `p` must be provided for ",
+fun_name)
+else dom <- dom(p)
+}
+if (is.null(optimal))
+optimal <- dom$opt$f[1]
+lower <- if (!is.null(dom$lower))
+dom$lower
+else rep(0, p)
+upper <- if (!is.null(dom$upper))
+dom$upper
+else rep(1, p)
+}
+if (maximize & is.null(optimal))
+optimal <- -1
+control$trueglobal <- optimal
+res <- setNames(vector("list", 3), c("RSO", "EGO", "TREGO"))
+errors_list <- res
+RScontrol <- modifyList(control, list(basicEGO = FALSE))
+EGcontrol <- modifyList(control, list(basicEGO = TRUE))
+TRcontrol <- modifyList(control, list(basicEGO = TRUE, method = "TREGO"))
+time <- matrix(NA, nrow = reps, ncol = 3 + length(control$expansion_rate),
+dimnames = list(NULL, unique(c(names(res), paste0("RSO",
+control$expansion_rate)))))
+parallel::mclapply(seq_len(reps), function(i) {
+X <- lhs::maximinLHS(5 * length(lower), length(lower))
+X1 <- mapply(rescale, data.frame(X), data.frame(rbind(lower,
+upper)))
+cat("\n\nComputing f(x)...")
+y1 <- apply(X1, 1, function(x) (-1)^(maximize) * fun(x,
+...))
+cat("Done\nRSO ITERATION:", i, "\n")
+t1 <- proc.time()[["elapsed"]]
+res[["RSO"]][[i]] <<- optimize_fun(fun, lower, upper,
+..., X = X1, y = y1, maximize = maximize, rho = rho,
+control = modifyList(RScontrol, list(expansion_rate = 0)))
+time[i, "RSO"] <<- proc.time()[["elapsed"]] - t1
+if (!is.null(file)) {
+cat("RSO", time[i, "RSO"], "\n", file = time_file,
+append = TRUE)
+cat("RSO", i, res[["RSO"]][[i]]$errors, "\n", file = file,
+append = TRUE)
+}
+cat("EGO ITERATION:", i, "\n")
+t2 <- proc.time()[["elapsed"]]
+res[["EGO"]][[i]] <<- optimize_fun(fun, lower, upper,
+..., X = X1, y = y1, maximize = maximize, rho = rho,
+control = EGcontrol)
+time[i, "EGO"] <<- proc.time()[["elapsed"]] - t2
+if (!is.null(file)) {
+cat("EGO", time[i, "EGO"], "\n", file = time_file,
+append = TRUE)
+cat("EGO", i, res[["EGO"]][[i]]$errors, "\n", file = file,
+append = TRUE)
+}
+cat("TREGO ITERATION:", i, "\n")
+t3 <- proc.time()[["elapsed"]]
+res[["TREGO"]][[i]] <<- optimize_fun(fun, lower, upper,
+..., X = X1, y = y1, maximize = maximize, rho = rho,
+control = TRcontrol)
+time[i, "TREGO"] <<- proc.time()[["elapsed"]] - t3
+if (!is.null(file)) {
+cat("TREGO", time[i, "TREGO"], "\n", file = time_file,
+append = TRUE)
+cat("TREGO", i, res[["TREGO"]][[i]]$errors, "\n",
+file = file, append = TRUE)
+}
+if (!is.null(control$expansion_rate) && any(control$expansion_rate >
+0)) {
+for (j in control$expansion_rate) {
+nms <- paste0("RSO", j)
+cat(nms, "ITERATION: ", i, "\n", sep = "")
+t4 <- proc.time()[["elapsed"]]
+res[[nms]][[i]] <<- optimize_fun(fun, lower,
+upper, ..., X = X1, y = y1, maximize = maximize,
+rho = rho, control = modifyList(RScontrol,
+list(expansion_rate = j)))
+time[i, nms] <<- proc.time()[["elapsed"]] -
+t4
+if (!is.null(file)) {
+cat(nms, time[i, nms], "\n", file = time_file,
+append = TRUE)
+cat(nms, i, res[[nms]][[i]]$errors, "\n",
+file = file, append = TRUE)
+}
+}, mc.cores = if (.Platform$OS.type == "windows")
+1
+else parallel::detectCores())
+len <- (control$budget - if (is.null(n <- control$n))
+10
+else n)/nsteps
+lapply(res, function(x) sapply(x, getElement, "errors"))
+res
+}
+environment(comp) <- asNamespace("egoOptim")
+gc()
+devtools::document()
+UniPro::UniPro
+UniPro::optim_un
+devtools::install()
+getwd
+getwd()
+devtools::install()
+UniPro:::optim_un
+UniPro:::optim_un(\(x)x^2)
+UniPro:::optim_un(1,\(x)x^2)
+.Call(UniPro:::optim_un, 1,\(x)x^2)
+.Call(optim_un, 1,\(x)x^2)
+.Call(optim_un, 1,\(x)x^2, PACKAGE = 'UniPro')
+optim
+.Call(optim_un, 1,\(x)x^2, PACKAGE = 'UniPro')
+.Call(UniPro::optim_un, 1,\(x)x^2, PACKAGE = 'UniPro')
+.Call(UniPro::optim_un, 1,\(x)x^2)
+.Call(UniPro:::optim_un, 1,\(x)x^2)
+.Call(UniPro:::optim_un, 1,\(x)x^2, \(x)2*x)
+.Call(UniPro:::optim_un, 1,\(x)x^2, \(x)2*x, 0.3)
+.Call(UniPro:::optim_un, 1,function(x)x^2, \(x)2*x, 0.3)
+debug(optim)
+optim(c(1,1), egoOptim::branin)
+con
+dput(con)
+method
+dom <- egoOptim::domain('branin')
+optim(c(1,1), egoOptim::branin, lower = dom$lower, upper = dom$upper, method= 'L-BFGS-B')
+con
+dput(con)
+method
+par
+fn1
+gr1
+lower
+upper
+res
+pryr::show_c_source(.External2(C_Optim(x)))
+pryr::show_c_source(.Internal(C_Optim(x)))
+pryr::show_c_source(.Internal(C_optim(x)))
+pryr::show_c_source(.Internal(optim(x)))
+pryr::show_c_source(.External(optim(x)))
+?External
+?.External
+?.External2
+devtools::install()
+optim
+con <- list(trace = 0, fnscale = 1, parscale = c(1, 1), ndeps = c(0.001,
+0.001), maxit = 100L, abstol = -Inf, reltol = 1.49011611938477e-08,
+alpha = 1, beta = 0.5, gamma = 2, REPORT = 10, warn.1d.NelderMead = TRUE,
+type = 1, lmm = 5, factr = 1e+07, pgtol = 0, tmax = 10, temp = 10)
+.External2(UniPro:::optim_un, par, fn1, gr1, method, con, lower,
+upper)
+fn1 <- egoOptim::branin
+gr1 <- NULL
+dom <- egoOptim::domain('branin')
+lower <- dom$lower
+upper <- dom$upper
+con <- list(trace = 0, fnscale = 1, parscale = c(1, 1), ndeps = c(0.001,
+0.001), maxit = 100L, abstol = -Inf, reltol = 1.49011611938477e-08,
+alpha = 1, beta = 0.5, gamma = 2, REPORT = 10, warn.1d.NelderMead = TRUE,
+type = 1, lmm = 5, factr = 1e+07, pgtol = 0, tmax = 10, temp = 10)
+method <-  "L-BFGS-B"
+fn1 <- egoOptim::branin
+gr1 <- NULL
+dom <- egoOptim::domain('branin')
+lower <- dom$lower
+upper <- dom$upper
+.External2(UniPro:::optim_un, par, fn1, gr1, method, con, lower,
+upper)
+gr1 <- \(x) NULL
+dom <- egoOptim::domain('branin')
+lower <- dom$lower
+upper <- dom$upper
+.External2(UniPro:::optim_un, par, fn1, gr1, method, con, lower,
+upper)
+gr1 <- \(x) NULL
+dom <- egoOptim::domain('branin')
+lower <- dom$lower
+upper <- dom$upper
+.External2(UniPro:::optim_un, par, fn1, gr1, method, con, lower,
+upper)
+.Call(UniPro:::optim_un, par, fn1, gr1, method, con, lower,
+upper)
+devtools::install()
+con <- list(trace = 0, fnscale = 1, parscale = c(1, 1), ndeps = c(0.001,
+0.001), maxit = 100L, abstol = -Inf, reltol = 1.49011611938477e-08,
+alpha = 1, beta = 0.5, gamma = 2, REPORT = 10, warn.1d.NelderMead = TRUE,
+type = 1, lmm = 5, factr = 1e+07, pgtol = 0, tmax = 10, temp = 10)
+method <-  "L-BFGS-B"
+fn1 <- egoOptim::branin
+gr1 <- \(x) NULL
+dom <- egoOptim::domain('branin')
+lower <- dom$lower
+upper <- dom$upper
+.Call(UniPro:::optim_un, par, fn1, gr1, method, con, lower,
+upper)
+.External2(UniPro:::C_optim, par, fn1, gr1, method, con, lower,
+upper)
+UniPro:::C_optim
+c(par, fn1, gr1, method, con, lower,
+upper)
+con <- list(trace = 0, fnscale = 1, parscale = c(1, 1), ndeps = c(0.001,
+0.001), maxit = 100L, abstol = -Inf, reltol = 1.49011611938477e-08,
+alpha = 1, beta = 0.5, gamma = 2, REPORT = 10, warn.1d.NelderMead = TRUE,
+type = 1, lmm = 5, factr = 1e+07, pgtol = 0, tmax = 10, temp = 10)
+method <-  "L-BFGS-B"
+fn1 <- egoOptim::branin
+gr1 <- \(x) NULL
+dom <- egoOptim::domain('branin')
+lower <- dom$lower
+upper <- dom$upper
+par <- c(1,1)
+.External2(UniPro:::C_optim, par, fn1, gr1, method, con, lower,
+upper)
+gr1 <- NULL
+dom <- egoOptim::domain('branin')
+lower <- dom$lower
+upper <- dom$upper
+par <- c(1,1)
+.External2(UniPro:::C_optim, par, fn1, gr1, method, con, lower,
+upper)
+.External2
+pryr::show_c_source(.Primitive(.External2(x)))

@@ -1,0 +1,43 @@
+#ifndef DE_H
+#define DE_H
+
+#include <stdio.h>
+#include <time.h>
+#include <omp.h>
+#include <stdlib.h>
+#include <math.h>
+
+
+typedef struct {
+    double value;
+    int index;
+} MinInfo;
+
+
+#pragma omp declare reduction(min_pair : MinInfo : \
+    omp_out = (omp_in.value < omp_out.value) ? omp_in : omp_out) \
+    initializer(omp_priv = {999999.0, -1})
+
+
+
+static inline double rand_unif(){
+  return (double)rand()/RAND_MAX;
+}
+
+static inline int rand_int(int n){
+  return (rand() % n);
+}
+
+static void swap(int *x, int *y){
+  int temp = *x;
+  *x = *y;
+  *y = temp;
+}
+
+void sample2(int n, int vec[2]);
+void print_design(int *X, int n, int m, int NP);
+double phi2D(const int *X, const int n, const int m, const int s, double denom_g, double C);
+void gen_design(int *array, const int n, const int m, const int s, const int NP, double *phi_vals, int *bestIndex, double denom_g, double C);
+
+#endif
+

@@ -1,0 +1,16 @@
+
+
+
+fn <- function(x){
+  n <- nrow(x)
+  s <- n
+  pow <- \(x, y)x^y
+  p = pow(s, 4);
+  m <-ncol(x)
+  numerator = 4*(5.0*m - 2)*p + 30.0*(3*m-5)*s*s + 15*m + 33;
+  denom = 720.0*(m - 1)*p;
+  C = numerator/ denom + (1.0 + pow(-1, s))/(64.0*p);
+  denom_g = 4.0 * m * (m - 1) * n * n * s * s;
+  d <- as.matrix(dist(x, 'man'))
+  (sum(d^2) - sum(colSums(d)^2)*2/n)/denom_g + C
+}

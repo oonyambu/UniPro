@@ -1,0 +1,58 @@
+install.packages(c('tidyverse', 'devtools', 'pryr'))
+devtools::install_github('oonyambu/egoOptim')
+devtools::document()
+con <- list(trace = 0, fnscale = 1, parscale = c(1, 1), ndeps = c(0.001,
+0.001), maxit = 100L, abstol = -Inf, reltol = 1.49011611938477e-08,
+alpha = 1, beta = 0.5, gamma = 2, REPORT = 10, warn.1d.NelderMead = TRUE,
+type = 1, lmm = 5, factr = 1e+07, pgtol = 0, tmax = 10, temp = 10)
+method <-  "L-BFGS-B"
+fn1 <- egoOptim::branin
+gr1 <- NULL
+dom <- egoOptim::domain('branin')
+lower <- dom$lower
+upper <- dom$upper
+par <- c(1,1)
+.Call(UniPro:::optim_call, par, fn1, gr1, method, lower, upper, con)
+.External2(UniPro:::optim_ex, par, fn1, gr1, method, con, lower, upper)
+.Call(UniPro:::bran_min_call, par, con)
+.External(UniPro:::bran_min_ex, par, con)
+.External2(UniPro:::bran_min_ex, par, con)
+old <- "SD5464"
+regexpr("(?<=.{4})|(?<=.{8})", old)
+regexpr("(?<=.{4})|(?<=.{8})", old, perl = TRUE)
+gregexpr("(?<=.{4})|(?<=.{8})", old, perl = TRUE)
+regmatches(old, `attr<-`(n, "match.length", 0)) <- "5"
+n <- 5
+n2 <- 8
+regmatches(old, `attr<-`(n, "match.length", 0)) <- "5"
+regmatches(old, `attr<-`(n2, "match.length", 0)) <- "5"
+old
+old <- "SD5464"
+`regmatches<-`(old,
+gregexpr("(?<=.{4})|(?<=.{8})", old, perl = TRUE),
+5)
+`regmatches<-`(old,
+gregexpr("(?<=.{4})|(?<=.{8})", old, perl = TRUE),
+value = 5)
+`regmatches<-`(old,
+structure(c(5,8), match.length = 0),
+value = 5)
+`regmatches<-`(old,
+structure(c(5,8), match.length = numeric(2)),
+value = 5)
+structure(c(5,8), match.length = numeric(2))
+`regmatches<-`(old,
+list(structure(c(5,8), match.length = numeric(2))),
+value = 5)
+`regmatches<-`(c(old,old),
+list(structure(c(5,8), match.length = numeric(2))),
+value = 5)
+repl <-c(5,8)
+repl <- structure(repls, match.length = numeric(repl))
+repl <- structure(repl, match.length = numeric(repl))
+repl <- structure(repl, match.length = repl*0)
+devtools::install()
+.Call(UniPro:::optim_call, par, fn1, gr1, method, lower, upper, con)
+devtools::install()
+new.env
+install.packages('pryr')

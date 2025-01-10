@@ -1,0 +1,150 @@
+#' Uniform Projection
+#'
+#' A function to construct a Uniform Projection Design using Differential Evolution
+#' algorithm
+#'
+#' @usage UniPro(n, m, s = n, NP = 100, itermax = 1000,
+#'               pMut =0.2, pCR = 0.3, pGBest = 0.9, replicates = 1)
+#'
+#' @param n number of rows(observations)
+#' @param m number of columns(variables/factors)
+#' @param s number of levels. Default = n
+#' @param NP initial population size. Default = 100
+#' @param itermax maximum number of iterations. Default = 1000
+#' @param pMut the probability of mutation
+#' @param pCR Probability of CrossOver
+#' @param pGBest Probability of using global best
+#' @param replicates number of replications. Determines the output
+#'
+#' @return A list with the phi value, the final design and total computational time taken:
+#' \item{X}{The final UniPro Design. Only returned when replicates = 1}
+#' \item{val}{The phi value of the final Design. A vector of length replicates}
+#' \item{time_taken}{Total computational time taken}
+#' @examples
+#' UniPro(10, 3)
+#' UniPro(30, 3, replicates=10)
+#'
+#'
+#' @export
+UniPro<- function(n, m, s=n, NP=100,
+                  itermax=1500, pMut=0.2, pCR=0.3, pGBest=0.9,
+                  replicates = 1, method = c('C', 'Call', 'Fortran')){
+  UseMethod('UniPro')
+}
+
+#' @export
+UniPro.numeric <- function(n, m, s=n, NP=100,
+                   itermax=1500, pMut=0.2, pCR=0.3, pGBest=0.9,
+                   replicates = 1, method = c('C', 'Call', 'Fortran')){
+  x <-match.call()
+  method <- paste0(method[1], "Routine")
+  x[[2]] <- structure(x[[2]], class = method)
+  x[[1]] <- quote(UniPro)
+  x$method <- NULL
+  structure(eval(x), method = method)
+}
+
+
+#' @export
+UniPro.FortranRoutine <- function(n, m, s=n, NP=100,
+                   itermax=1000, pMut=0.2, pCR=0.3, pGBest=0.9, replicates = 1){
+  val <-  .Fortran("de_fortran", n=as.integer(n),
+                   m=as.integer(m),
+                   s = as.integer(s),
+                   NP = as.integer(NP),
+                   itermax = as.integer(itermax),
+                   pMut = as.double(pMut),
+                   pCR = as.double(pCR),
+                   pGBest = as.double(pGBest),
+                   X = matrix(integer(n*m),n, m),
+                   opt_val = double(replicates),
+                   time_taken = double(1),
+                   replicates = as.integer(replicates))
+  val[c('opt_val', 'time_taken', if(replicates ==1) 'X')]
+}
+
+#' @useDynLib UniPro, .registration=TRUE
+NULL
+
+#' phi
+#'
+#'
+#' A function that computes the UniPro criterion value for a balanced design.
+#' Equation 5.1 and 5.2 of the Uniform Projection Designs paper by Sun, Wang and Xu.
+#'
+#' @usage phi_fortranR(X, s = nrow(X))
+#'
+#' @param X Design
+#' @param s number of levels for the design X
+#'
+#' @return the phi value.
+#'
+#' @examples
+#' phi(replicate(3, sample(10)))
+#'
+#' @export
+#'
+#' @export
+phi <- function(X, s = nrow(X), method = c('C', 'Call', 'Fortran')){
+  UseMethod('phi')
+}
+
+#' @export
+phi.numeric <- function(X, s = nrow(X), method = c('C', 'Call', 'Fortran')){
+  x <-match.call()
+  method <- paste0(method[1], "Routine")
+  x[[2]] <- structure(x[[2]], class = method)
+  x[[1]] <- quote(phi)
+  x$method <- NULL
+  structure(eval(x), method = method)
+}
+#' @export
+phi.FortranRoutine <- function(X, s = nrow(X)){
+  d <- dim(X)
+  .Fortran('phi_fortran', X = as.integer(X),  nrow = d[1], ncol = d[2],
+           s = s, val = double(1))$val
+}
+
+#' @export
+phi.CRoutine <- function(X, s = nrow(X)){
+  d <- dim(X)
+  .C('phi_C', X = as.integer(X), n = d[1], m = d[2],
+           s = s, val = double(1))$val
+}
+
+#' @export
+phi.CallRoutine <- function(X, s = nrow(X)){
+  storage.mode(X) <- "integer"
+  .Call("phi_Call", X, as.integer(s))
+}
+
+
+#' @export
+UniPro.CallRoutine <- function (n, m, s = n, NP = 100, itermax = 1000, pMut = 0.2,
+                     pCR = 0.3, pGBest = 0.9, replicates = 1){
+
+  .Call("DE_Call", as.integer(n), as.integer(m),
+        as.integer(s), as.integer(NP),
+        as.integer(itermax), as.double(pMut),
+        as.double(pCR), as.double(pGBest), as.integer(replicates))
+}
+
+
+#' @export
+UniPro.CRoutine <- function(n, m, s = n, NP = 100, itermax = 1000, pMut = 0.2,
+         pCR = 0.3, pGBest = 0.9, replicates = 1){
+  val <- .C("DE_C", n=as.integer(n),
+     m=as.integer(m),
+     s = as.integer(s),
+     NP = as.integer(NP),
+     itermax = as.integer(itermax),
+     pMut = as.double(pMut),
+     pCR = as.double(pCR),
+     pGBest = as.double(pGBest),
+     X = matrix(integer(n*m),n, m),
+     opt_val = double(replicates),
+     time_taken = double(1),
+     replicates = as.integer(replicates))
+  val[c('opt_val', 'time_taken', if(replicates ==1) 'X')]
+}
+

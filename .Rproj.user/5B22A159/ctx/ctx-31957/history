@@ -1,0 +1,25 @@
+devtools::install()
+.Call(UniPro:::optim_call, par, fn1, gr1, method, lower, upper, con)
+con <- list(trace = 0, fnscale = 1, parscale = c(1, 1), ndeps = c(0.001,
+0.001), maxit = 100L, abstol = -Inf, reltol = 1.49011611938477e-08,
+alpha = 1, beta = 0.5, gamma = 2, REPORT = 10, warn.1d.NelderMead = TRUE,
+type = 1, lmm = 5, factr = 1e+07, pgtol = 0, tmax = 10, temp = 10)
+method <-  "L-BFGS-B"
+fn1 <- egoOptim::branin
+gr1 <- NULL
+dom <- egoOptim::domain('branin')
+lower <- dom$lower
+upper <- dom$upper
+par <- c(1,1)
+.Call(UniPro:::optim_call, par, fn1, gr1, method, lower, upper, con)
+.External2(UniPro:::optim_call, par, fn1, gr1, method, lower, upper, con)
+.External2(UniPro:::optim_ex, par, fn1, gr1, method, lower, upper, con)
+.External2(UniPro:::optim_e, par, fn1, gr1, method, lower, upper, con)
+.External2(UniPro:::optim_ex, par, fn1, gr1, method, lower, upper, con)
+.External2(UniPro:::optim_ex, par, fn1, gr1, method, lower, upper)
+optim
+.External2(UniPro:::optim_ex, par, fn1, gr1, method, con, lower, upper)
+branin
+egoOptim::branin
+dom
+devtools::install()

@@ -1,0 +1,8 @@
+CFLAGS += -O3 -fopenmp
+FILES = $(wildcard *.c *.f90)
+
+all:
+	R CMD SHLIB  $(FILES) $(CFLAGS)
+
+clean:
+	rm -f *.o *.dll $(FILEIN:.c=)

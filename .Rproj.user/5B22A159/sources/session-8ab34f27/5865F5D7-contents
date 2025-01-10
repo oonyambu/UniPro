@@ -1,0 +1,181 @@
+integer function rand_int_fortran(n)
+    implicit none
+    real(8) rand
+    integer n
+    call random_number(rand)
+    rand_int_fortran = int(rand*n) + 1
+end function rand_int_fortran
+
+subroutine sample2_fortran(n, out)
+    implicit none
+    integer n , out(2), rand_int_fortran
+    out(1) = rand_int_fortran(n)
+    do while (.true.)
+        out(2) = rand_int_fortran(n)
+        if (out(2) .ne. out(1)) exit
+    end do
+end subroutine sample2_fortran
+
+
+subroutine swap_two(vec, prob, n, out)
+    implicit none
+    integer ::  to_swap(2), n, vec(n), out(n)
+    real(8) :: prob, rand
+    call sample2_fortran(n, to_swap)
+    call random_number(rand)
+    out = vec
+    if(rand < prob) then
+        out(to_swap(1)) = vec(to_swap(2))
+        out(to_swap(2)) = vec(to_swap(1))
+    end if
+end subroutine swap_two
+
+
+subroutine crossover_fortran (agent, potential, prob, n, m)
+    implicit none
+    integer n, m, agent(n, m), potential(n, m), j, rand_int_fortran
+    real(8) prob, rand(m)
+    logical index(m)
+    call random_number(rand)
+    index = rand < prob
+    j = rand_int_fortran(m)
+    index(j) = .true.
+    do j = 1, m
+        if(.not.index(j)) potential(:,j) = agent(:,j)
+    end do
+end subroutine crossover_fortran
+
+subroutine gen_design_fortran(D, n, m, s)
+    implicit none
+    integer :: n, m, s, D(n, m), i,j, temp, k, rand_int_fortran
+    !s = merge(s, n, s > 0)
+    !$omp parallel do
+    do j = 1, m
+        D(:,j) = (/(mod(i,s) + 1, i=0, n - 1)/)
+        do i = 1, n
+            k = rand_int_fortran(n)
+            temp = D(i, j)
+            D(i, j) = D(k, j)
+            D(k, j) = temp
+        end do
+     end do
+     !$omp end parallel do
+end subroutine gen_design_fortran
+
+subroutine print_design(D, n, m)
+    implicit none
+    integer D(n, m), n, m, i
+    do i=1, n
+        print *, D(i,:)
+    end do
+end subroutine print_design
+
+real(8) function phi2D_fortran(X, nrow, ncol, s)
+    implicit none
+    integer :: nrow, ncol, x(nrow, ncol), i, j, s
+    real(8) :: dist, dist_row, v(nrow), d
+    real(8) :: p, g, numerator, denom, denom_g, C
+    dist = 0
+    dist_row = 0
+    v = 0
+    !s = merge(s, nrow, s > 0)
+    do i = 1, nrow
+        do j = i+1, nrow
+            d = sum(abs(x(i,:) - x(j,:)))
+            dist = dist + 2*d*d;
+            v(j) = v(j) + d
+            v(i) = v(i) + d
+        end do
+        dist_row = dist_row + v(i)*v(i)
+    end do
+    p = s**4
+    g = dist - 2.0_8*dist_row/NROW
+    numerator = 4*(5.0_8*NCOL - 2)*p + 30.0_8*(3.0_8*NCOL-5)*s*s + 15.0_8*NCOL + 33
+    denom = 720.0_8*(NCOL - 1)*p
+    C = numerator/ denom + (1 + (-1._8)**s)/(64._8*p)
+    denom_g = 4._8*NCOL * (NCOL - 1) * NROW*NROW*s*s
+    phi2D_fortran = (g/denom_g +C)*1000._8
+end function phi2D_fortran
+
+subroutine phi_fortran(X, nrow, ncol, s, val)
+    integer X(nrow, ncol), nrow, ncol, s
+    real(8) val, phi2D_fortran
+    val = phi2D_fortran(X, nrow, ncol, s)
+end subroutine phi_fortran
+
+
+
+subroutine DE_fortran(n, m, s, NP, itermax, pMut,pCR, &
+    pGBest, X, opt_val, time_taken, replicates)
+    implicit none
+    integer n, m, itermax, NP, agent(NP, n, m),X(n, m), replicates, rep
+    integer ::  potential(NP, n, m), i, min_pos, s, j, it, r, rand_int_fortran
+    real(8) vals_agent(NP), min, phi2D_fortran, vals_trial(NP), rand_global
+    real(8) pMut, pGBest, pCR, opt_val(replicates), pSelf, time_taken
+    integer starttime, end_time
+    starttime = 0
+    call system_clock(count=starttime)
+    !$omp parallel do collapse(2)
+    do rep = 1, replicates
+        min = 99999999.0_8
+        min_pos = 1
+        do i=1, NP
+            call gen_design_fortran(agent(i, :, :), n, m, s)
+            vals_agent(i) = phi2D_fortran(agent(i, :, :), n, m, s)
+        end do
+        do it = 1, itermax
+            do i = 1, NP
+                if(vals_agent(i) < min) then
+                    min = vals_agent(i)
+                    min_pos = i
+                end if
+                call random_number(rand_global)
+                call random_number(pSelf)
+                if(pSelf < (1 - pGBest)/2) then
+                  r = i
+                else
+                  r = rand_int_fortran(NP)
+                end if
+                do j=1, m
+                    if(rand_global < pGBest) then
+                        call swap_two(agent(min_pos, :, j), pMut, n, potential(i, :, j))
+                    else
+                        call swap_two(agent(r, :, j), pMut, n, potential(i, :, j))
+                    end if
+                end do
+                call crossover_fortran (agent(i, :,:), potential(i,:,:), pCR, n, m)
+                vals_trial(i) = phi2D_fortran(potential(i,:,:), n, m, s)
+                if (vals_trial(i) < vals_agent(i)) then
+                    vals_agent(i) = vals_trial(i)
+                    agent(i,:,:) = potential(i,:,:)
+                end if
+
+            end do
+        end do
+        opt_val(rep) = vals_agent(min_pos)
+        if(replicates .eq.1)X = agent(min_pos,:,:)
+    end do
+    !$omp end parallel do
+    call system_clock(count = end_time)
+    time_taken = (dble(end_time) - starttime)/1000
+end subroutine DE_fortran
+
+
+
+
+program roll
+    implicit none
+    integer, parameter :: n = 50, m=5, NP=100, &
+            itermax = 1000, replicates = 1
+    integer ::i, rand_int_fortran, j, X(n, m), s
+    real(8), parameter :: pMut=0.2, pCR=0.3, pGBest=0.9
+    real(8):: min, phi2D_fortran, phi_val(replicates), time_taken
+    s = 0
+    !min = 0
+    !do i=1, B
+        call DE_fortran(n, m, s, NP, itermax, &
+         pMut,pCR, pGBest, X, phi_val, time_taken, replicates)
+     !   min = min + phi_val
+    call phi_fortran(X, n, m, s, min)
+    print *, min, phi_val
+end program roll

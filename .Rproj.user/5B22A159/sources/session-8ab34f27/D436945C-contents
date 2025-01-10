@@ -1,0 +1,6 @@
+# Makevars file
+
+# Add flags for the C compiler
+CFLAGS += -O3 -fopenmp
+CXXFLAGS += -O3 -fopenmp
+FCFLAGS += -O3 -fopenmp

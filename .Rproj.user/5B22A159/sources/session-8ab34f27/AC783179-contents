@@ -1,0 +1,4 @@
+CFLAGS +=  -O3 -fopenmp
+CXXFLAGS += -O3 -fopenmp
+PKG_CXXFLAGS += -O3 -fopenmp
+PKG_CFLAGS += -O3 -fopenmp

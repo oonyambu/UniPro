@@ -1,0 +1,512 @@
+SEXP out = PROTECT(allocVector(REALSXP, n));
+for(int i = 0; i<n; i++)
+{
+REAL(out)[i] = REAL(x)[i];
+}
+return out;
+")
+copy(1:5)
+copy(as.numeric(1:5))
+copy <- inline::cfunction(c(x="numeric"),
+"int n = length(x);
+SEXP out = PROTECT(allocVector(REALSXP, n));
+for(int i = 0; i<n; i++)
+{
+REAL(out)[i] = REAL(x)[i];
+}
+UNPROTECT(1);
+return out;
+")
+copy(as.numeric(1:5))
+copy <- inline::cfunction(c(x="numeric"),
+"int n = length(x);
+SEXP out = PROTECT(allocVector(REALSXP, n));
+double *pout = REAL(out), *px = REAL(x);
+for(int i = 0; i<n; i++)
+{
+REAL(out)[i] = REAL(x)[i];
+}
+UNPROTECT(1);
+return out;
+")
+copy(as.numeric(1:5))
+copy <- inline::cfunction(c(x="numeric"),
+"int n = length(x);
+SEXP out = PROTECT(allocVector(REALSXP, n));
+double *pout = REAL(out), *px = REAL(x);
+for(int i = 0; i<n; i++)
+{
+pout[i] = px[i];
+}
+UNPROTECT(1);
+return out;
+")
+copy(as.numeric(1:5))
+copy <- inline::cfunction(c(x="numeric"),
+"int n = length(x);
+SEXP out = PROTECT(allocVector(REALSXP, n));
+double *pout = REAL(out), *px = REAL(x);
+for(int i = 0; i<n; i++)
+{
+*(pout+i) = px[i];
+}
+UNPROTECT(1);
+return out;
+")
+copy(as.numeric(1:5))
+setwd("D:/Work/fortran/UniPro")
+setwd("C:/Users/samon/OneDrive/Desktop/papers_complete/dissertation/presentation")
+setwd("C:/Users/samon/OneDrive/Desktop/papers_complete/dissertation/chapters/RSO/")
+comparisonEGO <- function(n, m, K=50,  name = "oacd3_50", dir = "hetGP1",
+result_dir = "result", force = FALSE)
+{
+load(sprintf("%s/up%dx%d_%d.Rda", result_dir, n, m, K))
+load(sprintf("%s/up%dx%d/%s.Rda", dir, n, m, name))
+result <- get(sprintf("up%dx%d_%s", n, m, name))
+ncores <- parallel::detectCores()
+if(.Platform$OS.type == "windows") ncores <- 1
+name <- sprintf("%s/up%dx%d_%dEGO.Rda", result_dir, n, m, K)
+if(!dir.exists(result_dir)) dir.create(result_dir)
+if(!file.exists(name)){
+EGO <- parallel::mclapply(1:K, \(i)do.call(Meta4Design::UniPro, as.list(result$par))$opt,
+mc.cores = ncores)%>%unlist()
+save(EGO, file = name)
+}
+load(name)
+boxplot(c(res, EGO = list(EGO)), main = sprintf("%dx%d", n, m))
+}
+comparisonEGO(30, 3, result_dir = "data/New folder/")
+comparisonEGO(30, 3, result_dir = "data/New folder")
+list.files('data')
+list.files('data', pattern = 'Rda$')
+list.files('data', pattern = 'Rda$', recursive = T)
+comparisonEGO(30, 3, result_dir = "New folder/result")
+comparisonEGO(30, 3, result_dir = "data/New folder/result")
+comparisonEGO(30, 3, result_dir = "data/New folder/")
+install.packages('cowplot')
+n <- 30
+m <- 3
+nm <- sprintf("data/results%dx%d.Rda", n, m)
+load(nm)
+nm
+load("data/New folder/results30x3.Rda")
+nm <- sprintf("data/results%dx%d.Rda", n, m)
+v <- get(sub("(_\\d+)?.Rda", "", basename(nm)))$a
+v
+s <- do.call(rbind, lapply(v, \(x)t(sapply(x, getElement, 'par'))))
+s
+colnames(s) <- names(bounds)[-(1:2)]
+s
+read.table("data/results30x3.txt")
+path <- "../DE/data/up30x3/ccd3_43.csv"
+dat <- read.csv(path, row.names = 'X') %>%
+rename(m=k)%>%
+pivot_longer(starts_with('X'), names_to = NULL, values_to = 'y')
+library(tidyverse)
+path <- "../DE/data/up30x3/ccd3_43.csv"
+dat <- read.csv(path, row.names = 'X') %>%
+rename(m=k)%>%
+pivot_longer(starts_with('X'), names_to = NULL, values_to = 'y')
+bounds <- dat %>%  reframe(across(-y, range))
+s <- do.call(rbind, lapply(v, \(x)t(sapply(x, getElement, 'par'))))
+colnames(s) <- names(bounds)[-(1:2)]
+s <- mapply(scales::rescale, data.frame(s), from=bounds[-(1:2)])
+s
+s <- do.call(rbind, lapply(v, \(x)t(sapply(x, getElement, 'par'))))
+colnames(s) <- names(bounds)[-(1:2)]
+s
+colnames(s)
+write.table(s, "data/results30x3_par.txt")
+read.table("data/results30x3_par.txt")
+n <- 50
+m <- 5
+nm <- sprintf("data/results%dx%d.Rda", n, m)
+load(nm)
+nm <- sprintf("data/New folder/results%dx%d.Rda", n, m)
+n <- 50
+m <- 5
+nm <- sprintf("data/New folder/results%dx%d.Rda", n, m)
+load(nm)
+nm <- sprintf("data/results%dx%d.Rda", n, m)
+v <- get(sub("(_\\d+)?.Rda", "", basename(nm)))$a
+s <- do.call(rbind, lapply(v, \(x)t(sapply(x, getElement, 'par'))))
+colnames(s) <- names(bounds)[-(1:2)]
+path <- "../DE/data/up30x3/ccd3_43.csv"
+dat <- read.csv(path, row.names = 'X') %>%
+rename(m=k)%>%
+pivot_longer(starts_with('X'), names_to = NULL, values_to = 'y')
+bounds <- dat %>%  reframe(across(-y, range))
+colnames(s) <- names(bounds)[-(1:2)]
+write.table(s, "data/results50x5_par.txt")
+path <- "../DE/data/up30x3/ccd3_43.csv"
+dat <- read.csv(path, row.names = 'X') %>%
+rename(m=k)%>%
+pivot_longer(starts_with('X'), names_to = NULL, values_to = 'y')
+bounds <- dat %>%  reframe(across(-y, range))
+size <- select(bounds, n, m)%>%slice(1)
+n <- 70
+m <- 7
+nm <- sprintf("data/New folder/results%dx%d.Rda", n, m)
+load(nm)
+nm <- sprintf("data/results%dx%d.Rda", n, m)
+v <- get(sub("(_\\d+)?.Rda", "", basename(nm)))$a
+s <- do.call(rbind, lapply(v, \(x)t(sapply(x, getElement, 'par'))))
+colnames(s) <- names(bounds)[-(1:2)]
+write.table(s, "data/results70x7_par.txt")
+nm <- sprintf("data/results%dx%d.txt", n, m)
+nm
+nm <- sprintf("data/results%dx%d_par.txt", n, m)
+nm
+s <- read.table("data/results70x7_par.txt")
+head(S)
+head(s)
+n
+m
+n <- 30
+m <- 3
+a<- try(read.table(sprintf("data/up%dx%d_%d.txt",n,m, K), header = TRUE), silent = TRUE)%>% suppressWarnings()
+a
+K <- 100
+a<- try(read.table(sprintf("data/up%dx%d_%d.txt",n,m, K), header = TRUE), silent = TRUE)%>% suppressWarnings()
+a
+nm <- sprintf("data/results%dx%d.Rda", n, m)
+nm
+nm <- sprintf("data/New folder/results%dx%d.Rda", n, m)
+load(nm)
+v <- get(sub(".Rda", "", basename(nm)))
+v
+v$b
+u<-v$b
+read.table("data/results30x3.txt")
+w<-read.table("data/results30x3.txt")
+head(u)
+head(w)
+w<-read.table("data/results30x3.txt", h=T)
+head(w)
+all.equal(w, u)
+head(u)
+head(w)
+all.equal(type.convert(w,as.is=TRUE), type.convert(u, as.is=TRUE))
+v <- read.table(sprintf("data/results%dx%d.txt", n, m), h=TRUE)
+mn <- slice_min(subset(v, method == 'RSO'), values,with_ties = FALSE)
+mn
+s <- read.table(sprintf("data/results%dx%d_par.txt", n, m), header = TRUE)
+s
+results30x3
+mn
+v<- results30x3
+v$a[[mn$method]]
+v$a[[mn$method]][[mn$ind]]$par
+v$a[[mn$method]][[mn$ind]]
+mn$ind
+v$a[[mn$method]][[parse_number(mn$ind)]]
+v$a[[mn$method]][[parse_number(mn$ind)]]$par
+v
+read.table(sprintf("data/results%dx%d.txt", n, m), h=TRUE)[,19]
+read.table(sprintf("data/results%dx%d.txt", n, m), h=TRUE)[19,]
+s <- read.table(sprintf("data/results%dx%d_par.txt", n, m), header = TRUE)
+s[19,]
+v$a[[mn$method]][[parse_number(mn$ind)]]$par
+n <- 50
+m <- 5
+K <- 100
+a<- try(read.table(sprintf("data/up%dx%d_%d.txt",n,m, K), header = TRUE), silent = TRUE)%>% suppressWarnings()
+a
+v <- read.table(sprintf("data/results%dx%d.txt", n, m), h=TRUE)
+mn <- slice_min(subset(v, method == 'RSO'), values,with_ties = FALSE)
+mn
+par <- v$a[[mn$method]][[parse_number(mn$ind)]]$par%>%
+setNames(c("NP","itermax","pMut","pCR","pGBest"))
+v$a[[mn$method]][[parse_number(mn$ind)]]$par
+parse_number(mn$ind)
+v$a[[mn$method]
+]
+mn
+v$method
+load("C:/Users/samon/OneDrive/Desktop/papers_complete/dissertation/chapters/RSO/data/New folder/results50x5.Rda")
+v
+v<- results50x5
+mn
+v$a[[mn$method]][[parse_number(mn$ind)]]$par
+s <- read.table(sprintf("data/results%dx%d_par.txt", n, m), header = TRUE)
+s[7,]
+v <- read.table(sprintf("data/results%dx%d.txt", n, m), h=TRUE)
+mn <- slice_min(subset(v, method == 'RSO'), values,with_ties = FALSE)
+s
+load("C:/Users/samon/OneDrive/Desktop/papers_complete/dissertation/chapters/RSO/data/New folder/results70x7.Rda")
+v <- results70x7
+n <- 70
+m <- 7
+K <- 100
+a<- try(read.table(sprintf("data/up%dx%d_%d.txt",n,m, K), header = TRUE), silent = TRUE)%>% suppressWarnings()
+a
+v <- read.table(sprintf("data/results%dx%d.txt", n, m), h=TRUE)
+mn <- slice_min(subset(v, method == 'RSO'), values,with_ties = FALSE)
+mn
+v <- read.table(sprintf("data/results%dx%d.txt", n, m), h=TRUE)
+mn <- slice_min(subset(v, method == 'RSO'), values,with_ties = FALSE)
+mn
+v <- results70x7
+v$a[[mn$method]][[parse_number(mn$ind)]]$par
+s <- read.table(sprintf("data/results%dx%d_par.txt", n, m), header = TRUE)
+s[10,]
+n <- 3
+n <- 30
+m<-3
+K<-100
+nm <- sprintf("data/results%dx%d.Rda", n, m)
+load(nm)
+nm <- sprintf("data/New folder/results%dx%d.Rda", n, m)
+load(nm)
+v <- get(sub(".Rda", "", basename(nm)))
+get_par <- function(n, m, K=100){
+nm <- sprintf("data/New folder/results%dx%d.Rda", n, m)
+load(nm)
+v <- get(sub(".Rda", "", basename(nm)))
+mn <- slice_min(subset(v$b, method == 'RSO'), values,with_ties = FALSE);
+v$a[[mn$method]][[mn$ind]]$par%>%
+setNames(c("NP","itermax","pMut","pCR","pGBest"))
+}
+get_par(30,3)
+get_par <- function(n, m, K=100){
+nm <- sprintf("data/New folder/results%dx%d.Rda", n, m)
+load(nm)
+v <- get(sub(".Rda", "", basename(nm)))
+v <- read.table(sprintf("data/results%dx%d.txt", n, m), h=TRUE)
+s <- read.table(sprintf("data/results%dx%d_par.txt", n, m), header = TRUE)
+mn <- slice_min(subset(v, method == 'RSO'), values,with_ties = FALSE);
+v$a[[mn$method]][[mn$ind]]$par%>%
+setNames(c("NP","itermax","pMut","pCR","pGBest"))
+}
+get_par <- function(n, m, K=100){
+nm <- sprintf("data/New folder/results%dx%d.Rda", n, m)
+load(nm)
+v <- get(sub(".Rda", "", basename(nm)))
+v <- read.table(sprintf("data/results%dx%d.txt", n, m), h=TRUE)
+s <- read.table(sprintf("data/results%dx%d_par.txt", n, m), header = TRUE)
+mn <- slice_min(subset(v, method == 'RSO'), values,with_ties = FALSE);
+v$a[[mn$method]][[mn$ind]]$par%>%
+setNames(c("NP","itermax","pMut","pCR","pGBest"))
+s[parse_number(mn$ind),]
+}
+get_par(30,3)
+get_par <- function(n, m, K=100){
+nm <- sprintf("data/New folder/results%dx%d.Rda", n, m)
+load(nm)
+v <- get(sub(".Rda", "", basename(nm)))
+v <- read.table(sprintf("data/results%dx%d.txt", n, m), h=TRUE)
+s <- read.table(sprintf("data/results%dx%d_par.txt", n, m), header = TRUE)
+mn <- slice_min(subset(v, method == 'RSO'), values,with_ties = FALSE);
+s[parse_number(mn$ind),]
+}
+get_par(30,3)
+dyn.load("src/de_c.dll")
+n <- 30L
+m <- 3L
+s <- n
+itermax <- 1000L
+NP <- 100L
+reps <- 10L
+.C("DE_C", n=n,
+m=m,
+s =s,
+NP = NP,
+itermax = itermax,
+pMut = as.double(0.2),
+pCR = as.double(0.3),
+pGBest = as.double(0.9),
+X = matrix(integer(n*m),n, m),
+val = double(reps),
+time_taken = double(1),
+replicates = as.integer(reps))
+.C("DE_C", n=n,
+m=m,
+s =s,
+NP = NP,
+itermax = itermax,
+pMut = as.double(0.2),
+pCR = as.double(0.3),
+pGBest = as.double(0.9),
+X = matrix(integer(n*m),n, m),
+val = double(reps),
+time_taken = double(1),
+replicates = as.integer(reps))
+X <- replicate(m, sample(n))
+.C('phi_C', as.integer(X),  n, m, s, as.double(1))
+UniPro::phi(X)
+dyn.unload("src/de_R.dll")
+dyn.unload("src/de_c.dll")
+dyn.load("src/de_c.dll")
+n <- 30L
+m <- 3L
+s <- n
+itermax <- 1000L
+NP <- 100L
+reps <- 10L
+.C("DE_C", n=n,
+m=m,
+s =s,
+NP = NP,
+itermax = itermax,
+pMut = as.double(0.2),
+pCR = as.double(0.3),
+pGBest = as.double(0.9),
+X = matrix(integer(n*m),n, m),
+val = double(reps),
+time_taken = double(1),
+replicates = as.integer(reps))
+dyn.unload("src/de_c.dll")
+remove.packages('UniPro')
+devtools::install()
+setwd("D:/Work/fortran/UniPro")
+devtools::install()
+remove.packages('UniPro')
+devtools::install()
+remove.packages('UniPro')
+devtools::install()
+devtools::document()
+?replications()
+N <- c(0,1,0,1,1,1,0,0,0,1,1,0,1,1,0,0,1,0,1,0,1,1,0,0)
+P <- c(1,1,0,0,0,1,0,1,1,1,0,0,0,1,0,1,1,0,0,1,0,1,1,0)
+K <- c(1,0,0,1,0,1,1,0,0,1,0,1,0,1,1,0,0,0,1,1,1,0,1,0)
+yield <- c(49.5,62.8,46.8,57.0,59.8,58.5,55.5,56.0,62.8,55.8,69.5,
+55.0, 62.0,48.8,45.5,44.2,52.0,51.5,49.8,48.8,57.2,59.0,53.2,56.0)
+npk <- data.frame(block = gl(6,4), N = factor(N), P = factor(P),
+K = factor(K), yield = yield)
+replications(~ . - yield, npk)
+replications(.~Species, iris)
+replications(~Species, iris)
+replications(~. - Species, iris)
+replications(~Species, iris)
+npk
+lapply(npk[-4],table)
+lapply(npk[-5],table)
+lengths(lapply(npk[-5],table) )
+lengths(lapply(npk[-5], dplyr::n_distinct) )
+lapply(npk[-5], dplyr::n_distinct)
+apply(npk[-5], dplyr::n_distinct)
+sapply(npk[-5], dplyr::n_distinct)
+replications(~.-yield, npk)
+sapply(npk[-5], length)
+npk
+npk[-5]
+disinct(npk[-5])
+unique(npk[-5])
+replications(~.-yield, npk)
+sapply(npk[-5], table)
+sapply(npk[-5], \(x)unique(table(x)))
+devtools::document()
+pkgload::dev_help('UniPro_C')
+runif(1000)
+runif(1000)*1000
+floor(runif(1000)*1000)
+table(floor(runif(1000)*1000))
+table(floor(runif(10)*10))
+table(floor(runif(10000)*10))
+proportions(table(floor(runif(10000)*10)))
+proportions(table(floor(runif(10000)*5)))
+proportions(table(floor(runif(1000000)*5)))
+devtools::document()
+pkgload::dev_help('phi_CallR')
+devtools::document()
+dyn.load("src/de_c.dll")
+getwd()
+dyn.load("src/UniPro.dll")
+n <- 30L
+m <- 3L
+s <- n
+itermax <- 1000L
+NP <- 100L
+reps <- 10L
+.C("DE_C", n=n,
+m=m,
+s =s,
+NP = NP,
+itermax = itermax,
+pMut = as.double(0.2),
+pCR = as.double(0.3),
+pGBest = as.double(0.9),
+X = matrix(integer(n*m),n, m),
+val = double(reps),
+time_taken = double(1),
+replicates = as.integer(reps))
+.C("DE_C", n=n,
+m=m,
+s =s,
+NP = NP,
+itermax = itermax,
+pMut = as.double(0.2),
+pCR = as.double(0.3),
+pGBest = as.double(0.9),
+X = matrix(integer(n*m),n, m),
+opt_val = double(reps),
+time_taken = double(1),
+replicates = as.integer(reps))
+.C("DE_C", n=n,
+m=m,
+s =s,
+NP = NP,
+itermax = itermax,
+pMut = as.double(0.2),
+pCR = as.double(0.3),
+pGBest = as.double(0.9),
+X = matrix(integer(n*m),n, m),
+opt_val = double(reps),
+time_taken = double(1),
+replicates = as.integer(reps))
+dyn.load("src/UniPro.dll")
+n <- 30L
+m <- 3L
+s <- n
+itermax <- 1000L
+NP <- 100L
+reps <- 10L
+.C("DE_C", n=n,
+m=m,
+s =s,
+NP = NP,
+itermax = itermax,
+pMut = as.double(0.2),
+pCR = as.double(0.3),
+pGBest = as.double(0.9),
+X = matrix(integer(n*m),n, m),
+opt_val = double(reps),
+time_taken = double(1),
+replicates = as.integer(reps))
+X <- replicate(m, sample(n))
+dyn.unload("src/de_c.dll")
+dyn.load("src/de_c.dll")
+n <- 30L
+m <- 3L
+s <- n
+itermax <- 1000L
+NP <- 100L
+reps <- 10L
+.C("DE_C", n=n,
+m=m,
+s =s,
+NP = NP,
+itermax = itermax,
+pMut = as.double(0.2),
+pCR = as.double(0.3),
+pGBest = as.double(0.9),
+X = matrix(integer(n*m),n, m),
+opt_val = double(reps),
+time_taken = double(1),
+replicates = as.integer(reps))
+dyn.unload("src/de_c.dll")
+dyn.unload("src/UniPro.dll")
+devtools::document()
+UniPro_C(10,2)
+UniPro_C(10,3)
+UniPro_CR(10,3)
+UniPro_Call(10,3)
+UniPro_fortran(10,3)
+devtools::document()
+devtools::install()
+UniPro_Call(10,3)
+UniPro_fortran(10,3)
+UniPro::UniPro_fortran(10,3)
+UniPro::UniPro_C(10,3)
+UniPro::UniPro_Call(10,3)
+devtools::install()

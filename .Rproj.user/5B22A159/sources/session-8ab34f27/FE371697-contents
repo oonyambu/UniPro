@@ -1,0 +1,10 @@
+a <- function(n, m, s=n, NP=100,
+              itermax=1500, pMut=0.2, pCR=0.3, pGBest=0.9,
+              replicates = 1, method = c('C', 'Call', 'Fortran'))
+{ 
+  method <- paste0(method, "Routine")[1]
+  x <- match.call()
+  x$method <- NULL
+  class(x[[2]]) <- method
+  eval(x)
+}

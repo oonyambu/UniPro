@@ -1,0 +1,23 @@
+{
+    "args": [
+        "-ID:/Programs/R/R-4.4.2/include",
+        "-DNDEBUG",
+        "-fopenmp",
+        "-DEIGEN_DONT_VECTORIZE",
+        "-nostdinc",
+        "-Id:/programs/r/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++",
+        "-Id:/programs/r/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix",
+        "-Id:/programs/r/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/backward",
+        "-Id:/programs/r/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include",
+        "-Id:/programs/r/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../include",
+        "-Id:/programs/r/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include-fixed",
+        "-include",
+        "D:/Work/fortran/UniPro/.Rproj.user/5B22A159/compilation-database/mingw64/c-definitions.h"
+    ],
+    "pch": "",
+    "is_cpp": false,
+    "hash": "17345550611736515037",
+    "compiler": "14560070257236426505",
+    "rversion": "4.4.2",
+    "dbversion": 4
+}
