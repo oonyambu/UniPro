@@ -140,6 +140,7 @@ printFun <- function(x){
   cat(" measure", if(len>1)c(" [1:",len,"]"),": [", y, "]\n", sep="")
 }
 
+
 #' @export
 print.DE <- function(x){
   cat(sprintf("\n Total Time Taken: %8.4f Secs\n", x$timeTaken))
