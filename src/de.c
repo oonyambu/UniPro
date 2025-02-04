@@ -1,143 +1,224 @@
+#include "criteria.h"
 #include "de.h"
 
-void sample2(int n, int vec[2]){
-  vec[0] = rand_int(n);
-  do vec[1] = rand_int(n); while(vec[1] == vec[0]);
+
+
+#define intUniform(n) (n < 1 ? 0: rand() % (n))
+#define doubleUniform ((double)rand() / RAND_MAX)
+
+inline static int * allocVec(int size){
+  int *vec = (int*)malloc(size * sizeof(int));
+  return vec;
 }
 
-void print_design(int *X, int n, int m, int NP){
-  for(int k=0; k<NP; k++){
-    for(int i = 0; i<n; i++){
-      for(int j = 0; j<m; j++)
-        printf("%d ", X[i + n*(j + k*m)]);
-      printf("\n");
+int *sampleTwo(int n){
+  int * vec = (int*)malloc(n * sizeof(int));
+  vec[0] = intUniform(n);
+  do vec[1] = intUniform(n); while(vec[0] == vec[1]);
+  return vec;
+}
+
+
+void swapVecAtPositions(int * vec, int i, int j){
+  int temp = vec[i];
+  vec[i] = vec[j];
+  vec[j] = temp;
+}
+
+void swapVecUsingVec(int *vec, int *v){
+  swapVecAtPositions(vec, v[0], v[1]);
+}
+
+
+
+void randomlhs(dePtr de, paramsPtr p, criteria phi){
+  int *index = allocVec(p->n);
+  #pragma omp parallel for simd simdlen(8)
+  for(int i = 0; i < p->n; ++i) index[i] = i % p->s;
+  #pragma omp parallel for
+  for (int j = 0; j < p->m*p->NP; ++j)
+  {
+    for (int i = p->n - 1; i > 0; --i)
+    {
+      swapVecAtPositions(index, i, intUniform(i));
+      de->agent[i + j * p->n] = index[i];
     }
-    printf("\n\n");
-  }
-}
-
-
-
-double phi2D(const int *X, const int n, const int m, const int s, double denom_g, double C){
-  double dist = 0;
-  double dist_row = 0;
-  double v[1000] = {0};
-  //#pragma omp parallel for reduction(+:dist_row) private(j)
-  for (int i = 0; i < n; i++){
-    for (int j = i+1; j < n; j++){
-      double d = 0;
-      for(int k = 0; k<m; k++)
-        d += abs(X[i + k*n] - X[j + k*n]);
-      dist += 2*d*d;
-      v[j] += d;
-      v[i] += d;
-    }
-    dist_row += v[i]*v[i];
-  }
-  return ((dist - 2.0*dist_row/n)/denom_g + C)*1000;
-}
-
-void gen_design(int *array, const int n, const int m,
-                const int s, const int NP, double *phi_vals,
-                int *bestIndex, double denom_g, double C){
-
-  double val = 9999999.;
-  int k;
-  //#pragma omp parallel for private(k)
-  for(k = 0; k<NP; k++){
-    for(int i = 0; i<n; i++){
-      for(int j=0; j<m; j++)
-        array[i + n*(j + k*m)] = i % n + 1;
-    }
-    for(int i = 0; i < n-1; i++)
-      for (int j = 0; j < m; j++)
-        swap(&array[i + n*(j + m*k)], &array[rand_int(n) + n*(j + m*k)]);
-    phi_vals[k] = phi2D(array + k*n*m, n, m, s, denom_g, C);
-    if (phi_vals[k] < val) {
-      *bestIndex = k;
-      val = phi_vals[k];
-    }
-  }
-}
-
-void phi_C(const int *X, const int *n, const int *m, const int *s, double*val){
-  double p = pow(*s, 4);
-  double numerator = 4*(5.0**m - 2)*p + 30.0*(3**m-5)**s**s + 15**m + 33;
-  double denom = 720.0*(*m - 1)*p;
-  double C = numerator/ denom + (1.0 + pow(-1,*s))/(64.0*p);
-  double denom_g = 4.0**m * (*m - 1) * *n**n**s**s;
-  *val = phi2D(X, *n, *m, *s, denom_g, C);
-}
-
-
-void DE_C(int *n, int *m, int *s, int *NP, int *itermax,
-        double *pMut, double *pCR, double *pGBest, int *X,
-        double * opt_val, double *time_taken, int *replicates){
-
-  struct timespec start, end;
-  clock_gettime(CLOCK_MONOTONIC, &start);
-  double p = pow(*s, 4);
-  double numerator = 4*(5.0**m - 2)*p + 30.0*(3**m-5)**s**s + 15**m + 33;
-  double denom = 720.0*(*m - 1)*p;
-  double C = numerator/ denom + (1.0 + pow(-1,*s))/(64.0*p);
-  double denom_g = 4.0**m * (*m - 1) * *n**n**s**s;
-
-  int* array = (int*)malloc(*n**m**NP * sizeof(int));
-  int* potential = (int*)malloc(*n**m**NP * sizeof(int));
-  double *vals = (double*)malloc(*NP *sizeof(double));
-  int bestIndex, reps;
-  for(reps = 0; reps < *replicates; reps++){
-    gen_design(array, *n, *m, *s, *NP, vals, &bestIndex, denom_g, C);
-    for(int it = 0; it< *itermax; it++){
-      for(int k = 0; k< *NP; k++){
-        int gl = rand_unif() < *pGBest;
-        for(int j = 0; j < *m; j++){
-          for (int i = 0; i < *n; i++)
-            potential[i + *n*(j + *m*k)] = gl? array[i + *n*(j + *m*bestIndex)] : array[i + *n*(j + *m*k)];
-          if (rand_unif() < *pMut){
-            int v[2];
-            sample2(*n, v);
-            swap(&potential[v[0] + *n*(j + *m*k)], &potential[v[1] + *n*(j + *m*k)]);
-          }
-          int CR = rand_int(*m);
-          double pcr = rand_unif();
-          for(int i = 0; i<*n; i++)
-            if( (pcr > *pCR) & (j != CR))
-              potential[i + *n*(j + *m*k)] = array[i + *n*(j + *m*k)];
-        }
-        double phi_val = phi2D(potential + k**n**m, *n, *m, *s, denom_g, C);
-        if(phi_val < vals[k]) {
-          vals[k] = phi_val;
-          for (int i=0; i<*n; i++)
-            for(int j=0; j<*m; j++) array[i + *n*(j + *m*k)] = potential[i + *n*(j + *m*k)];
-        }
-        if(phi_val < vals[bestIndex]) bestIndex = k;
+    de->agent[j * p->n] = index[0];
+    if(j % p->m == p->m - 1){
+      int k = j / p->m;
+      double value = phi(de->agent + p->size * k, p);
+      de->phiValues[k] = value;
+      if(value < de->globalMin.value){
+        de->globalMin.value = value;
+        de->globalMin.index = k;
       }
     }
-      opt_val[reps] = vals[bestIndex];
   }
-  if(*replicates == 1){
-    for(int i=0;i<*n;i++)
-      for(int j=0; j<*m; j++)
-        X[i + *n*j] = array[i + *n*(j + *m*bestIndex)];
-  }
-
-  free(array);
-  free(potential);
-  free(vals);
-
-  clock_gettime(CLOCK_MONOTONIC, &end);
-  *time_taken = (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1e9;
+  free(index);
 }
 
 
-// int main(){
-//   int n = 30, m = 3, s = 30, itermax = 1000, NP=100, replicates=10, X[90];
-//   double pMut = 0.2, pCR=0.3, pGBest = 0.9, opt_val[10], time_taken;
-//
-//   DE_C(&n, &m, &s, &NP, &itermax,&pMut, &pCR, &pGBest, X,
-//        opt_val, &time_taken, &replicates);
-//   //DE_C(n, m, s, NP, itermax,pMut, pCR, pGBest, X,
-//    //     opt_val, &time_taken, replicates);
-//   for(int i=0; i<replicates;i++)printf("%f\n", opt_val[i]);
-// }
+paramsPtr initializeParams(int n, int m, int s, int NP, int itermax,
+                           double pMut,double pCR, double pGbest, int replications,
+                           long int seed, int r){
+  paramsPtr p = (paramsPtr)malloc(sizeof(params));
+  p->n = n;
+  p->m = m;
+  p->s = s;
+  p->NP = NP;
+  p->itermax = itermax;
+  p->pMut = pMut;
+  p->pCR = pCR;
+  p->pGbest = pGbest;
+  p->replications = replications;
+  p->seed = seed;
+  p->size = n*m;
+  p->len = p->size * NP;
+  p->r = r;
+  double p4 = pow(n, 4);
+  double numerator = 4*(5.0*m - 2)*p4 + 30.0*(3*m-5)*s*s + 15*m + 33;
+  double denom = 720.0*(m - 1)*p4;
+  p->C =  numerator/ denom + (1.0 + pow(-1,s))/(64.0*p4);
+  p->denom_g =   4.0*m * (m - 1) * n*n*s*s;
+  return p;
+}
+
+
+
+
+dePtr initialize(const paramsPtr p, criteria phi){
+  dePtr de;
+  de = (dePtr) malloc(sizeof(*de));
+  de->agent = allocVec(p->len);
+  de->potential = allocVec(p->len);
+  de->phiValues = (double*)malloc(p->NP * sizeof(double));
+  de->globalMin.value = 99999;
+  randomlhs(de, p, phi);
+  return de;
+}
+
+
+
+void propose(dePtr de, int NP_INDEX, paramsPtr p){
+  // with a probability pGbest, select between
+  // the global best design and the current design
+  // Other proposal methods could be implemented
+  memcpy(de->potential + NP_INDEX * p->size,
+         de->agent + (doubleUniform < p->pGbest?
+                        de->globalMin.index : NP_INDEX) * p->size,
+                        p->size * sizeof(int));
+
+}
+
+void mutate(dePtr de, int offset, paramsPtr p){
+  // With probability pMut, consider mutating a column.
+  // mutatin involves the swap operator
+  // where two randomly selected values in the column are swaped
+  if(doubleUniform < p->pMut)
+    swapVecUsingVec(de->potential + offset, sampleTwo(p->n));
+}
+
+void crossOver(dePtr de, int offset, int changeJ, paramsPtr p){
+  // Using the proposed design,
+  // With a probability pCR choose between the mutated column
+  // and the original column. Note that ne column in the proposed
+  // must be maintained.
+
+  if(doubleUniform < p->pCR && changeJ)
+    memcpy(de->potential+offset,
+           de->agent + offset, p->n*sizeof(int));
+}
+
+void getTrial(dePtr de, int NP_INDEX, paramsPtr p, criteria phi){
+  // Take an agent design, propose, mutate and do crossover.
+  // This gives us the trial design. We then select between
+  // the trial design and the original design based n the phi value
+
+  propose(de, NP_INDEX, p);
+  int start =  NP_INDEX * p->size;
+  int maintain = intUniform(p->m);
+  for(int j = 0; j < p->m; ++j){
+    int offset = start + j * p->n;
+    mutate(de, offset, p);
+    crossOver(de, offset, maintain!=j, p);
+  }
+  double value = phi(de->potential + start, p);
+  if(value < de->phiValues[NP_INDEX]){
+    de->phiValues[NP_INDEX] = value;
+    memcpy(de->agent + start, de->potential + start,
+           p->size * sizeof(int));
+  }
+  if(value < de->globalMin.value){
+    de->globalMin.value = value;
+    de->globalMin.index = NP_INDEX;
+  }
+}
+
+void print_progress(int completed, int total) {
+    int bar_width = 50;
+    float progress = (float)completed / total;
+
+    printf("\r[");
+    int pos = bar_width * progress;
+    for (int i = 0; i < bar_width; ++i) {
+        if (i < pos) printf("=");
+        else if (i == pos) printf(">");
+        else printf(" ");
+    }
+    printf("] %d%%", (int)(progress * 100));
+    fflush(stdout);
+}
+
+void progressbar(int * completed, int replications){
+    //Update progress atomically
+    #pragma omp atomic
+    (*completed)++;
+    //Print progress when enough progress has been made
+    if (*completed % (replications / 100 + 1) == 0 ||
+             *completed == replications)
+    {
+        #pragma omp critical
+        print_progress(*completed, replications);
+    }
+}
+
+
+
+void DE_CC(int n, int m, int s, int NP, int itermax,
+          double pMut, double pCR, double pGbest,
+          int replications, unsigned int seed, double * vals,
+          double *timeTaken, int * bestX, int numCores, criteria phi, int r)
+{
+  struct timespec start, end;
+  clock_gettime(CLOCK_MONOTONIC, &start);
+  srand(seed);
+  double Min = 999.;
+  int numThreads = omp_get_max_threads();
+  printf("\n Total number of Cores: %d ---- Using: ", numThreads);
+  paramsPtr p = initializeParams(n, m, s, NP, itermax,
+                                 pMut, pCR, pGbest, replications, seed, r);
+  int completed = 0;
+  numThreads = numThreads > numCores? numCores: numThreads - 1;
+  printf("%d\n", numThreads);
+  #pragma omp parallel for num_threads(numThreads)
+  for(int reps = 0; reps < replications; reps++){
+    dePtr de = initialize(p, phi);
+    #pragma omp parallel for
+    for(int it = 0; it < itermax; it++)
+      for(int i = 0; i<NP; ++i) getTrial(de, i, p, phi);
+    double value =  de->globalMin.value;
+    vals[reps] = value;
+    if(value < Min){
+      Min = value;
+      memcpy(bestX, de->agent + p->size * de->globalMin.index,
+             p->size*sizeof(int));
+    }
+    progressbar(&completed, replications);
+  }
+  clock_gettime(CLOCK_MONOTONIC, &end);
+  *timeTaken = (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1e9;
+  printf("  %8.3f Secs\n", *timeTaken);
+}
+
+
+

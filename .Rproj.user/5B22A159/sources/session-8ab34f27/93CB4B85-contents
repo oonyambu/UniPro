@@ -1,3 +1,0 @@
-read_html("https://rc2e.com/gettingstarted#recipe-startingrstudio")|>
-  html_text()|>
-  cat()

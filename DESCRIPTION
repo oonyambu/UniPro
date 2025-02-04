@@ -1,11 +1,11 @@
 Package: UniPro
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Using Differential Evolution to contruct Uniform Projection Designs
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Author: Onyambu
+Maintainer: The package maintainer <oonyambu@gmail.com>
+Description: The package uses the differential evolution algorithm to construct
+    efficint contruct Uniform Projection Designs
 License:  MIT + file LICENSE
 Encoding: UTF-8
 LazyData: false

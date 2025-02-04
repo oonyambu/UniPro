@@ -1,68 +1,122 @@
 #include <R.h>
 #include <Rinternals.h>
 #include <R_ext/Rdynload.h>
-
-/* Declare Fortran subroutine */
-void F77_NAME(de_fortran)(const int *n, const int *m, int *s,
-        const int *NP, const int *itermax,
-        const double *pMut, const double *pCR,
-        const double *pGBest, int * X, double* val,
-        double* time_taken, const int * replicates);
-
-void F77_NAME(phi_fortran)(const int *X, const int *n, const int *m,
-              int *s, double * val);
-
-/* Declare .C functions */
-void phi_C(const int *X, const int *n, const int *m, const int *s, double*val);
-void DE_C(int *n, int *m, int *s, int *NP, int *itermax,
-          double *pMut, double *pCR, double *pGBest, int *X,
-          double * opt_val, double *time_taken, int *replicates);
+#include "de.h"
+#include "criteria.h"
 
 
-/*Declare .Call functions */
-SEXP phi_Call(SEXP R_X, SEXP R_s);
-SEXP DE_Call(SEXP R_n, SEXP R_m, SEXP R_s, SEXP R_NP,
-             SEXP R_itermax, SEXP R_pMut, SEXP R_pCR,
-             SEXP R_pGBest, SEXP R_replicates);
+static criteria PHI_FUNS[3] = {unipro, maxpro, maximinLHD};
 
-// SEXP optim2(SEXP par, SEXP fn, SEXP gr, SEXP method,
-//             SEXP slower, SEXP supper,   SEXP options);
-// //SEXP bran_min(SEXP par, SEXP options);
-//
-// /* Declare .External functions */
-// SEXP optim(SEXP call, SEXP op, SEXP args, SEXP rho);
+SEXP phi(SEXP R_X, SEXP R_s, SEXP R_r, SEXP R_METHOD);
 
+SEXP DE(SEXP R_n, SEXP R_m, SEXP R_s, SEXP R_NP,
+        SEXP R_itermax, SEXP R_pMut, SEXP R_pCR,
+        SEXP R_pGBest, SEXP R_replicates, SEXP R_seed,
+        SEXP R_cores, SEXP R_METHOD, SEXP R_r);
 
+SEXP detectCores(){
+  SEXP R_out = PROTECT(allocVector(INTSXP, 1));
+  INTEGER(R_out)[0] =  omp_get_max_threads();
+  UNPROTECT(1);
+  return R_out;
+}
 
-static const R_FortranMethodDef FortranEntries[] = {
-    {"de_fortran", (DL_FUNC) &F77_NAME(de_fortran), 12},  // 2 = number of arguments
-    {"phi_fortran", (DL_FUNC) &F77_NAME(phi_fortran), 5},
-    {NULL, NULL, 0}
+// Register the function
+static const R_CallMethodDef CallMethods[] = {
+  {"phi", (DL_FUNC) &phi, 3},
+  {"DE", (DL_FUNC) &DE, 12},
+  {"detectCores", (DL_FUNC) &detectCores, 0},
+  {NULL, NULL, 0}
 };
 
-static const R_CMethodDef CEntries[] = {
-    {"DE_C", (DL_FUNC) &DE_C, 12},  // Name, pointer, # of args
-    {"phi_C", (DL_FUNC) &phi_C, 5},
-    {NULL, NULL, 0} // Sentinel
-};
+void R_init_RcppProgressExample(DllInfo *Info) {
+  R_registerRoutines(Info, NULL, CallMethods, NULL, NULL);
+  R_useDynamicSymbols(Info, FALSE);
+}
 
-static const R_CallMethodDef CallEntries[] = {
-  {"DE_Call", (DL_FUNC) &DE_Call, 9},  // Name, pointer, # of args
-  //{"optim_call", (DL_FUNC) &optim2, 7},
-  {"phi_Call", (DL_FUNC) &phi_Call, 2},
-  //{"bran_min_call", (DL_FUNC) &bran_min, 2},
-  {NULL, NULL, 0} // Sentinel
-};
 
-/*
-static const R_ExternalMethodDef ExtEntries[] = {
-  {"optim_ex", (DL_FUNC) &optim, 7},
-  //{"bran_min_ex", (DL_FUNC) &bran_min, 2},
-  {NULL, NULL, 0} // Sentinel
-};
-*/
-void R_init_UniPro(DllInfo *dll) {
-    R_registerRoutines(dll, CEntries, CallEntries, FortranEntries, NULL);
-                       //FortranEntries, ExtEntries);
-    R_useDynamicSymbols(dll, FALSE);
+SEXP phi(SEXP R_X, SEXP R_s,SEXP R_r,  SEXP R_method){
+  if (!isMatrix(R_X)) {
+    Rf_error("Input must be a matrix.");
+  }
+  R_len_t n = nrows(R_X);
+  R_len_t m = ncols(R_X);
+  int s = INTEGER(R_s)[0];
+  int r = INTEGER(R_r)[0];
+  int * data = INTEGER(R_X);
+  SEXP R_out = PROTECT(allocVector(REALSXP, 1));
+
+  criteria PHI = PHI_FUNS[INTEGER(R_method)[0] - 1];
+
+  REAL(R_out)[0] = PHI(data,
+       initializeParams(n, m, s, 0, 0, 0.,0., 0., 1, 1ll, r));
+  UNPROTECT(1);
+  return R_out;
+}
+
+
+SEXP DE(SEXP R_n, SEXP R_m, SEXP R_s, SEXP R_NP,
+            SEXP R_itermax, SEXP R_pMut, SEXP R_pCR,
+            SEXP R_pGBest, SEXP R_replicates, SEXP R_seed,
+            SEXP R_cores, SEXP R_method, SEXP R_r){
+
+
+  int n = INTEGER(R_n)[0];
+  int m = INTEGER(R_m)[0];
+  int s = INTEGER(R_s)[0];
+  int r = INTEGER(R_r)[0];
+  int NP = INTEGER(R_NP)[0];
+  int itermax = INTEGER(R_itermax)[0];
+  int replicates = INTEGER(R_replicates)[0];
+  int cores = INTEGER(R_cores)[0];
+  int seed = INTEGER(R_seed)[0];
+  double pMut = REAL(R_pMut)[0];
+  double pCR = REAL(R_pCR)[0];
+  double pGBest = REAL(R_pGBest)[0];
+
+
+  SEXP R_bestX = PROTECT(allocVector(INTSXP, n*m));
+  SEXP R_phiValues = PROTECT(allocVector(REALSXP, replicates));
+  SEXP R_timeTaken = PROTECT(allocVector(REALSXP, 1));
+  SEXP R_out = PROTECT(allocVector(VECSXP, 3));
+  SEXP dims = PROTECT(allocVector(INTSXP, 2));
+  SEXP names = PROTECT(allocVector(STRSXP, 3));
+  SEXP className = PROTECT(allocVector(STRSXP, 1));
+
+
+
+
+  double *phiValues = REAL(R_phiValues);
+  int * bestX = INTEGER(R_bestX);
+  double *timeTaken = REAL(R_timeTaken);
+
+  int method = INTEGER(R_method)[0] - 1;
+  printf("%s\n", method == 0? "UniPro" : (method == 1? "MaxPro":"maximinLHD"));
+  criteria phi = PHI_FUNS[method];
+  DE_CC(n, m, s, NP, itermax, pMut, pCR, pGBest,
+        replicates, seed, phiValues, timeTaken,
+        bestX, cores, phi, r);
+
+  INTEGER(dims)[0] = n;
+  INTEGER(dims)[1] = m;
+  setAttrib(R_bestX, R_DimSymbol, dims);
+
+  SET_VECTOR_ELT(R_out, 0, R_phiValues);
+  SET_VECTOR_ELT(R_out, 1, R_timeTaken);
+  SET_VECTOR_ELT(R_out, 2, R_bestX);
+
+
+  SET_STRING_ELT(names, 0, mkChar("measure"));
+  SET_STRING_ELT(names, 1, mkChar("timeTaken"));
+  SET_STRING_ELT(names, 2, mkChar("Design"));
+  setAttrib(R_out, R_NamesSymbol, names);
+
+
+  SET_STRING_ELT(className, 0, mkChar("DE"));
+  classgets(R_out, className);
+
+
+  UNPROTECT(7);
+
+  return R_out;
 }

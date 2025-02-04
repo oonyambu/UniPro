@@ -1,43 +1,43 @@
-#ifndef DE_H
-#define DE_H
+#ifndef __UNIPRO__
+#define __UNIPRO__
 
+#pragma once
 #include <stdio.h>
-#include <time.h>
-#include <omp.h>
 #include <stdlib.h>
+#include <time.h>
 #include <math.h>
+#include <omp.h>
+#include <string.h>
 
 
 typedef struct {
-    double value;
-    int index;
-} MinInfo;
+  double value;
+  int index;
+} MinPair;
 
 
-#pragma omp declare reduction(min_pair : MinInfo : \
-    omp_out = (omp_in.value < omp_out.value) ? omp_in : omp_out) \
-    initializer(omp_priv = {999999.0, -1})
+typedef struct {
+  double *phiValues;
+  int *agent, *potential;
+  MinPair globalMin;
+} *dePtr;
 
 
+typedef struct {
+  int n, m, s, size, NP,  itermax;
+  int replications, seed, len, r;
+  double pMut, pCR, pGbest, C, denom_g;
+} params,*paramsPtr;
 
-static inline double rand_unif(){
-  return (double)rand()/RAND_MAX;
-}
 
-static inline int rand_int(int n){
-  return (rand() % n);
-}
+paramsPtr initializeParams(int n, int m, int s, int NP, int itermax,
+                           double pMut,double pCR, double pGbest, int replications,
+                           long int seed, int r);
 
-static void swap(int *x, int *y){
-  int temp = *x;
-  *x = *y;
-  *y = temp;
-}
+typedef double (*criteria)(int *, paramsPtr);
 
-void sample2(int n, int vec[2]);
-void print_design(int *X, int n, int m, int NP);
-double phi2D(const int *X, const int n, const int m, const int s, double denom_g, double C);
-void gen_design(int *array, const int n, const int m, const int s, const int NP, double *phi_vals, int *bestIndex, double denom_g, double C);
-
+void DE_CC(int n, int m, int s, int NP, int itermax,
+           double pMut, double pCR, double pGbest,
+           int replications, unsigned int seed, double * vals,
+           double *timeTaken, int * bestX,  int numCores, criteria phi, int r);
 #endif
-

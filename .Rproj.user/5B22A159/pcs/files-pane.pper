@@ -2,8 +2,8 @@
     "sortOrder": [
         {
             "columnIndex": 2,
-            "ascending": false
+            "ascending": true
         }
     ],
-    "path": "D:/Work/fortran/UniPro/src"
+    "path": "D:/Work/fortran/UniPro/man"
 }

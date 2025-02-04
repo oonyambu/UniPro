@@ -1,744 +1,516 @@
 [
     {
-        "file": "D:/Work/fortran/UniPro/src/de.c",
-        "file_last_write": 1736515190.0,
+        "file": "D:/Work/fortran/UniPro/src/criteria.c",
+        "file_last_write": 1738661024.0,
+        "definitions": [],
+        "hidden": false
+    },
+    {
+        "file": "D:/Work/fortran/UniPro/src/criteria.h",
+        "file_last_write": 1738661022.0,
         "definitions": [
             {
-                "usr": "c:@F@sample2",
+                "usr": "c:criteria.h@30@macro@__CRITERIA__",
+                "kind": 9,
+                "parent_name": "",
+                "name": "__CRITERIA__",
+                "file": "D:/Work/fortran/UniPro/src/criteria.h",
+                "line": 2,
+                "column": 9,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "D:/Work/fortran/UniPro/src/de.c",
+        "file_last_write": 1738661020.0,
+        "definitions": [],
+        "hidden": false
+    },
+    {
+        "file": "D:/Work/fortran/UniPro/src/de.h",
+        "file_last_write": 1738660506.0,
+        "definitions": [
+            {
+                "usr": "c:de.h@28@macro@__UNIPRO__",
+                "kind": 9,
+                "parent_name": "",
+                "name": "__UNIPRO__",
+                "file": "D:/Work/fortran/UniPro/src/de.h",
+                "line": 2,
+                "column": 9,
+                "hidden": false
+            },
+            {
+                "usr": "c:@T@MinPair",
+                "kind": 8,
+                "parent_name": "",
+                "name": "MinPair",
+                "file": "D:/Work/fortran/UniPro/src/de.h",
+                "line": 16,
+                "column": 3,
+                "hidden": false
+            },
+            {
+                "usr": "c:de.h@T@dePtr",
+                "kind": 8,
+                "parent_name": "",
+                "name": "dePtr",
+                "file": "D:/Work/fortran/UniPro/src/de.h",
+                "line": 23,
+                "column": 4,
+                "hidden": false
+            },
+            {
+                "usr": "c:@T@params",
+                "kind": 8,
+                "parent_name": "",
+                "name": "params",
+                "file": "D:/Work/fortran/UniPro/src/de.h",
+                "line": 30,
+                "column": 3,
+                "hidden": false
+            },
+            {
+                "usr": "c:de.h@T@paramsPtr",
+                "kind": 8,
+                "parent_name": "",
+                "name": "paramsPtr",
+                "file": "D:/Work/fortran/UniPro/src/de.h",
+                "line": 30,
+                "column": 11,
+                "hidden": false
+            },
+            {
+                "usr": "c:de.h@T@criteria",
+                "kind": 8,
+                "parent_name": "",
+                "name": "criteria",
+                "file": "D:/Work/fortran/UniPro/src/de.h",
+                "line": 37,
+                "column": 18,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/criteria.c",
+        "file_last_write": 1738660506.0,
+        "definitions": [
+            {
+                "usr": "c:@F@maxpro",
                 "kind": 6,
                 "parent_name": "",
-                "name": "sample2(int, int *)",
-                "file": "D:/Work/fortran/UniPro/src/de.c",
+                "name": "maxpro(int *, paramsPtr)",
+                "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/criteria.c",
                 "line": 3,
-                "column": 6,
+                "column": 8,
                 "hidden": false
             },
             {
-                "usr": "c:@F@print_design",
+                "usr": "c:@F@unipro",
                 "kind": 6,
                 "parent_name": "",
-                "name": "print_design(int *, int, int, int)",
-                "file": "D:/Work/fortran/UniPro/src/de.c",
-                "line": 8,
-                "column": 6,
-                "hidden": false
-            },
-            {
-                "usr": "c:@F@phi2D",
-                "kind": 6,
-                "parent_name": "",
-                "name": "phi2D(const int *, const int, const int, const int, double, double)",
-                "file": "D:/Work/fortran/UniPro/src/de.c",
+                "name": "unipro(int *, paramsPtr)",
+                "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/criteria.c",
                 "line": 21,
                 "column": 8,
                 "hidden": false
             },
             {
-                "usr": "c:@F@gen_design",
+                "usr": "c:@F@maximinLHD",
                 "kind": 6,
                 "parent_name": "",
-                "name": "gen_design(int *, const int, const int, const int, const int, double *, int *, double, double)",
-                "file": "D:/Work/fortran/UniPro/src/de.c",
-                "line": 40,
-                "column": 6,
-                "hidden": false
-            },
-            {
-                "usr": "c:@F@phi_C",
-                "kind": 6,
-                "parent_name": "",
-                "name": "phi_C(const int *, const int *, const int *, const int *, double *)",
-                "file": "D:/Work/fortran/UniPro/src/de.c",
-                "line": 63,
-                "column": 6,
-                "hidden": false
-            },
-            {
-                "usr": "c:@F@DE_C",
-                "kind": 6,
-                "parent_name": "",
-                "name": "DE_C(int *, int *, int *, int *, int *, double *, double *, double *, int *, double *, double *, int *)",
-                "file": "D:/Work/fortran/UniPro/src/de.c",
-                "line": 73,
-                "column": 6,
-                "hidden": false
-            }
-        ],
-        "hidden": false
-    },
-    {
-        "file": "D:/Work/fortran/UniPro/src/de.h",
-        "file_last_write": 1736515045.0,
-        "definitions": [
-            {
-                "usr": "c:@T@MinInfo",
-                "kind": 8,
-                "parent_name": "",
-                "name": "MinInfo",
-                "file": "D:/Work/fortran/UniPro/src/de.h",
-                "line": 14,
-                "column": 3,
-                "hidden": false
-            },
-            {
-                "usr": "c:de.h@F@rand_unif",
-                "kind": 6,
-                "parent_name": "",
-                "name": "rand_unif",
-                "file": "D:/Work/fortran/UniPro/src/de.h",
-                "line": 23,
-                "column": 22,
-                "hidden": false
-            },
-            {
-                "usr": "c:de.h@F@rand_int",
-                "kind": 6,
-                "parent_name": "",
-                "name": "rand_int(int)",
-                "file": "D:/Work/fortran/UniPro/src/de.h",
-                "line": 27,
-                "column": 19,
-                "hidden": false
-            },
-            {
-                "usr": "c:de.h@F@swap",
-                "kind": 6,
-                "parent_name": "",
-                "name": "swap(int *, int *)",
-                "file": "D:/Work/fortran/UniPro/src/de.h",
-                "line": 31,
-                "column": 13,
-                "hidden": false
-            }
-        ],
-        "hidden": false
-    },
-    {
-        "file": "D:/Work/fortran/UniPro/src/de_R.c",
-        "file_last_write": 1736518634.0,
-        "definitions": [
-            {
-                "usr": "c:@F@phi_Call",
-                "kind": 6,
-                "parent_name": "",
-                "name": "phi_Call(SEXP, SEXP)",
-                "file": "D:/Work/fortran/UniPro/src/de_R.c",
-                "line": 8,
-                "column": 6,
-                "hidden": false
-            },
-            {
-                "usr": "c:@F@DE_Call",
-                "kind": 6,
-                "parent_name": "",
-                "name": "DE_Call(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP)",
-                "file": "D:/Work/fortran/UniPro/src/de_R.c",
-                "line": 27,
-                "column": 6,
-                "hidden": false
-            }
-        ],
-        "hidden": false
-    },
-    {
-        "file": "D:/Work/fortran/UniPro/src/include/de.c",
-        "file_last_write": 1736447639.0,
-        "definitions": [
-            {
-                "usr": "c:@F@rand_unif",
-                "kind": 6,
-                "parent_name": "",
-                "name": "rand_unif",
-                "file": "D:/Work/fortran/UniPro/src/include/de.c",
-                "line": 12,
+                "name": "maximinLHD(int *, paramsPtr)",
+                "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/criteria.c",
+                "line": 41,
                 "column": 8,
                 "hidden": false
-            },
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/criteria.h",
+        "file_last_write": 1738660506.0,
+        "definitions": [
             {
-                "usr": "c:@F@rand_int",
-                "kind": 6,
+                "usr": "c:criteria.h@30@macro@__CRITERIA__",
+                "kind": 9,
                 "parent_name": "",
-                "name": "rand_int(int)",
-                "file": "D:/Work/fortran/UniPro/src/include/de.c",
-                "line": 16,
-                "column": 5,
+                "name": "__CRITERIA__",
+                "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/criteria.h",
+                "line": 2,
+                "column": 9,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/de.c",
+        "file_last_write": 1738660506.0,
+        "definitions": [
+            {
+                "usr": "c:de.c@54@macro@intUniform",
+                "kind": 9,
+                "parent_name": "",
+                "name": "intUniform",
+                "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/de.c",
+                "line": 6,
+                "column": 9,
                 "hidden": false
             },
             {
-                "usr": "c:@F@sample2",
+                "usr": "c:de.c@103@macro@doubleUniform",
+                "kind": 9,
+                "parent_name": "",
+                "name": "doubleUniform",
+                "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/de.c",
+                "line": 7,
+                "column": 9,
+                "hidden": false
+            },
+            {
+                "usr": "c:de.c@F@allocVec",
                 "kind": 6,
                 "parent_name": "",
-                "name": "sample2(int, int *)",
-                "file": "D:/Work/fortran/UniPro/src/include/de.c",
-                "line": 20,
+                "name": "allocVec(int)",
+                "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/de.c",
+                "line": 9,
+                "column": 21,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@sampleTwo",
+                "kind": 6,
+                "parent_name": "",
+                "name": "sampleTwo(int)",
+                "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/de.c",
+                "line": 14,
                 "column": 6,
                 "hidden": false
             },
             {
-                "usr": "c:@F@print_design",
+                "usr": "c:@F@swapVecAtPositions",
                 "kind": 6,
                 "parent_name": "",
-                "name": "print_design(int *, int, int, int)",
-                "file": "D:/Work/fortran/UniPro/src/include/de.c",
+                "name": "swapVecAtPositions(int *, int, int)",
+                "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/de.c",
+                "line": 22,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@swapVecUsingVec",
+                "kind": 6,
+                "parent_name": "",
+                "name": "swapVecUsingVec(int *, int *)",
+                "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/de.c",
                 "line": 28,
                 "column": 6,
                 "hidden": false
             },
             {
-                "usr": "c:@F@swap",
+                "usr": "c:@F@randomlhs",
                 "kind": 6,
                 "parent_name": "",
-                "name": "swap(int *, int *)",
-                "file": "D:/Work/fortran/UniPro/src/include/de.c",
-                "line": 39,
+                "name": "randomlhs(dePtr, paramsPtr, criteria)",
+                "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/de.c",
+                "line": 34,
                 "column": 6,
                 "hidden": false
             },
             {
-                "usr": "c:@F@phi2D",
+                "usr": "c:@F@initializeParams",
                 "kind": 6,
                 "parent_name": "",
-                "name": "phi2D(const int *, const int, const int, const int, double, double)",
-                "file": "D:/Work/fortran/UniPro/src/include/de.c",
-                "line": 48,
-                "column": 8,
+                "name": "initializeParams(int, int, int, int, int, double, double, double, int, long, int)",
+                "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/de.c",
+                "line": 61,
+                "column": 11,
                 "hidden": false
             },
             {
-                "usr": "c:@F@phi_C",
+                "usr": "c:@F@initialize",
                 "kind": 6,
                 "parent_name": "",
-                "name": "phi_C(const int *, const int *, const int *, const int *, double *)",
-                "file": "D:/Work/fortran/UniPro/src/include/de.c",
-                "line": 70,
+                "name": "initialize(const paramsPtr, criteria)",
+                "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/de.c",
+                "line": 89,
+                "column": 7,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@propose",
+                "kind": 6,
+                "parent_name": "",
+                "name": "propose(dePtr, int, paramsPtr)",
+                "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/de.c",
+                "line": 102,
                 "column": 6,
                 "hidden": false
             },
             {
-                "usr": "c:@F@gen_design",
+                "usr": "c:@F@mutate",
                 "kind": 6,
                 "parent_name": "",
-                "name": "gen_design(int *, const int, const int, const int, const int, double *, int *, double, double)",
-                "file": "D:/Work/fortran/UniPro/src/include/de.c",
-                "line": 81,
+                "name": "mutate(dePtr, int, paramsPtr)",
+                "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/de.c",
+                "line": 113,
                 "column": 6,
                 "hidden": false
             },
             {
-                "usr": "c:@F@DE_C",
+                "usr": "c:@F@crossOver",
                 "kind": 6,
                 "parent_name": "",
-                "name": "DE_C(int *, int *, int *, int *, int *, double *, double *, double *, int *, double *, double *, int *)",
-                "file": "D:/Work/fortran/UniPro/src/include/de.c",
-                "line": 103,
+                "name": "crossOver(dePtr, int, int, paramsPtr)",
+                "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/de.c",
+                "line": 121,
                 "column": 6,
                 "hidden": false
             },
             {
-                "usr": "c:@F@main",
+                "usr": "c:@F@getTrial",
                 "kind": 6,
                 "parent_name": "",
-                "name": "main",
-                "file": "D:/Work/fortran/UniPro/src/include/de.c",
-                "line": 165,
-                "column": 5,
-                "hidden": false
-            }
-        ],
-        "hidden": false
-    },
-    {
-        "file": "D:/Work/fortran/UniPro/src/include/de.cpp",
-        "file_last_write": 1736453760.0,
-        "definitions": [
-            {
-                "usr": "c:@F@de_rcpp#I#I#I#I#I#d#d#d#I#",
-                "kind": 6,
-                "parent_name": "",
-                "name": "de_rcpp(int, int, int, int, int, double, double, double, int)",
-                "file": "D:/Work/fortran/UniPro/src/include/de.cpp",
-                "line": 17,
-                "column": 12,
-                "hidden": false
-            }
-        ],
-        "hidden": false
-    },
-    {
-        "file": "D:/Work/fortran/UniPro/src/include/de2.c",
-        "file_last_write": 1736509205.0,
-        "definitions": [
-            {
-                "usr": "c:@F@sample2",
-                "kind": 6,
-                "parent_name": "",
-                "name": "sample2(int, int *)",
-                "file": "D:/Work/fortran/UniPro/src/include/de2.c",
-                "line": 3,
-                "column": 6,
-                "hidden": false
-            },
-            {
-                "usr": "c:@F@print_design",
-                "kind": 6,
-                "parent_name": "",
-                "name": "print_design(int *, int, int, int)",
-                "file": "D:/Work/fortran/UniPro/src/include/de2.c",
-                "line": 8,
-                "column": 6,
-                "hidden": false
-            },
-            {
-                "usr": "c:@F@phi2D",
-                "kind": 6,
-                "parent_name": "",
-                "name": "phi2D(const int *, const int, const int, const int, double, double)",
-                "file": "D:/Work/fortran/UniPro/src/include/de2.c",
-                "line": 21,
-                "column": 8,
-                "hidden": false
-            },
-            {
-                "usr": "c:@F@gen_design",
-                "kind": 6,
-                "parent_name": "",
-                "name": "gen_design(int *, const int, const int, const int, const int, double *, int *, double, double)",
-                "file": "D:/Work/fortran/UniPro/src/include/de2.c",
-                "line": 43,
-                "column": 6,
-                "hidden": false
-            },
-            {
-                "usr": "c:@F@phi_C",
-                "kind": 6,
-                "parent_name": "",
-                "name": "phi_C(const int *, const int *, const int *, const int *, double *)",
-                "file": "D:/Work/fortran/UniPro/src/include/de2.c",
-                "line": 68,
-                "column": 6,
-                "hidden": false
-            },
-            {
-                "usr": "c:@F@DE_C",
-                "kind": 6,
-                "parent_name": "",
-                "name": "DE_C(int *, int *, int *, int *, int *, double *, double *, double *, int *, double *, double *, int *)",
-                "file": "D:/Work/fortran/UniPro/src/include/de2.c",
-                "line": 78,
-                "column": 6,
-                "hidden": false
-            },
-            {
-                "usr": "c:@F@main",
-                "kind": 6,
-                "parent_name": "",
-                "name": "main",
-                "file": "D:/Work/fortran/UniPro/src/include/de2.c",
-                "line": 142,
-                "column": 5,
-                "hidden": false
-            }
-        ],
-        "hidden": false
-    },
-    {
-        "file": "D:/Work/fortran/UniPro/src/include/de3.c",
-        "file_last_write": 1736514920.0,
-        "definitions": [
-            {
-                "usr": "c:@F@sample2",
-                "kind": 6,
-                "parent_name": "",
-                "name": "sample2(int, int *)",
-                "file": "D:/Work/fortran/UniPro/src/include/de3.c",
-                "line": 3,
-                "column": 6,
-                "hidden": false
-            },
-            {
-                "usr": "c:@F@print_design",
-                "kind": 6,
-                "parent_name": "",
-                "name": "print_design(int *, int, int, int)",
-                "file": "D:/Work/fortran/UniPro/src/include/de3.c",
-                "line": 8,
-                "column": 6,
-                "hidden": false
-            },
-            {
-                "usr": "c:@F@phi2D",
-                "kind": 6,
-                "parent_name": "",
-                "name": "phi2D(const int *, const int, const int, const int, double, double)",
-                "file": "D:/Work/fortran/UniPro/src/include/de3.c",
-                "line": 21,
-                "column": 8,
-                "hidden": false
-            },
-            {
-                "usr": "c:@F@gen_design",
-                "kind": 6,
-                "parent_name": "",
-                "name": "gen_design(int *, const int, const int, const int, const int, double *, int *, double, double)",
-                "file": "D:/Work/fortran/UniPro/src/include/de3.c",
-                "line": 39,
-                "column": 6,
-                "hidden": false
-            },
-            {
-                "usr": "c:@F@phi_C",
-                "kind": 6,
-                "parent_name": "",
-                "name": "phi_C(const int *, const int *, const int *, const int *, double *)",
-                "file": "D:/Work/fortran/UniPro/src/include/de3.c",
-                "line": 64,
-                "column": 6,
-                "hidden": false
-            },
-            {
-                "usr": "c:@F@DE_C",
-                "kind": 6,
-                "parent_name": "",
-                "name": "DE_C(int *, int *, int *, int *, int *, double *, double *, double *, int *, double *, double *, int *)",
-                "file": "D:/Work/fortran/UniPro/src/include/de3.c",
-                "line": 74,
-                "column": 6,
-                "hidden": false
-            },
-            {
-                "usr": "c:@F@main",
-                "kind": 6,
-                "parent_name": "",
-                "name": "main",
-                "file": "D:/Work/fortran/UniPro/src/include/de3.c",
+                "name": "getTrial(dePtr, int, paramsPtr, criteria)",
+                "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/de.c",
                 "line": 132,
-                "column": 5,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@print_progress",
+                "kind": 6,
+                "parent_name": "",
+                "name": "print_progress(int, int)",
+                "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/de.c",
+                "line": 157,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@progressbar",
+                "kind": 6,
+                "parent_name": "",
+                "name": "progressbar(int *, int)",
+                "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/de.c",
+                "line": 172,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@DE_CC",
+                "kind": 6,
+                "parent_name": "",
+                "name": "DE_CC(int, int, int, int, int, double, double, double, int, unsigned int, double *, double *, int *, int, criteria, int)",
+                "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/de.c",
+                "line": 187,
+                "column": 6,
                 "hidden": false
             }
         ],
         "hidden": false
     },
     {
-        "file": "D:/Work/fortran/UniPro/src/include/lbfgsb.c",
-        "file_last_write": 1734684978.0,
+        "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/de.h",
+        "file_last_write": 1738660506.0,
         "definitions": [
             {
-                "usr": "c:lbfgsb.c@40@macro@DBL_EPSILON",
+                "usr": "c:de.h@28@macro@__UNIPRO__",
                 "kind": 9,
                 "parent_name": "",
-                "name": "DBL_EPSILON",
-                "file": "D:/Work/fortran/UniPro/src/include/lbfgsb.c",
+                "name": "__UNIPRO__",
+                "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/de.h",
                 "line": 2,
-                "column": 10,
+                "column": 9,
                 "hidden": false
             },
             {
-                "usr": "c:lbfgsb.c@255@macro@FALSE_",
-                "kind": 9,
+                "usr": "c:@SA@MinPair",
+                "kind": 3,
                 "parent_name": "",
-                "name": "FALSE_",
-                "file": "D:/Work/fortran/UniPro/src/include/lbfgsb.c",
+                "name": "",
+                "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/de.h",
                 "line": 13,
                 "column": 9,
                 "hidden": false
             },
             {
-                "usr": "c:lbfgsb.c@273@macro@TRUE_",
-                "kind": 9,
+                "usr": "c:@T@MinPair",
+                "kind": 8,
                 "parent_name": "",
-                "name": "TRUE_",
-                "file": "D:/Work/fortran/UniPro/src/include/lbfgsb.c",
-                "line": 14,
+                "name": "MinPair",
+                "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/de.h",
+                "line": 16,
+                "column": 3,
+                "hidden": false
+            },
+            {
+                "usr": "c:de.h@T@dePtr",
+                "kind": 8,
+                "parent_name": "",
+                "name": "dePtr",
+                "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/de.h",
+                "line": 23,
+                "column": 4,
+                "hidden": false
+            },
+            {
+                "usr": "c:@SA@params",
+                "kind": 3,
+                "parent_name": "",
+                "name": "",
+                "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/de.h",
+                "line": 26,
                 "column": 9,
                 "hidden": false
             },
             {
-                "usr": "c:lbfgsb.c@304@macro@max",
-                "kind": 9,
+                "usr": "c:@T@params",
+                "kind": 8,
                 "parent_name": "",
-                "name": "max",
-                "file": "D:/Work/fortran/UniPro/src/include/lbfgsb.c",
-                "line": 16,
-                "column": 10,
+                "name": "params",
+                "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/de.h",
+                "line": 30,
+                "column": 3,
                 "hidden": false
             },
             {
-                "usr": "c:lbfgsb.c@340@macro@min",
-                "kind": 9,
+                "usr": "c:de.h@T@paramsPtr",
+                "kind": 8,
                 "parent_name": "",
-                "name": "min",
-                "file": "D:/Work/fortran/UniPro/src/include/lbfgsb.c",
+                "name": "paramsPtr",
+                "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/de.h",
+                "line": 30,
+                "column": 11,
+                "hidden": false
+            },
+            {
+                "usr": "c:de.h@T@criteria",
+                "kind": 8,
+                "parent_name": "",
+                "name": "criteria",
+                "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/de.h",
+                "line": 37,
+                "column": 18,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/init.c",
+        "file_last_write": 1738660506.0,
+        "definitions": [
+            {
+                "usr": "c:@F@detectCores",
+                "kind": 6,
+                "parent_name": "",
+                "name": "detectCores",
+                "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/init.c",
                 "line": 17,
-                "column": 10,
+                "column": 6,
                 "hidden": false
             },
             {
-                "usr": "c:lbfgsb.c@114200@macro@n",
+                "usr": "c:@F@R_init_RcppProgressExample",
+                "kind": 6,
+                "parent_name": "",
+                "name": "R_init_RcppProgressExample(DllInfo *)",
+                "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/init.c",
+                "line": 32,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@phi",
+                "kind": 6,
+                "parent_name": "",
+                "name": "phi(SEXP, SEXP, SEXP, SEXP)",
+                "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/init.c",
+                "line": 38,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@DE",
+                "kind": 6,
+                "parent_name": "",
+                "name": "DE(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP)",
+                "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/init.c",
+                "line": 58,
+                "column": 6,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/main.c",
+        "file_last_write": 1738660506.0,
+        "definitions": [
+            {
+                "usr": "c:main.c@251@macro@reps",
+                "kind": 9,
+                "parent_name": "",
+                "name": "reps",
+                "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/main.c",
+                "line": 15,
+                "column": 9,
+                "hidden": false
+            },
+            {
+                "usr": "c:main.c@267@macro@n",
                 "kind": 9,
                 "parent_name": "",
                 "name": "n",
-                "file": "D:/Work/fortran/UniPro/src/include/lbfgsb.c",
-                "line": 3689,
+                "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/main.c",
+                "line": 16,
                 "column": 9,
                 "hidden": false
             },
             {
-                "usr": "c:lbfgsb.c@114213@macro@m",
+                "usr": "c:main.c@281@macro@m",
                 "kind": 9,
                 "parent_name": "",
                 "name": "m",
-                "file": "D:/Work/fortran/UniPro/src/include/lbfgsb.c",
-                "line": 3690,
+                "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/main.c",
+                "line": 17,
                 "column": 9,
                 "hidden": false
             },
             {
-                "usr": "c:lbfgsb.c@F@setulb",
+                "usr": "c:main.c@294@macro@NP",
+                "kind": 9,
+                "parent_name": "",
+                "name": "NP",
+                "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/main.c",
+                "line": 18,
+                "column": 9,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@printDesign",
                 "kind": 6,
                 "parent_name": "",
-                "name": "setulb(int, int, double *, double *, double *, int *, double *, double *, double, double *, double *, int *, char *, int, int *)",
-                "file": "D:/Work/fortran/UniPro/src/include/lbfgsb.c",
-                "line": 99,
+                "name": "printDesign(int *, int, int)",
+                "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/main.c",
+                "line": 5,
                 "column": 6,
-                "hidden": false
-            },
-            {
-                "usr": "c:lbfgsb.c@F@mainlb",
-                "kind": 6,
-                "parent_name": "",
-                "name": "mainlb(int, int, double *, double *, double *, int *, double *, double *, double, double *, double *, double *, double *, double *, double *, double *, double *, double *, double *, double *, double *, double *, int *, int *, int *, char *, int, char *, int *)",
-                "file": "D:/Work/fortran/UniPro/src/include/lbfgsb.c",
-                "line": 324,
-                "column": 13,
-                "hidden": false
-            },
-            {
-                "usr": "c:lbfgsb.c@F@active",
-                "kind": 6,
-                "parent_name": "",
-                "name": "active(int, double *, double *, int *, double *, int *, int, int *, int *, int *)",
-                "file": "D:/Work/fortran/UniPro/src/include/lbfgsb.c",
-                "line": 897,
-                "column": 13,
-                "hidden": false
-            },
-            {
-                "usr": "c:lbfgsb.c@F@bmv",
-                "kind": 6,
-                "parent_name": "",
-                "name": "bmv(int, double *, double *, int *, double *, double *, int *)",
-                "file": "D:/Work/fortran/UniPro/src/include/lbfgsb.c",
-                "line": 993,
-                "column": 13,
-                "hidden": false
-            },
-            {
-                "usr": "c:lbfgsb.c@F@cauchy",
-                "kind": 6,
-                "parent_name": "",
-                "name": "cauchy(int, double *, double *, double *, int *, double *, int *, int *, double *, double *, double *, int, double *, double *, double *, double *, double *, int *, int *, double *, double *, double *, double *, int *, int, double *, int *, double *)",
-                "file": "D:/Work/fortran/UniPro/src/include/lbfgsb.c",
-                "line": 1122,
-                "column": 13,
-                "hidden": false
-            },
-            {
-                "usr": "c:lbfgsb.c@F@cmprlb",
-                "kind": 6,
-                "parent_name": "",
-                "name": "cmprlb(int, int, double *, double *, double *, double *, double *, double *, double *, double *, double *, int *, double *, int *, int *, int *, int *, int *)",
-                "file": "D:/Work/fortran/UniPro/src/include/lbfgsb.c",
-                "line": 1620,
-                "column": 13,
-                "hidden": false
-            },
-            {
-                "usr": "c:lbfgsb.c@F@errclb",
-                "kind": 6,
-                "parent_name": "",
-                "name": "errclb(int, int, double, double *, double *, int *, char *, int *, int *)",
-                "file": "D:/Work/fortran/UniPro/src/include/lbfgsb.c",
-                "line": 1713,
-                "column": 13,
-                "hidden": false
-            },
-            {
-                "usr": "c:lbfgsb.c@F@formk",
-                "kind": 6,
-                "parent_name": "",
-                "name": "formk(int, int *, int *, int *, int *, int *, int *, int *, double *, double *, int, double *, double *, double *, double *, int *, int *, int *)",
-                "file": "D:/Work/fortran/UniPro/src/include/lbfgsb.c",
-                "line": 1768,
-                "column": 13,
-                "hidden": false
-            },
-            {
-                "usr": "c:lbfgsb.c@F@formt",
-                "kind": 6,
-                "parent_name": "",
-                "name": "formt(int, double *, double *, double *, int *, double *, int *)",
-                "file": "D:/Work/fortran/UniPro/src/include/lbfgsb.c",
-                "line": 2111,
-                "column": 13,
-                "hidden": false
-            },
-            {
-                "usr": "c:lbfgsb.c@F@freev",
-                "kind": 6,
-                "parent_name": "",
-                "name": "freev(int, int *, int *, int *, int *, int *, int *, int *, int *, int *, int, int *)",
-                "file": "D:/Work/fortran/UniPro/src/include/lbfgsb.c",
-                "line": 2185,
-                "column": 13,
-                "hidden": false
-            },
-            {
-                "usr": "c:lbfgsb.c@F@hpsolb",
-                "kind": 6,
-                "parent_name": "",
-                "name": "hpsolb(int, double *, int *, int)",
-                "file": "D:/Work/fortran/UniPro/src/include/lbfgsb.c",
-                "line": 2284,
-                "column": 13,
-                "hidden": false
-            },
-            {
-                "usr": "c:lbfgsb.c@F@lnsrlb",
-                "kind": 6,
-                "parent_name": "",
-                "name": "lnsrlb(int, double *, double *, int *, double *, double *, double *, double *, double *, double *, double *, double *, double *, double *, double *, double *, double *, double *, double *, int *, int *, int *, int *, int *, char *, int *, int *, char *)",
-                "file": "D:/Work/fortran/UniPro/src/include/lbfgsb.c",
-                "line": 2393,
-                "column": 13,
-                "hidden": false
-            },
-            {
-                "usr": "c:lbfgsb.c@F@matupd",
-                "kind": 6,
-                "parent_name": "",
-                "name": "matupd(int, int, double *, double *, double *, double *, double *, double *, int *, int *, int *, int *, double *, double *, double *, double *, double *)",
-                "file": "D:/Work/fortran/UniPro/src/include/lbfgsb.c",
-                "line": 2530,
-                "column": 13,
-                "hidden": false
-            },
-            {
-                "usr": "c:lbfgsb.c@F@projgr",
-                "kind": 6,
-                "parent_name": "",
-                "name": "projgr(int, double *, double *, int *, double *, double *, double *)",
-                "file": "D:/Work/fortran/UniPro/src/include/lbfgsb.c",
-                "line": 2631,
-                "column": 13,
-                "hidden": false
-            },
-            {
-                "usr": "c:lbfgsb.c@F@subsm",
-                "kind": 6,
-                "parent_name": "",
-                "name": "subsm(int, int, int *, int *, double *, double *, int *, double *, double *, double *, double *, double *, int *, int *, int *, double *, double *, int, int *)",
-                "file": "D:/Work/fortran/UniPro/src/include/lbfgsb.c",
-                "line": 2676,
-                "column": 13,
-                "hidden": false
-            },
-            {
-                "usr": "c:lbfgsb.c@F@dcsrch",
-                "kind": 6,
-                "parent_name": "",
-                "name": "dcsrch(double *, double *, double *, double, double, double, double, double, char *)",
-                "file": "D:/Work/fortran/UniPro/src/include/lbfgsb.c",
-                "line": 2948,
-                "column": 13,
-                "hidden": false
-            },
-            {
-                "usr": "c:lbfgsb.c@F@dcstep",
-                "kind": 6,
-                "parent_name": "",
-                "name": "dcstep(double *, double *, double *, double *, double *, double *, double *, double *, double *, int *, double *, double *)",
-                "file": "D:/Work/fortran/UniPro/src/include/lbfgsb.c",
-                "line": 3205,
-                "column": 13,
-                "hidden": false
-            },
-            {
-                "usr": "c:lbfgsb.c@F@pvector",
-                "kind": 6,
-                "parent_name": "",
-                "name": "pvector(char *, double *, int)",
-                "file": "D:/Work/fortran/UniPro/src/include/lbfgsb.c",
-                "line": 3475,
-                "column": 13,
-                "hidden": false
-            },
-            {
-                "usr": "c:lbfgsb.c@F@prn1lb",
-                "kind": 6,
-                "parent_name": "",
-                "name": "prn1lb(int, int, double *, double *, double *, int, double)",
-                "file": "D:/Work/fortran/UniPro/src/include/lbfgsb.c",
-                "line": 3483,
-                "column": 13,
-                "hidden": false
-            },
-            {
-                "usr": "c:lbfgsb.c@F@prn2lb",
-                "kind": 6,
-                "parent_name": "",
-                "name": "prn2lb(int, double *, double *, double *, int, int, int, int, double, int, char *, int, int, double, double)",
-                "file": "D:/Work/fortran/UniPro/src/include/lbfgsb.c",
-                "line": 3497,
-                "column": 13,
-                "hidden": false
-            },
-            {
-                "usr": "c:lbfgsb.c@F@prn3lb",
-                "kind": 6,
-                "parent_name": "",
-                "name": "prn3lb(int, double *, double *, char *, int, int, int, int, int, int, int, double, int, char *, int, double, double, int)",
-                "file": "D:/Work/fortran/UniPro/src/include/lbfgsb.c",
-                "line": 3515,
-                "column": 13,
-                "hidden": false
-            },
-            {
-                "usr": "c:lbfgsb.c@T@optfn",
-                "kind": 8,
-                "parent_name": "",
-                "name": "optfn",
-                "file": "D:/Work/fortran/UniPro/src/include/lbfgsb.c",
-                "line": 3628,
-                "column": 18,
-                "hidden": false
-            },
-            {
-                "usr": "c:@F@lbfgsb",
-                "kind": 6,
-                "parent_name": "",
-                "name": "lbfgsb(int, double *, double *, double *, double *, optfn, int)",
-                "file": "D:/Work/fortran/UniPro/src/include/lbfgsb.c",
-                "line": 3634,
-                "column": 6,
-                "hidden": false
-            },
-            {
-                "usr": "c:@F@branin",
-                "kind": 6,
-                "parent_name": "",
-                "name": "branin(int, double *, double *)",
-                "file": "D:/Work/fortran/UniPro/src/include/lbfgsb.c",
-                "line": 3666,
-                "column": 8,
                 "hidden": false
             },
             {
                 "usr": "c:@F@main",
                 "kind": 6,
                 "parent_name": "",
-                "name": "main",
-                "file": "D:/Work/fortran/UniPro/src/include/lbfgsb.c",
-                "line": 3691,
+                "name": "main(int, const char **)",
+                "file": "D:/Work/fortran/UniPro/src/fold/DEdesigns/src/main.c",
+                "line": 20,
                 "column": 5,
                 "hidden": false
             }
@@ -746,102 +518,597 @@
         "hidden": false
     },
     {
-        "file": "D:/Work/fortran/UniPro/src/include/newopt.c",
-        "file_last_write": 1736362968.0,
+        "file": "D:/Work/fortran/UniPro/src/fold/criteria.c",
+        "file_last_write": 1737957048.0,
+        "definitions": [
+            {
+                "usr": "c:@F@maxpro",
+                "kind": 6,
+                "parent_name": "",
+                "name": "maxpro(int *, paramsPtr)",
+                "file": "D:/Work/fortran/UniPro/src/fold/criteria.c",
+                "line": 3,
+                "column": 8,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@unipro",
+                "kind": 6,
+                "parent_name": "",
+                "name": "unipro(int *, paramsPtr)",
+                "file": "D:/Work/fortran/UniPro/src/fold/criteria.c",
+                "line": 21,
+                "column": 8,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@maximinLHD",
+                "kind": 6,
+                "parent_name": "",
+                "name": "maximinLHD(int *, paramsPtr)",
+                "file": "D:/Work/fortran/UniPro/src/fold/criteria.c",
+                "line": 41,
+                "column": 8,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "D:/Work/fortran/UniPro/src/fold/criteria.h",
+        "file_last_write": 1737957035.0,
+        "definitions": [
+            {
+                "usr": "c:criteria.h@30@macro@__CRITERIA__",
+                "kind": 9,
+                "parent_name": "",
+                "name": "__CRITERIA__",
+                "file": "D:/Work/fortran/UniPro/src/fold/criteria.h",
+                "line": 2,
+                "column": 9,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "D:/Work/fortran/UniPro/src/fold/de.c",
+        "file_last_write": 1737957038.0,
+        "definitions": [
+            {
+                "usr": "c:de.c@54@macro@intUniform",
+                "kind": 9,
+                "parent_name": "",
+                "name": "intUniform",
+                "file": "D:/Work/fortran/UniPro/src/fold/de.c",
+                "line": 6,
+                "column": 9,
+                "hidden": false
+            },
+            {
+                "usr": "c:de.c@103@macro@doubleUniform",
+                "kind": 9,
+                "parent_name": "",
+                "name": "doubleUniform",
+                "file": "D:/Work/fortran/UniPro/src/fold/de.c",
+                "line": 7,
+                "column": 9,
+                "hidden": false
+            },
+            {
+                "usr": "c:de.c@F@allocVec",
+                "kind": 6,
+                "parent_name": "",
+                "name": "allocVec(int)",
+                "file": "D:/Work/fortran/UniPro/src/fold/de.c",
+                "line": 9,
+                "column": 21,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@sampleTwo",
+                "kind": 6,
+                "parent_name": "",
+                "name": "sampleTwo(int)",
+                "file": "D:/Work/fortran/UniPro/src/fold/de.c",
+                "line": 14,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@swapVecAtPositions",
+                "kind": 6,
+                "parent_name": "",
+                "name": "swapVecAtPositions(int *, int, int)",
+                "file": "D:/Work/fortran/UniPro/src/fold/de.c",
+                "line": 22,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@swapVecUsingVec",
+                "kind": 6,
+                "parent_name": "",
+                "name": "swapVecUsingVec(int *, int *)",
+                "file": "D:/Work/fortran/UniPro/src/fold/de.c",
+                "line": 28,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@randomlhs",
+                "kind": 6,
+                "parent_name": "",
+                "name": "randomlhs(dePtr, paramsPtr, criteria)",
+                "file": "D:/Work/fortran/UniPro/src/fold/de.c",
+                "line": 34,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@initializeParams",
+                "kind": 6,
+                "parent_name": "",
+                "name": "initializeParams(int, int, int, int, int, double, double, double, int, long, int)",
+                "file": "D:/Work/fortran/UniPro/src/fold/de.c",
+                "line": 61,
+                "column": 11,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@initialize",
+                "kind": 6,
+                "parent_name": "",
+                "name": "initialize(const paramsPtr, criteria)",
+                "file": "D:/Work/fortran/UniPro/src/fold/de.c",
+                "line": 89,
+                "column": 7,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@propose",
+                "kind": 6,
+                "parent_name": "",
+                "name": "propose(dePtr, int, paramsPtr)",
+                "file": "D:/Work/fortran/UniPro/src/fold/de.c",
+                "line": 102,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@mutate",
+                "kind": 6,
+                "parent_name": "",
+                "name": "mutate(dePtr, int, paramsPtr)",
+                "file": "D:/Work/fortran/UniPro/src/fold/de.c",
+                "line": 113,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@crossOver",
+                "kind": 6,
+                "parent_name": "",
+                "name": "crossOver(dePtr, int, int, paramsPtr)",
+                "file": "D:/Work/fortran/UniPro/src/fold/de.c",
+                "line": 121,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@getTrial",
+                "kind": 6,
+                "parent_name": "",
+                "name": "getTrial(dePtr, int, paramsPtr, criteria)",
+                "file": "D:/Work/fortran/UniPro/src/fold/de.c",
+                "line": 132,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@print_progress",
+                "kind": 6,
+                "parent_name": "",
+                "name": "print_progress(int, int)",
+                "file": "D:/Work/fortran/UniPro/src/fold/de.c",
+                "line": 157,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@progressbar",
+                "kind": 6,
+                "parent_name": "",
+                "name": "progressbar(int *, int)",
+                "file": "D:/Work/fortran/UniPro/src/fold/de.c",
+                "line": 172,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@DE_CC",
+                "kind": 6,
+                "parent_name": "",
+                "name": "DE_CC(int, int, int, int, int, double, double, double, int, unsigned int, double *, double *, int *, int, criteria, int)",
+                "file": "D:/Work/fortran/UniPro/src/fold/de.c",
+                "line": 187,
+                "column": 6,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "D:/Work/fortran/UniPro/src/fold/de.h",
+        "file_last_write": 1737917347.0,
+        "definitions": [
+            {
+                "usr": "c:de.h@28@macro@__UNIPRO__",
+                "kind": 9,
+                "parent_name": "",
+                "name": "__UNIPRO__",
+                "file": "D:/Work/fortran/UniPro/src/fold/de.h",
+                "line": 2,
+                "column": 9,
+                "hidden": false
+            },
+            {
+                "usr": "c:@T@MinPair",
+                "kind": 8,
+                "parent_name": "",
+                "name": "MinPair",
+                "file": "D:/Work/fortran/UniPro/src/fold/de.h",
+                "line": 16,
+                "column": 3,
+                "hidden": false
+            },
+            {
+                "usr": "c:de.h@T@dePtr",
+                "kind": 8,
+                "parent_name": "",
+                "name": "dePtr",
+                "file": "D:/Work/fortran/UniPro/src/fold/de.h",
+                "line": 23,
+                "column": 4,
+                "hidden": false
+            },
+            {
+                "usr": "c:@T@params",
+                "kind": 8,
+                "parent_name": "",
+                "name": "params",
+                "file": "D:/Work/fortran/UniPro/src/fold/de.h",
+                "line": 30,
+                "column": 3,
+                "hidden": false
+            },
+            {
+                "usr": "c:de.h@T@paramsPtr",
+                "kind": 8,
+                "parent_name": "",
+                "name": "paramsPtr",
+                "file": "D:/Work/fortran/UniPro/src/fold/de.h",
+                "line": 30,
+                "column": 11,
+                "hidden": false
+            },
+            {
+                "usr": "c:de.h@T@criteria",
+                "kind": 8,
+                "parent_name": "",
+                "name": "criteria",
+                "file": "D:/Work/fortran/UniPro/src/fold/de.h",
+                "line": 37,
+                "column": 18,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "D:/Work/fortran/UniPro/src/fold/init.c",
+        "file_last_write": 1738660966.0,
         "definitions": [],
         "hidden": false
     },
     {
-        "file": "D:/Work/fortran/UniPro/src/include/opt.c",
-        "file_last_write": 1736362783.0,
+        "file": "D:/Work/fortran/UniPro/src/fold/init.cpp",
+        "file_last_write": 1738653446.0,
         "definitions": [
             {
-                "usr": "c:opt.c@F@vect",
-                "kind": 6,
+                "usr": "c:init.cpp@866@macro@intUniform",
+                "kind": 9,
                 "parent_name": "",
-                "name": "vect(int)",
-                "file": "D:/Work/fortran/UniPro/src/include/opt.c",
-                "line": 26,
-                "column": 17,
+                "name": "intUniform",
+                "file": "D:/Work/fortran/UniPro/src/fold/init.cpp",
+                "line": 42,
+                "column": 9,
                 "hidden": false
             },
             {
-                "usr": "c:@F@branin",
-                "kind": 6,
+                "usr": "c:init.cpp@915@macro@doubleUniform",
+                "kind": 9,
                 "parent_name": "",
-                "name": "branin(int)",
-                "file": "D:/Work/fortran/UniPro/src/include/opt.c",
-                "line": 32,
-                "column": 8,
+                "name": "doubleUniform",
+                "file": "D:/Work/fortran/UniPro/src/fold/init.cpp",
+                "line": 43,
+                "column": 9,
                 "hidden": false
             },
             {
-                "usr": "c:@F@braningr",
-                "kind": 6,
-                "parent_name": "",
-                "name": "braningr(int)",
-                "file": "D:/Work/fortran/UniPro/src/include/opt.c",
-                "line": 56,
-                "column": 6,
-                "hidden": false
-            },
-            {
-                "usr": "c:opt.c@T@optimfnC",
+                "usr": "c:@T@MinPair",
                 "kind": 8,
                 "parent_name": "",
-                "name": "optimfnC",
-                "file": "D:/Work/fortran/UniPro/src/include/opt.c",
-                "line": 79,
-                "column": 18,
-                "hidden": false
-            },
-            {
-                "usr": "c:opt.c@T@optimgrC",
-                "kind": 8,
-                "parent_name": "",
-                "name": "optimgrC",
-                "file": "D:/Work/fortran/UniPro/src/include/opt.c",
-                "line": 80,
-                "column": 16,
-                "hidden": false
-            },
-            {
-                "usr": "c:@S@opt_struct",
-                "kind": 3,
-                "parent_name": "",
-                "name": "opt_struct",
-                "file": "D:/Work/fortran/UniPro/src/include/opt.c",
-                "line": 82,
-                "column": 16,
-                "hidden": false
-            },
-            {
-                "usr": "c:opt.c@T@opt_struct",
-                "kind": 8,
-                "parent_name": "",
-                "name": "opt_struct",
-                "file": "D:/Work/fortran/UniPro/src/include/opt.c",
-                "line": 91,
+                "name": "MinPair",
+                "file": "D:/Work/fortran/UniPro/src/fold/init.cpp",
+                "line": 6,
                 "column": 3,
                 "hidden": false
             },
             {
-                "usr": "c:opt.c@T@OptStruct",
+                "usr": "c:init.cpp@T@dePtr",
                 "kind": 8,
                 "parent_name": "",
-                "name": "OptStruct",
-                "file": "D:/Work/fortran/UniPro/src/include/opt.c",
-                "line": 91,
-                "column": 16,
+                "name": "dePtr",
+                "file": "D:/Work/fortran/UniPro/src/fold/init.cpp",
+                "line": 13,
+                "column": 4,
                 "hidden": false
             },
             {
-                "usr": "c:@F@lbfgsb",
+                "usr": "c:@T@params",
+                "kind": 8,
+                "parent_name": "",
+                "name": "params",
+                "file": "D:/Work/fortran/UniPro/src/fold/init.cpp",
+                "line": 20,
+                "column": 3,
+                "hidden": false
+            },
+            {
+                "usr": "c:init.cpp@T@paramsPtr",
+                "kind": 8,
+                "parent_name": "",
+                "name": "paramsPtr",
+                "file": "D:/Work/fortran/UniPro/src/fold/init.cpp",
+                "line": 20,
+                "column": 11,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@unipro#*I#*$@SA@params#",
                 "kind": 6,
                 "parent_name": "",
-                "name": "lbfgsb(int)",
-                "file": "D:/Work/fortran/UniPro/src/include/opt.c",
-                "line": 95,
+                "name": "unipro(int *, paramsPtr)",
+                "file": "D:/Work/fortran/UniPro/src/fold/init.cpp",
+                "line": 23,
+                "column": 8,
+                "hidden": false
+            },
+            {
+                "usr": "c:init.cpp@F@allocVec#I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "allocVec(int)",
+                "file": "D:/Work/fortran/UniPro/src/fold/init.cpp",
+                "line": 45,
+                "column": 21,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@sampleTwo#I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "sampleTwo(int)",
+                "file": "D:/Work/fortran/UniPro/src/fold/init.cpp",
+                "line": 50,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@swapVecAtPositions#*I#I#I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "swapVecAtPositions(int *, int, int)",
+                "file": "D:/Work/fortran/UniPro/src/fold/init.cpp",
+                "line": 58,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@swapVecUsingVec#*I#S0_#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "swapVecUsingVec(int *, int *)",
+                "file": "D:/Work/fortran/UniPro/src/fold/init.cpp",
+                "line": 64,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:init.cpp@F@randomlhs#*$@S@init.cpp@94#*$@SA@params#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "randomlhs(dePtr, paramsPtr)",
+                "file": "D:/Work/fortran/UniPro/src/fold/init.cpp",
+                "line": 70,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@initializeParams#I#I#I#I#I#d#d#d#I#L#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "initializeParams(int, int, int, int, int, double, double, double, int, long)",
+                "file": "D:/Work/fortran/UniPro/src/fold/init.cpp",
+                "line": 97,
+                "column": 11,
+                "hidden": false
+            },
+            {
+                "usr": "c:init.cpp@F@initialize#1*$@SA@params#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "initialize(const paramsPtr)",
+                "file": "D:/Work/fortran/UniPro/src/fold/init.cpp",
+                "line": 124,
+                "column": 7,
+                "hidden": false
+            },
+            {
+                "usr": "c:init.cpp@F@propose#*$@S@init.cpp@94#I#*$@SA@params#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "propose(dePtr, int, paramsPtr)",
+                "file": "D:/Work/fortran/UniPro/src/fold/init.cpp",
+                "line": 137,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:init.cpp@F@mutate#*$@S@init.cpp@94#I#*$@SA@params#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "mutate(dePtr, int, paramsPtr)",
+                "file": "D:/Work/fortran/UniPro/src/fold/init.cpp",
+                "line": 145,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:init.cpp@F@crossOver#*$@S@init.cpp@94#I#I#*$@SA@params#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "crossOver(dePtr, int, int, paramsPtr)",
+                "file": "D:/Work/fortran/UniPro/src/fold/init.cpp",
+                "line": 150,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:init.cpp@F@getTrial#*$@S@init.cpp@94#I#*$@SA@params#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "getTrial(dePtr, int, paramsPtr)",
+                "file": "D:/Work/fortran/UniPro/src/fold/init.cpp",
+                "line": 156,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@print_progress#I#I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "print_progress(int, int)",
+                "file": "D:/Work/fortran/UniPro/src/fold/init.cpp",
+                "line": 177,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@progressbar#*I#I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "progressbar(int *, int)",
+                "file": "D:/Work/fortran/UniPro/src/fold/init.cpp",
+                "line": 192,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@DE_CC#I#I#I#I#I#d#d#d#I#i#*d#S0_#*I#I#I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "DE_CC(int, int, int, int, int, double, double, double, int, unsigned int, double *, double *, int *, int, int)",
+                "file": "D:/Work/fortran/UniPro/src/fold/init.cpp",
+                "line": 205,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@detectCores#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "detectCores",
+                "file": "D:/Work/fortran/UniPro/src/fold/init.cpp",
+                "line": 252,
+                "column": 5,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@phi#$@N@Rcpp@S@Matrix>#VI13#@N@Rcpp@ST>1#T@PreserveStorage#$@N@Rcpp@S@Vector>#VI13#@N@Rcpp@ST>1#T@PreserveStorage#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "phi(Rcpp::IntegerMatrix, Rcpp::IntegerVector)",
+                "file": "D:/Work/fortran/UniPro/src/fold/init.cpp",
+                "line": 276,
+                "column": 8,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@DE#*$@S@SEXPREC#S0_#S0_#S0_#S0_#S0_#S0_#S0_#S0_#S0_#S0_#S0_#S0_#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "DE(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP)",
+                "file": "D:/Work/fortran/UniPro/src/fold/init.cpp",
+                "line": 283,
+                "column": 6,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "D:/Work/fortran/UniPro/src/fold/main.c",
+        "file_last_write": 1737958798.0,
+        "definitions": [
+            {
+                "usr": "c:main.c@251@macro@reps",
+                "kind": 9,
+                "parent_name": "",
+                "name": "reps",
+                "file": "D:/Work/fortran/UniPro/src/fold/main.c",
+                "line": 15,
+                "column": 9,
+                "hidden": false
+            },
+            {
+                "usr": "c:main.c@267@macro@n",
+                "kind": 9,
+                "parent_name": "",
+                "name": "n",
+                "file": "D:/Work/fortran/UniPro/src/fold/main.c",
+                "line": 16,
+                "column": 9,
+                "hidden": false
+            },
+            {
+                "usr": "c:main.c@281@macro@m",
+                "kind": 9,
+                "parent_name": "",
+                "name": "m",
+                "file": "D:/Work/fortran/UniPro/src/fold/main.c",
+                "line": 17,
+                "column": 9,
+                "hidden": false
+            },
+            {
+                "usr": "c:main.c@294@macro@NP",
+                "kind": 9,
+                "parent_name": "",
+                "name": "NP",
+                "file": "D:/Work/fortran/UniPro/src/fold/main.c",
+                "line": 18,
+                "column": 9,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@printDesign",
+                "kind": 6,
+                "parent_name": "",
+                "name": "printDesign(int *, int, int)",
+                "file": "D:/Work/fortran/UniPro/src/fold/main.c",
+                "line": 5,
                 "column": 6,
                 "hidden": false
             },
@@ -849,9 +1116,9 @@
                 "usr": "c:@F@main",
                 "kind": 6,
                 "parent_name": "",
-                "name": "main",
-                "file": "D:/Work/fortran/UniPro/src/include/opt.c",
-                "line": 185,
+                "name": "main(int, const char **)",
+                "file": "D:/Work/fortran/UniPro/src/fold/main.c",
+                "line": 20,
                 "column": 5,
                 "hidden": false
             }
@@ -859,143 +1126,26 @@
         "hidden": false
     },
     {
-        "file": "D:/Work/fortran/UniPro/src/include/optcpp.cpp",
-        "file_last_write": 1736362948.0,
+        "file": "D:/Work/fortran/UniPro/src/fold/trial.cpp",
+        "file_last_write": 1738660999.0,
         "definitions": [
             {
-                "usr": "c:@F@branin#*d#",
+                "usr": "c:@F@print_progress#I#I#",
                 "kind": 6,
                 "parent_name": "",
-                "name": "branin(double *)",
-                "file": "D:/Work/fortran/UniPro/src/include/optcpp.cpp",
-                "line": 8,
-                "column": 8,
-                "hidden": false
-            },
-            {
-                "usr": "c:@F@braningr#I#*d#S0_#*v#",
-                "kind": 6,
-                "parent_name": "",
-                "name": "braningr(int, double *, double *, void *)",
-                "file": "D:/Work/fortran/UniPro/src/include/optcpp.cpp",
-                "line": 32,
-                "column": 6,
-                "hidden": false
-            }
-        ],
-        "hidden": false
-    },
-    {
-        "file": "D:/Work/fortran/UniPro/src/include/optimization.c",
-        "file_last_write": 1736362936.0,
-        "definitions": [
-            {
-                "usr": "c:optimization.c@180@macro@_",
-                "kind": 9,
-                "parent_name": "",
-                "name": "_",
-                "file": "D:/Work/fortran/UniPro/src/include/optimization.c",
-                "line": 11,
-                "column": 9,
-                "hidden": false
-            },
-            {
-                "usr": "c:@F@getListElement",
-                "kind": 6,
-                "parent_name": "",
-                "name": "getListElement(SEXP, char *)",
-                "file": "D:/Work/fortran/UniPro/src/include/optimization.c",
-                "line": 18,
+                "name": "print_progress(int, int)",
+                "file": "D:/Work/fortran/UniPro/src/fold/trial.cpp",
+                "line": 10,
                 "column": 6,
                 "hidden": false
             },
             {
-                "usr": "c:optimization.c@F@vect",
+                "usr": "c:@F@progressbar#&I#I#",
                 "kind": 6,
                 "parent_name": "",
-                "name": "vect(int)",
-                "file": "D:/Work/fortran/UniPro/src/include/optimization.c",
-                "line": 32,
-                "column": 17,
-                "hidden": false
-            },
-            {
-                "usr": "c:@S@opt_struct",
-                "kind": 3,
-                "parent_name": "",
-                "name": "opt_struct",
-                "file": "D:/Work/fortran/UniPro/src/include/optimization.c",
-                "line": 37,
-                "column": 16,
-                "hidden": false
-            },
-            {
-                "usr": "c:optimization.c@T@opt_struct",
-                "kind": 8,
-                "parent_name": "",
-                "name": "opt_struct",
-                "file": "D:/Work/fortran/UniPro/src/include/optimization.c",
-                "line": 48,
-                "column": 3,
-                "hidden": false
-            },
-            {
-                "usr": "c:optimization.c@T@OptStruct",
-                "kind": 8,
-                "parent_name": "",
-                "name": "OptStruct",
-                "file": "D:/Work/fortran/UniPro/src/include/optimization.c",
-                "line": 48,
-                "column": 16,
-                "hidden": false
-            },
-            {
-                "usr": "c:optimization.c@F@fminfn",
-                "kind": 6,
-                "parent_name": "",
-                "name": "fminfn(int, double *, void *)",
-                "file": "D:/Work/fortran/UniPro/src/include/optimization.c",
-                "line": 52,
-                "column": 15,
-                "hidden": false
-            },
-            {
-                "usr": "c:@F@optim",
-                "kind": 6,
-                "parent_name": "",
-                "name": "optim(SEXP, SEXP, SEXP, SEXP)",
-                "file": "D:/Work/fortran/UniPro/src/include/optimization.c",
-                "line": 158,
-                "column": 6,
-                "hidden": false
-            },
-            {
-                "usr": "c:@F@optimhess",
-                "kind": 6,
-                "parent_name": "",
-                "name": "optimhess(SEXP, SEXP, SEXP, SEXP)",
-                "file": "D:/Work/fortran/UniPro/src/include/optimization.c",
-                "line": 367,
-                "column": 6,
-                "hidden": false
-            },
-            {
-                "usr": "c:@F@optim2",
-                "kind": 6,
-                "parent_name": "",
-                "name": "optim2(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP)",
-                "file": "D:/Work/fortran/UniPro/src/include/optimization.c",
-                "line": 446,
-                "column": 6,
-                "hidden": false
-            },
-            {
-                "usr": "c:@F@optim3",
-                "kind": 6,
-                "parent_name": "",
-                "name": "optim3(SEXP, SEXP)",
-                "file": "D:/Work/fortran/UniPro/src/include/optimization.c",
-                "line": 658,
+                "name": "progressbar(int &, int)",
+                "file": "D:/Work/fortran/UniPro/src/fold/trial.cpp",
+                "line": 25,
                 "column": 6,
                 "hidden": false
             }
@@ -1004,16 +1154,113 @@
     },
     {
         "file": "D:/Work/fortran/UniPro/src/init.c",
-        "file_last_write": 1736515913.0,
+        "file_last_write": 1738660968.0,
         "definitions": [
             {
-                "usr": "c:@F@R_init_UniPro",
+                "usr": "c:@F@detectCores",
                 "kind": 6,
                 "parent_name": "",
-                "name": "R_init_UniPro(DllInfo *)",
+                "name": "detectCores",
                 "file": "D:/Work/fortran/UniPro/src/init.c",
-                "line": 64,
+                "line": 17,
                 "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@R_init_RcppProgressExample",
+                "kind": 6,
+                "parent_name": "",
+                "name": "R_init_RcppProgressExample(DllInfo *)",
+                "file": "D:/Work/fortran/UniPro/src/init.c",
+                "line": 32,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@phi",
+                "kind": 6,
+                "parent_name": "",
+                "name": "phi(SEXP, SEXP, SEXP, SEXP)",
+                "file": "D:/Work/fortran/UniPro/src/init.c",
+                "line": 38,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@DE",
+                "kind": 6,
+                "parent_name": "",
+                "name": "DE(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP)",
+                "file": "D:/Work/fortran/UniPro/src/init.c",
+                "line": 58,
+                "column": 6,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "D:/Work/fortran/UniPro/src/main.c",
+        "file_last_write": 1738660971.0,
+        "definitions": [
+            {
+                "usr": "c:main.c@251@macro@reps",
+                "kind": 9,
+                "parent_name": "",
+                "name": "reps",
+                "file": "D:/Work/fortran/UniPro/src/main.c",
+                "line": 15,
+                "column": 9,
+                "hidden": false
+            },
+            {
+                "usr": "c:main.c@267@macro@n",
+                "kind": 9,
+                "parent_name": "",
+                "name": "n",
+                "file": "D:/Work/fortran/UniPro/src/main.c",
+                "line": 16,
+                "column": 9,
+                "hidden": false
+            },
+            {
+                "usr": "c:main.c@281@macro@m",
+                "kind": 9,
+                "parent_name": "",
+                "name": "m",
+                "file": "D:/Work/fortran/UniPro/src/main.c",
+                "line": 17,
+                "column": 9,
+                "hidden": false
+            },
+            {
+                "usr": "c:main.c@294@macro@NP",
+                "kind": 9,
+                "parent_name": "",
+                "name": "NP",
+                "file": "D:/Work/fortran/UniPro/src/main.c",
+                "line": 18,
+                "column": 9,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@printDesign",
+                "kind": 6,
+                "parent_name": "",
+                "name": "printDesign(int *, int, int)",
+                "file": "D:/Work/fortran/UniPro/src/main.c",
+                "line": 5,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@main",
+                "kind": 6,
+                "parent_name": "",
+                "name": "main(int, const char **)",
+                "file": "D:/Work/fortran/UniPro/src/main.c",
+                "line": 20,
+                "column": 5,
                 "hidden": false
             }
         ],
