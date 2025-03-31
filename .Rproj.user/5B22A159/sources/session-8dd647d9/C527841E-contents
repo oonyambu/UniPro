@@ -1,0 +1,6 @@
+args <- list(x = df1, \(x)c(paste0(names(x), collapse = ""), do.call(paste0, x)))
+
+fn <- function(i){
+  combn()
+}
+do.call(combn, c(m = i, args))[-1,])

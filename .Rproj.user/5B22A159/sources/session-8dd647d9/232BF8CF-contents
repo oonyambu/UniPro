@@ -1,0 +1,30 @@
+
+UniPro(30, 3)
+
+
+pMut <- seq(0.05, 0.5, length = 5)
+pCR <-rev(pMut)
+n = 30; m <- 3
+a <- mapply(UniPro, n, m, pMut=pMut, 
+       pCR=pCR, itermax = 100)[1,]|>which.min()|>
+  (\(x)cbind(pMut, pCR)[x,])()|>
+  as.list()|>
+  |>
+  do.call(what = "UniPro")
+
+b=UniPro(n, m, replicates = 10)
+boxplot(list(a=a$measure, b=b$measure))
+
+f <- function(p){
+  if(any(p>1 , p<0)) return(NA)
+  UniPro::UniPro(n, m, pMut = p[1], pCR = p[2], replicates = 10)$measure
+}
+a<-optim(c(0.1, 0.1), f)
+     
+set.seed(1)
+res <- numeric(1e4)
+for(i in 1:1e4){
+  d <- sample(boot_population, 100, TRUE)
+  res[i] <- mean(d[1:50]) - mean(d[51:100])
+}
+

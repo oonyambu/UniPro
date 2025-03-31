@@ -1,0 +1,337 @@
+[
+    {
+        "file": "C:/Work/Work/fortran/UniPro/src/criteria.c",
+        "file_last_write": 1738661026.0,
+        "definitions": [
+            {
+                "usr": "c:@F@maxpro",
+                "kind": 6,
+                "parent_name": "",
+                "name": "maxpro(int *, paramsPtr)",
+                "file": "C:/Work/Work/fortran/UniPro/src/criteria.c",
+                "line": 3,
+                "column": 8,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@unipro",
+                "kind": 6,
+                "parent_name": "",
+                "name": "unipro(int *, paramsPtr)",
+                "file": "C:/Work/Work/fortran/UniPro/src/criteria.c",
+                "line": 21,
+                "column": 8,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@maximinLHD",
+                "kind": 6,
+                "parent_name": "",
+                "name": "maximinLHD(int *, paramsPtr)",
+                "file": "C:/Work/Work/fortran/UniPro/src/criteria.c",
+                "line": 41,
+                "column": 8,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "C:/Work/Work/fortran/UniPro/src/criteria.h",
+        "file_last_write": 1738661024.0,
+        "definitions": [
+            {
+                "usr": "c:criteria.h@30@macro@__CRITERIA__",
+                "kind": 9,
+                "parent_name": "",
+                "name": "__CRITERIA__",
+                "file": "C:/Work/Work/fortran/UniPro/src/criteria.h",
+                "line": 2,
+                "column": 9,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "C:/Work/Work/fortran/UniPro/src/de.c",
+        "file_last_write": 1743447237.0,
+        "definitions": [
+            {
+                "usr": "c:de.c@54@macro@intUniform",
+                "kind": 9,
+                "parent_name": "",
+                "name": "intUniform",
+                "file": "C:/Work/Work/fortran/UniPro/src/de.c",
+                "line": 6,
+                "column": 9,
+                "hidden": false
+            },
+            {
+                "usr": "c:de.c@103@macro@doubleUniform",
+                "kind": 9,
+                "parent_name": "",
+                "name": "doubleUniform",
+                "file": "C:/Work/Work/fortran/UniPro/src/de.c",
+                "line": 7,
+                "column": 9,
+                "hidden": false
+            },
+            {
+                "usr": "c:de.c@F@allocVec",
+                "kind": 6,
+                "parent_name": "",
+                "name": "allocVec(int)",
+                "file": "C:/Work/Work/fortran/UniPro/src/de.c",
+                "line": 9,
+                "column": 21,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@sampleTwo",
+                "kind": 6,
+                "parent_name": "",
+                "name": "sampleTwo(int)",
+                "file": "C:/Work/Work/fortran/UniPro/src/de.c",
+                "line": 14,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@swapVecAtPositions",
+                "kind": 6,
+                "parent_name": "",
+                "name": "swapVecAtPositions(int *, int, int)",
+                "file": "C:/Work/Work/fortran/UniPro/src/de.c",
+                "line": 22,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@swapVecUsingVec",
+                "kind": 6,
+                "parent_name": "",
+                "name": "swapVecUsingVec(int *, int *)",
+                "file": "C:/Work/Work/fortran/UniPro/src/de.c",
+                "line": 28,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@randomlhs",
+                "kind": 6,
+                "parent_name": "",
+                "name": "randomlhs(dePtr, paramsPtr, criteria)",
+                "file": "C:/Work/Work/fortran/UniPro/src/de.c",
+                "line": 34,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@initializeParams",
+                "kind": 6,
+                "parent_name": "",
+                "name": "initializeParams(int, int, int, int, int, double, double, double, int, long, int)",
+                "file": "C:/Work/Work/fortran/UniPro/src/de.c",
+                "line": 61,
+                "column": 11,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@initialize",
+                "kind": 6,
+                "parent_name": "",
+                "name": "initialize(const paramsPtr, criteria)",
+                "file": "C:/Work/Work/fortran/UniPro/src/de.c",
+                "line": 89,
+                "column": 7,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@propose",
+                "kind": 6,
+                "parent_name": "",
+                "name": "propose(dePtr, int, paramsPtr)",
+                "file": "C:/Work/Work/fortran/UniPro/src/de.c",
+                "line": 102,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@mutate",
+                "kind": 6,
+                "parent_name": "",
+                "name": "mutate(dePtr, int, paramsPtr)",
+                "file": "C:/Work/Work/fortran/UniPro/src/de.c",
+                "line": 113,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@crossOver",
+                "kind": 6,
+                "parent_name": "",
+                "name": "crossOver(dePtr, int, int, paramsPtr)",
+                "file": "C:/Work/Work/fortran/UniPro/src/de.c",
+                "line": 121,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@getTrial",
+                "kind": 6,
+                "parent_name": "",
+                "name": "getTrial(dePtr, int, paramsPtr, criteria)",
+                "file": "C:/Work/Work/fortran/UniPro/src/de.c",
+                "line": 132,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@print_progress",
+                "kind": 6,
+                "parent_name": "",
+                "name": "print_progress(int, int)",
+                "file": "C:/Work/Work/fortran/UniPro/src/de.c",
+                "line": 157,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@progressbar",
+                "kind": 6,
+                "parent_name": "",
+                "name": "progressbar(int *, int)",
+                "file": "C:/Work/Work/fortran/UniPro/src/de.c",
+                "line": 172,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@DE_CC",
+                "kind": 6,
+                "parent_name": "",
+                "name": "DE_CC(int, int, int, int, int, double, double, double, int, unsigned int, double *, double *, int *, int, criteria, int, int)",
+                "file": "C:/Work/Work/fortran/UniPro/src/de.c",
+                "line": 187,
+                "column": 6,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "C:/Work/Work/fortran/UniPro/src/de.h",
+        "file_last_write": 1743407015.0,
+        "definitions": [
+            {
+                "usr": "c:de.h@28@macro@__UNIPRO__",
+                "kind": 9,
+                "parent_name": "",
+                "name": "__UNIPRO__",
+                "file": "C:/Work/Work/fortran/UniPro/src/de.h",
+                "line": 2,
+                "column": 9,
+                "hidden": false
+            },
+            {
+                "usr": "c:@T@MinPair",
+                "kind": 8,
+                "parent_name": "",
+                "name": "MinPair",
+                "file": "C:/Work/Work/fortran/UniPro/src/de.h",
+                "line": 16,
+                "column": 3,
+                "hidden": false
+            },
+            {
+                "usr": "c:de.h@T@dePtr",
+                "kind": 8,
+                "parent_name": "",
+                "name": "dePtr",
+                "file": "C:/Work/Work/fortran/UniPro/src/de.h",
+                "line": 23,
+                "column": 4,
+                "hidden": false
+            },
+            {
+                "usr": "c:@T@params",
+                "kind": 8,
+                "parent_name": "",
+                "name": "params",
+                "file": "C:/Work/Work/fortran/UniPro/src/de.h",
+                "line": 30,
+                "column": 3,
+                "hidden": false
+            },
+            {
+                "usr": "c:de.h@T@paramsPtr",
+                "kind": 8,
+                "parent_name": "",
+                "name": "paramsPtr",
+                "file": "C:/Work/Work/fortran/UniPro/src/de.h",
+                "line": 30,
+                "column": 11,
+                "hidden": false
+            },
+            {
+                "usr": "c:de.h@T@criteria",
+                "kind": 8,
+                "parent_name": "",
+                "name": "criteria",
+                "file": "C:/Work/Work/fortran/UniPro/src/de.h",
+                "line": 37,
+                "column": 18,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "C:/Work/Work/fortran/UniPro/src/init.c",
+        "file_last_write": 1743447233.0,
+        "definitions": [
+            {
+                "usr": "c:@F@detectCores",
+                "kind": 6,
+                "parent_name": "",
+                "name": "detectCores",
+                "file": "C:/Work/Work/fortran/UniPro/src/init.c",
+                "line": 17,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@R_init_RcppProgressExample",
+                "kind": 6,
+                "parent_name": "",
+                "name": "R_init_RcppProgressExample(DllInfo *)",
+                "file": "C:/Work/Work/fortran/UniPro/src/init.c",
+                "line": 32,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@phi",
+                "kind": 6,
+                "parent_name": "",
+                "name": "phi(SEXP, SEXP, SEXP, SEXP)",
+                "file": "C:/Work/Work/fortran/UniPro/src/init.c",
+                "line": 38,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@DE",
+                "kind": 6,
+                "parent_name": "",
+                "name": "DE(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP)",
+                "file": "C:/Work/Work/fortran/UniPro/src/init.c",
+                "line": 58,
+                "column": 6,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    }
+]

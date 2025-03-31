@@ -1,0 +1,13 @@
+Package: UniPro
+Type: Package
+Title: Using Differential Evolution to contruct Uniform Projection Designs
+Version: 0.1.0
+Author: Onyambu
+Maintainer: The package maintainer <oonyambu@gmail.com>
+Description: The package uses the differential evolution algorithm to construct
+    efficint contruct Uniform Projection Designs
+License:  MIT + file LICENSE
+Encoding: UTF-8
+LazyData: false
+RoxygenNote: 7.3.2
+NeedsCompilation: yes
