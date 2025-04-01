@@ -235,16 +235,6 @@
                 "hidden": false
             },
             {
-                "usr": "c:@SA@MinPair",
-                "kind": 3,
-                "parent_name": "",
-                "name": "",
-                "file": "C:/Work/Work/fortran/UniPro/src/de.h",
-                "line": 15,
-                "column": 9,
-                "hidden": false
-            },
-            {
                 "usr": "c:@T@MinPair",
                 "kind": 8,
                 "parent_name": "",
@@ -262,16 +252,6 @@
                 "file": "C:/Work/Work/fortran/UniPro/src/de.h",
                 "line": 25,
                 "column": 4,
-                "hidden": false
-            },
-            {
-                "usr": "c:@SA@params",
-                "kind": 3,
-                "parent_name": "",
-                "name": "",
-                "file": "C:/Work/Work/fortran/UniPro/src/de.h",
-                "line": 28,
-                "column": 9,
                 "hidden": false
             },
             {
