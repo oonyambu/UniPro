@@ -69,17 +69,17 @@ DE <-function(n, m, s = n, NP = 100, itermax = 1500, pMut = NULL,
                seed = seed, ncores = ncores, method = method[1], trace = trace)
   u <- 0
   if(is.null(pMut)&&is.null(pCR)){
-    p <- seq(0.1, 0.5, by=0.2)
-    q <- 0.5 - p
-    args$trace <- 0
-    args$replicates <- 1
+    p <- seq(0.1, 0.9, by=0.2)
+    q <- 1 -  p
     v <- do.call(mapply, list(.DE1, pMut = p, pCR = q,
-                              MoreArgs =  Filter(Negate(is.null), args)))
+                              MoreArgs =  Filter(Negate(is.null),
+                                      modifyList(args, list(trace = 0,
+                                                            replicates = 1,
+                                                            itermax = 100)))))
     idx <- which.min(unlist(v["measure", ]))
     args$pCR <- q[idx]
     args$pMut <- p[idx]
     args$trace <- trace
-    args$replicates <- replicates
     u <- sum(unlist(v["timeTaken",]))
   }
   res <- do.call(.DE1, args)
