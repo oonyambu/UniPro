@@ -60,52 +60,38 @@ UniPro <-function(n, m, s = n, NP = 100, itermax = 1500, pMut = NULL,
 }
 
 DE <-function(n, m, s = n, NP = 100, itermax = 1500, pMut = NULL,
-                  pCR = NULL, pGBest = NULL, replicates = 1,
+                  pCR = NULL, pGBest = NULL, replicates = 1, p=15L,
                   seed = sample(1e7,1), ncores = NULL, trace = FALSE,
               method = c("UniPro", "MaxPro", "maximinLHD")){
   if(is.null(pGBest)) pGBest <- 0.9
-  args <- list(n = n, m = m, s = s, NP = NP, itermax = itermax, pMut = pMut,
-               pCR = pCR, pGBest = pGBest, replicates = replicates,
-               seed = seed, ncores = ncores, method = method[1], trace = trace)
-  u <- 0
-  if(is.null(pMut)&&is.null(pCR)){
-    p <- seq(0.1, 0.9, by=0.2)
-    q <- 1 -  p
-    v <- do.call(mapply, list(.DE1, pMut = p, pCR = q,
-                              MoreArgs =  Filter(Negate(is.null),
-                                      modifyList(args, list(trace = 0,
-                                                            replicates = 1,
-                                                            itermax = 100)))))
-    idx <- which.min(unlist(v["measure", ]))
-    args$pCR <- q[idx]
-    args$pMut <- p[idx]
-    args$trace <- trace
-    u <- sum(unlist(v["timeTaken",]))
-  }
-  res <- do.call(.DE1, args)
-  res$timeTaken <- res$timeTaken + u
-  res
-}
-
-.DE1 <- function(n, m, s = n, p = 15L, NP = 100L, itermax = 1500L, pMut = 0.2,
-              pCR = 0.3, pGBest = 0.9, replicates = 1L,
-              seed = sample(1e7,1), ncores = NULL, trace = FALSE,
-              method = c("UniPro", "MaxPro", "maximinLHD")){
   methods <- c("UniPro", "MaxPro", "maximinLHD")
   .method <- as.integer(charmatch(method[1], methods, 0))
   if(.method < 1 || .method > 3) stop("invalid method", method[1])
-
   if(is.null(ncores)) ncores <- as.integer(max(1, detectCores() - 2))
-
   if(ncores < 2) stop("ncores must be at least 2")
-  res <- .Call("DE",
-        as.integer(n), as.integer(m), as.integer(s), as.integer(NP),
-        as.integer(itermax), as.double(pMut), as.double(pCR),
-        as.double(pGBest), as.integer(replicates),
-        as.integer(seed), as.integer(ncores),
-        .method, as.integer(p), as.integer(trace), PACKAGE = 'UniPro')
+  args <- list(n = as.integer(n), m = as.integer(m), s = as.integer(s),
+               NP = as.integer(NP), itermax = as.integer(itermax),
+               pMut = as.double(pMut), pCR = as.double(pCR),
+               pGBest = as.double(pGBest), replicates = as.integer(replicates),
+               seed = as.integer(seed), ncores = as.integer(ncores),
+               method = .method, p = as.integer(p), trace = as.integer(trace))
+  u <- 0
+  if(is.null(pMut)&&is.null(pCR)){
+    args1 <- modifyList(args, list(trace = 0L, replicates = 1L))
+    fn <- fn <- function(pMut, pCR)
+     do.call(.Call, c("DE", modifyList(args1, list(pMut = pMut, pCR = pCR))))
+    pmut <- seq(0.1, 0.9, by = 0.2)
+    v <- mapply(fn, pmut, 1 - pmut)
+    idx <- which.min(unlist(v["measure", ]))
+    args$pMut <- pmut[idx]
+    args$pCR <- 1 - pmut[idx]
+    u <- sum(unlist(v["timeTaken",]))
+  }
+  res <- do.call(.Call, c("DE",args, PACKAGE = 'UniPro'))
+  res$timeTaken <- res$timeTaken + u
   structure(res, method = method[1])
 }
+
 
 
 # #' Maximum Projection Designs
