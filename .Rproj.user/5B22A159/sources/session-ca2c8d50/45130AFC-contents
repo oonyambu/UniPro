@@ -76,7 +76,7 @@ DE <-function(n, m, s = n, NP = 100, itermax = 1500, pMut = NULL,
                seed = as.integer(seed), ncores = as.integer(ncores),
                method = .method, p = as.integer(p), trace = as.integer(trace))
   u <- 0
-  if(is.null(pMut)&&is.null(pCR)){
+  if(is.null(pMut) || is.null(pCR)){
     args1 <- modifyList(args, list(trace = 0L, replicates = 1L, itermax = 100))
     fn <- fn <- function(pMut, pCR)
      do.call(.Call, c("DE", modifyList(args1, list(pMut = pMut, pCR = pCR))))
