@@ -1,3 +1,5 @@
+#undef match // to avoid compiling error on MacBookPro 1/30/25
+
 #ifndef __UNIPRO__
 #define __UNIPRO__
 

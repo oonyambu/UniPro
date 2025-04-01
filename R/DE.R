@@ -66,21 +66,25 @@ DE <-function(n, m, s = n, NP = 100, itermax = 1500, pMut = NULL,
   if(is.null(pGBest)) pGBest <- 0.9
   args <- list(n = n, m = m, s = s, NP = NP, itermax = itermax, pMut = pMut,
                pCR = pCR, pGBest = pGBest, replicates = replicates,
-               seed = seed, ncores = ncores, method = "UniPro", trace = trace)
-
+               seed = seed, ncores = ncores, method = method[1], trace = trace)
+  u <- 0
   if(is.null(pMut)&&is.null(pCR)){
-    p <- seq(0.1, 0.9, by=0.2)
-    q <- 1 - p
+    p <- seq(0.1, 0.5, by=0.2)
+    q <- 0.5 - p
     args$trace <- 0
-    v <- do.call(mapply, list(DE, pMut = p, pCR = q,
+    args$replicates <- 1
+    v <- do.call(mapply, list(.DE1, pMut = p, pCR = q,
                               MoreArgs =  Filter(Negate(is.null), args)))
     idx <- which.min(unlist(v["measure", ]))
     args$pCR <- q[idx]
     args$pMut <- p[idx]
     args$trace <- trace
+    args$replicates <- replicates
+    u <- sum(unlist(v["timeTaken",]))
   }
-
-  do.call(.DE1, args)
+  res <- do.call(.DE1, args)
+  res$timeTaken <- res$timeTaken + u
+  res
 }
 
 .DE1 <- function(n, m, s = n, p = 15L, NP = 100L, itermax = 1500L, pMut = 0.2,

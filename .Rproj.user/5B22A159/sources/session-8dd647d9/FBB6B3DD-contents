@@ -1,3 +1,11 @@
-PKG_CFLAGS += -Xclang -fopenmp
-PKG_CXXFLAGS += -Xclang -fopenmp
-PKG_LIBS += -lomp -fopenmp
+
+PKG_CFLAGS += -fopenmp
+PKG_CXXFLAGS += -fopenmp
+
+ifeq ($(OS),Darwin)
+    PKG_CFLAGS += -Xclang
+    PKG_CXXFLAGS += -Xclang
+    PKG_LIBS += -lomp
+else
+	PKG_LIBS += -fopenmp
+endif
