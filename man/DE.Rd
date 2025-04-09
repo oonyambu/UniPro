@@ -7,7 +7,7 @@
 \usage{
 DE(n, m, s = n, p = 15L, NP = 100L, itermax = 1000L, pMut = 0.2, pCR = 0.3,
           pGBest = 0.9, replicates = 1L, seed = sample(1e7,1), ncores = NULL,
-          method = c("UniPro", "MaxPro"))
+          method = c("UniPro", "maximinLHD"))
 
 UniPro(n, m, s = n, NP = 100L, itermax = 1000L, pMut = 0.2, pCR = 0.3,
        pGBest = 0.9, replicates = 1L, seed = sample(1e7,1), ncores = NULL)
@@ -37,7 +37,7 @@ UniPro(n, m, s = n, NP = 100L, itermax = 1000L, pMut = 0.2, pCR = 0.3,
 
 \item{p}{the exponent for method maximinLHD. default is 15}
 
-\item{method}{The criterion to be optimized. Only UniPro, MaxPro, maximinLHD are implemented}
+\item{method}{The criterion to be optimized. Only UniPro, maximinLHD, maxPro are implemented}
 }
 \value{
 A list with the phi value, the final design and total computational time taken:
@@ -54,7 +54,7 @@ algorithm
 }
 \examples{
 DE(10, 3) # uses UniPro by default
-DE(30, 3, replicates=10, method = 'MaxiPro')
+DE(30, 3, replicates=10, method = 'maximinLHD')
 UniPro(10, 3)
 UniPro(30, 3, replicates=10)
 

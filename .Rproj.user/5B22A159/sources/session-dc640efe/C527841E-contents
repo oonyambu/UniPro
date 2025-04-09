@@ -1,0 +1,10 @@
+dat %>%
+  select(ends_with(as.character(30))) %>%
+  pivot_longer(everything()) %>%
+  mutate(name = c(a="DE", b="SA")[str_remove(name, '\\d+')]) %>% 
+  ggplot(aes(name, value)) + 
+  geom_boxplot() + 
+  ylab(latex2exp::TeX("$\\phi_p(D)$")) + 
+  
+  theme(axis.title.y = element_text(size=15), 
+        axis.title.x = element_blank())

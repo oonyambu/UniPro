@@ -5,7 +5,7 @@
 #include "criteria.h"
 
 
-static criteria PHI_FUNS[3] = {unipro, maxpro, maximinLHD};
+static criteria PHI_FUNS[3] = {unipro, maximinLHD, maxpro};
 
 SEXP phi(SEXP R_X, SEXP R_s, SEXP R_r, SEXP R_METHOD);
 
@@ -93,7 +93,20 @@ SEXP DE(SEXP R_n, SEXP R_m, SEXP R_s, SEXP R_NP,
 
   int method = INTEGER(R_method)[0] - 1;
   if(trace)
-    printf("%s\n", method == 0? "UniPro" : (method == 1? "MaxPro":"maximinLHD"));
+    switch (method) {
+    case 0:
+      printf("UniPro\n");
+      break;
+    case 2:
+      printf("MaxPro\n");
+      break;
+    case 1:
+      printf("maximinLHD\n");
+      break;
+    default:
+      printf("UniPro\n");
+    break;
+    }
   criteria phi = PHI_FUNS[method];
   DE_CC(n, m, s, NP, itermax, pMut, pCR, pGBest,
         replicates, seed, phiValues, timeTaken,

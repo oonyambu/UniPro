@@ -17,17 +17,17 @@ NULL
 #' @param replicates number of replications. Determines the output
 #' @param seed seed to be set for reproducibility
 #' @param ncores number f cores to be used for parallelization/multi-threading.
-#' @param method The criterion to be optimized. Only UniPro, MaxPro, maximinLHD are implemented
+#' @param method The criterion to be optimized. Only UniPro, maximinLHD, maxPro are implemented
 #' @return A list with the phi value, the final design and total computational time taken:
 #' \item{bestX}{The final UniPro Design. Only returned when replicates = 1}
 #' \item{optValues}{The phi value of the final Design. A vector of length replicates}
 #' \item{timeTaken}{Total computational time taken}
 #' @examples
 #' DE(10, 3) # uses UniPro by default
-#' DE(30, 3, replicates=10, method = 'MaxiPro')
+#' DE(30, 3, replicates=10, method = 'maximinLHD')
 #' @usage DE(n, m, s = n, p = 15L, NP = 100L, itermax = 1000L, pMut = 0.2, pCR = 0.3,
 #'           pGBest = 0.9, replicates = 1L, seed = sample(1e7,1), ncores = NULL,
-#'           method = c("UniPro", "MaxPro"))
+#'           method = c("UniPro", "maximinLHD"))
 #'
 #' @name DE
 #'
@@ -59,12 +59,13 @@ UniPro <-function(n, m, s = n, NP = 100, itermax = 1500, pMut = NULL,
      trace = trace, method = 'UniPro')
 }
 
+#' @export
 DE <-function(n, m, s = n, NP = 100, itermax = 1500, pMut = NULL,
                   pCR = NULL, pGBest = NULL, replicates = 1, p=15L,
                   seed = sample(1e7,1), ncores = NULL, trace = FALSE,
-              method = c("UniPro", "MaxPro", "maximinLHD")){
+              method = c("UniPro", "maximinLHD")){
   if(is.null(pGBest)) pGBest <- 0.9
-  methods <- c("UniPro", "MaxPro", "maximinLHD")
+  methods <- c("UniPro", "maximinLHD", "MaxPro")
   .method <- as.integer(charmatch(method[1], methods, 0))
   if(.method < 1 || .method > 3) stop("invalid method", method[1])
   if(is.null(ncores)) ncores <- as.integer(max(1, detectCores() - 2))
@@ -77,7 +78,7 @@ DE <-function(n, m, s = n, NP = 100, itermax = 1500, pMut = NULL,
                method = .method, p = as.integer(p), trace = as.integer(trace))
   u <- 0
   if(is.null(pMut) || is.null(pCR)){
-    args1 <- modifyList(args, list(trace = 0L, replicates = 1L, itermax = 100))
+    args1 <- modifyList(args, list(trace = 0L, replicates = 1L, itermax = 100L))
     fn <- fn <- function(pMut, pCR)
      do.call(.Call, c("DE", modifyList(args1, list(pMut = pMut, pCR = pCR))))
     pmut <- seq(0.1, 0.9, by = 0.2)
@@ -175,7 +176,7 @@ print.DE <- function(x){
 #' @usage unipromeasure(X)
 #' @param X Design
 #' @param s number of levels. Default = n
-#' @param method The criterion to be optimized. Only UniPro, MaxPro, maximinLHD are implemented
+#' @param method The criterion to be optimized. Only UniPro, maximinLHD are implemented
 #' @return measure value.
 #' @examples
 #' unipromeasure(replicate(3, sample(10)))
@@ -190,12 +191,12 @@ unipromeasure <- function(x, s = nrow(x)){
 # NULL
 #
 #
-# measure <- function(x, s = nrow(x), p = 15L, method = c("UniPro", "MaxPro", "maximinLHD")){
-#   m = charmatch(method[1], c("UniPro", "MaxPro", "maximinLHD"), 0L)
-#   if(!m) stop("not implemented for", method[1])
-#   .Call("phi", `mode<-`(x, "integer"), as.integer(s),
-#           as.integer(p), as.integer(m), PACKAGE = 'UniPro')
-# }
+measure <- function(x, s = nrow(x), p = 15L, method = c("UniPro", "maximinLHD")){
+  m = charmatch(method[1], c("UniPro", "maximinLHD", "MaxPro"), 0L)
+  if(!m) stop("not implemented for", method[1])
+  .Call("phi", `mode<-`(x, "integer"), as.integer(s),
+          as.integer(p), as.integer(m), PACKAGE = 'UniPro')
+}
 
 #
 #
