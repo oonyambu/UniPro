@@ -4,14 +4,12 @@
 \alias{unipromeasure}
 \title{unipromeasure}
 \usage{
-unipromeasure(X)
+unipromeasure(X, s = nrow(X))
 }
 \arguments{
-\item{s}{number of levels. Default = n}
-
 \item{X}{Design}
 
-\item{method}{The criterion to be optimized. Only UniPro, MaxPro, maximinLHD are implemented}
+\item{s}{number of levels. Default = n}
 }
 \value{
 measure value.

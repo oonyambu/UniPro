@@ -11,7 +11,7 @@ SEXP phi(SEXP R_X, SEXP R_s, SEXP R_r, SEXP R_METHOD);
 
 SEXP DE(SEXP R_n, SEXP R_m, SEXP R_s, SEXP R_NP,
         SEXP R_itermax, SEXP R_pMut, SEXP R_pCR,
-        SEXP R_pGBest, SEXP R_replicates, SEXP R_seed,
+        SEXP R_pGBest, SEXP R_replicates,
         SEXP R_cores, SEXP R_METHOD, SEXP R_r, SEXP R_trace);
 
 SEXP detectCores(){
@@ -49,7 +49,7 @@ SEXP phi(SEXP R_X, SEXP R_s,SEXP R_r,  SEXP R_method){
   criteria PHI = PHI_FUNS[INTEGER(R_method)[0] - 1];
 
   REAL(R_out)[0] = PHI(data,
-       initializeParams(n, m, s, 0, 0, 0.,0., 0., 1, 1ll, r));
+       initializeParams(n, m, s, 0, 0, 0.,0., 0., 1, r));
   UNPROTECT(1);
   return R_out;
 }
@@ -57,7 +57,7 @@ SEXP phi(SEXP R_X, SEXP R_s,SEXP R_r,  SEXP R_method){
 
 SEXP DE(SEXP R_n, SEXP R_m, SEXP R_s, SEXP R_NP,
             SEXP R_itermax, SEXP R_pMut, SEXP R_pCR,
-            SEXP R_pGBest, SEXP R_replicates, SEXP R_seed,
+            SEXP R_pGBest, SEXP R_replicates,
             SEXP R_cores, SEXP R_method, SEXP R_r, SEXP R_trace){
 
 
@@ -69,7 +69,6 @@ SEXP DE(SEXP R_n, SEXP R_m, SEXP R_s, SEXP R_NP,
   int itermax = INTEGER(R_itermax)[0];
   int replicates = INTEGER(R_replicates)[0];
   int cores = INTEGER(R_cores)[0];
-  int seed = INTEGER(R_seed)[0];
   int trace = INTEGER(R_trace)[0];
   double pMut = REAL(R_pMut)[0];
   double pCR = REAL(R_pCR)[0];
@@ -95,23 +94,22 @@ SEXP DE(SEXP R_n, SEXP R_m, SEXP R_s, SEXP R_NP,
   if(trace)
     switch (method) {
     case 0:
-      printf("UniPro\n");
+      Rprintf("UniPro\n");
       break;
     case 2:
-      printf("MaxPro\n");
+      Rprintf("MaxPro\n");
       break;
     case 1:
-      printf("maximinLHD\n");
+      Rprintf("maximinLHD\n");
       break;
     default:
-      printf("UniPro\n");
+      Rprintf("UniPro\n");
     break;
     }
   criteria phi = PHI_FUNS[method];
   DE_CC(n, m, s, NP, itermax, pMut, pCR, pGBest,
-        replicates, seed, phiValues, timeTaken,
+        replicates, phiValues, timeTaken,
         bestX, cores, phi, r, trace);
-
   INTEGER(dims)[0] = n;
   INTEGER(dims)[1] = m;
   setAttrib(R_bestX, R_DimSymbol, dims);
@@ -129,7 +127,6 @@ SEXP DE(SEXP R_n, SEXP R_m, SEXP R_s, SEXP R_NP,
 
   SET_STRING_ELT(className, 0, mkChar("DE"));
   classgets(R_out, className);
-
 
   UNPROTECT(7);
 

@@ -1,10 +1,21 @@
 #include "criteria.h"
 #include "de.h"
+#include <R.h>
+#include <Rinternals.h>
 
 
+// #define MATHLIB_STANDALONE
+// #include "Rmath.h"
+// extern void set_seed(unsigned int, unsigned int);
+// extern void get_seed(unsigned int*, unsigned int*);
 
-#define intUniform(n) (n < 1 ? 0: rand() % (n))
-#define doubleUniform ((double)rand() / RAND_MAX)
+//#define intUniform(n) (n < 1 ? 0: rand() % (n))
+#define intUniform(n) (n < 1 ? 0: (int)(unif_rand() * n))
+
+
+//#define doubleUniform ((double)rand() / RAND_MAX)
+
+
 
 inline static int * allocVec(int size){
   int *vec = (int*)malloc(size * sizeof(int));
@@ -59,8 +70,8 @@ void randomlhs(dePtr de, paramsPtr p, criteria phi){
 
 
 paramsPtr initializeParams(int n, int m, int s, int NP, int itermax,
-                           double pMut,double pCR, double pGbest, int replications,
-                           long int seed, int r){
+                           double pMut,double pCR, double pGbest,
+                           int replications, int r){
   paramsPtr p = (paramsPtr)malloc(sizeof(params));
   p->n = n;
   p->m = m;
@@ -71,7 +82,6 @@ paramsPtr initializeParams(int n, int m, int s, int NP, int itermax,
   p->pCR = pCR;
   p->pGbest = pGbest;
   p->replications = replications;
-  p->seed = seed;
   p->size = n*m;
   p->len = p->size * NP;
   p->r = r;
@@ -104,7 +114,7 @@ void propose(dePtr de, int NP_INDEX, paramsPtr p){
   // the global best design and the current design
   // Other proposal methods could be implemented
   memcpy(de->potential + NP_INDEX * p->size,
-         de->agent + (doubleUniform < p->pGbest?
+         de->agent + (unif_rand() < p->pGbest?
                         de->globalMin.index : NP_INDEX) * p->size,
                         p->size * sizeof(int));
 
@@ -114,7 +124,7 @@ void mutate(dePtr de, int offset, paramsPtr p){
   // With probability pMut, consider mutating a column.
   // mutatin involves the swap operator
   // where two randomly selected values in the column are swaped
-  if(doubleUniform < p->pMut)
+  if(unif_rand() < p->pMut)
     swapVecUsingVec(de->potential + offset, sampleTwo(p->n));
 }
 
@@ -124,7 +134,7 @@ void crossOver(dePtr de, int offset, int changeJ, paramsPtr p){
   // and the original column. Note that ne column in the proposed
   // must be maintained.
 
-  if(doubleUniform < p->pCR && changeJ)
+  if(unif_rand() < p->pCR && changeJ)
     memcpy(de->potential+offset,
            de->agent + offset, p->n*sizeof(int));
 }
@@ -158,14 +168,14 @@ void print_progress(int completed, int total) {
     int bar_width = 50;
     float progress = (float)completed / total;
 
-    printf("\r[");
+    Rprintf("\r[");
     int pos = bar_width * progress;
     for (int i = 0; i < bar_width; ++i) {
-        if (i < pos) printf("=");
-        else if (i == pos) printf(">");
-        else printf(" ");
+        if (i < pos) Rprintf("=");
+        else if (i == pos) Rprintf(">");
+        else Rprintf(" ");
     }
-    printf("] %d%%", (int)(progress * 100));
+    Rprintf("] %d%%", (int)(progress * 100));
     fflush(stdout);
 }
 
@@ -186,22 +196,26 @@ void progressbar(int * completed, int replications){
 
 void DE_CC(int n, int m, int s, int NP, int itermax,
           double pMut, double pCR, double pGbest,
-          int replications, unsigned int seed, double * vals,
+          int replications, double * vals,
           double *timeTaken, int * bestX, int numCores, criteria phi, int r, int trace)
 {
   struct timespec start, end;
   clock_gettime(CLOCK_MONOTONIC, &start);
-  srand(seed);
   double Min = 999.;
   int numThreads = omp_get_max_threads();
-  if(trace >1) printf("\n Total number of Cores: %d ---- Using: ", numThreads);
+  if(trace >1) Rprintf("\n Total number of Cores: %d ---- Using: ", numThreads);
   paramsPtr p = initializeParams(n, m, s, NP, itermax,
-                                 pMut, pCR, pGbest, replications, seed, r);
+                                 pMut, pCR, pGbest, replications, r);
   int completed = 0;
   numThreads = numThreads > numCores? numCores: numThreads - 1;
-  if(trace>1) printf("%d\n", numThreads);
+  if(trace>1) Rprintf("%d\n", numThreads);
+  GetRNGstate();
   #pragma omp parallel for num_threads(numThreads)
   for(int reps = 0; reps < replications; reps++){
+    // trying to set seed
+    // unsigned int I1 =0, I2 =0;
+    // get_seed(&I1, &I2);
+    // Rprintf("%i: %u\t%u\n", reps, I1, I2);
     dePtr de = initialize(p, phi);
     #pragma omp parallel for
     for(int it = 0; it < itermax; it++)
@@ -217,7 +231,7 @@ void DE_CC(int n, int m, int s, int NP, int itermax,
   }
   clock_gettime(CLOCK_MONOTONIC, &end);
   *timeTaken = (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1e9;
-  if(trace > 1) printf("  %8.3f Secs\n", *timeTaken);
+  if(trace > 1) Rprintf("  %8.3f Secs\n", *timeTaken);
 }
 
 

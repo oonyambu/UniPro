@@ -5,12 +5,13 @@
 \alias{UniPro}
 \title{Differential Evolution}
 \usage{
-DE(n, m, s = n, p = 15L, NP = 100L, itermax = 1000L, pMut = 0.2, pCR = 0.3,
-          pGBest = 0.9, replicates = 1L, seed = sample(1e7,1), ncores = NULL,
-          method = c("UniPro", "maximinLHD"))
+DE(n, m, s = n, p = 15L, NP = 100L, itermax = 1500L, pMut = NULL, pCR = NULL,
+          pGBest = NULL, replicates = 1L, seed = sample(1e7,1), ncores = NULL,
+          trace = FALSE, method = c("UniPro", "maximinLHD"))
 
-UniPro(n, m, s = n, NP = 100L, itermax = 1000L, pMut = 0.2, pCR = 0.3,
-       pGBest = 0.9, replicates = 1L, seed = sample(1e7,1), ncores = NULL)
+UniPro(n, m, s = n, NP = 100L, itermax = 1500L, pMut = NULL, pCR = NULL,
+       pGBest = NULL, replicates = 1L, seed = sample(1e7,1), ncores = NULL,
+       trace = FALSE)
 }
 \arguments{
 \item{n}{number of rows(observations)}
@@ -34,6 +35,9 @@ UniPro(n, m, s = n, NP = 100L, itermax = 1000L, pMut = 0.2, pCR = 0.3,
 \item{seed}{seed to be set for reproducibility}
 
 \item{ncores}{number f cores to be used for parallelization/multi-threading.}
+
+\item{trace}{Non-negative integer. If positive, tracing information on the progress of the optimization is produced.
+Higher values may produce more tracing information.}
 
 \item{p}{the exponent for method maximinLHD. default is 15}
 

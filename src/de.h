@@ -27,20 +27,20 @@ typedef struct {
 
 typedef struct {
   int n, m, s, size, NP,  itermax;
-  int replications, seed, len, r;
+  int replications, len, r;
   double pMut, pCR, pGbest, C, denom_g;
 } params,*paramsPtr;
 
 
 paramsPtr initializeParams(int n, int m, int s, int NP, int itermax,
-                           double pMut,double pCR, double pGbest, int replications,
-                           long int seed, int r);
+                           double pMut,double pCR, double pGbest,
+                           int replications, int r);
 
 typedef double (*criteria)(int *, paramsPtr);
 
 void DE_CC(int n, int m, int s, int NP, int itermax,
            double pMut, double pCR, double pGbest,
-           int replications, unsigned int seed, double * vals,
+           int replications, double * vals,
            double *timeTaken, int * bestX,  int numCores,
            criteria phi, int r, int trace);
 #endif

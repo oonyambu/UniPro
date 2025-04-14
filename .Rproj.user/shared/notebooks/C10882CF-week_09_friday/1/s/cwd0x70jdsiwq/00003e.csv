@@ -1,4 +1,0 @@
-"0","iris %>% "
-"0","  rename_with(~str_replace(.x, ""\\.(\\w{3}).*"", ""\\1"")) %>% "
-"0","  group_by(Species) %>% "
-"0","  summarise(across(everything(), list(m=mean, s=sd), .names = ""{fn}{.col}""),  n = n())"
