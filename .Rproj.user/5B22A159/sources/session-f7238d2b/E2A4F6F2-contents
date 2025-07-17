@@ -86,7 +86,7 @@ DE <-function(n, m, s = n, p = 15L, NP = 100L, itermax = 1500L, pMut = NULL,
   if(is.null(pMut) || is.null(pCR)){
     args1 <- modifyList(args, list(trace = 0L, replicates = 1L, itermax = 100L))
     fn <- fn <- function(pMut, pCR){
-      newargs <- modifyList(args1, list(pMut = pMut, pCR = pCR, seed=sample(1e7, 1)))
+      newargs <- modifyList(args1, list(pMut = pMut, pCR = pCR))
       do.call(.Call, c("DE", newargs))
     }
     pmut <- seq(0.1, 0.9, by = 0.2)
