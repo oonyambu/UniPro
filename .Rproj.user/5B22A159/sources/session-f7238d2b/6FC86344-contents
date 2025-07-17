@@ -4,18 +4,9 @@
 #include <Rinternals.h>
 
 
-// #define MATHLIB_STANDALONE
-// #include "Rmath.h"
-// extern void set_seed(unsigned int, unsigned int);
-// extern void get_seed(unsigned int*, unsigned int*);
+#define intUniform(n) (n < 1 ? 0: rand() % (n))
 
-//#define intUniform(n) (n < 1 ? 0: rand() % (n))
-#define intUniform(n) (n < 1 ? 0: (int)(unif_rand() * n))
-
-
-//#define doubleUniform ((double)rand() / RAND_MAX)
-
-
+#define doubleUniform ((double)rand() / RAND_MAX)
 
 inline static int * allocVec(int size){
   int *vec = (int*)malloc(size * sizeof(int));
@@ -114,7 +105,7 @@ void propose(dePtr de, int NP_INDEX, paramsPtr p){
   // the global best design and the current design
   // Other proposal methods could be implemented
   memcpy(de->potential + NP_INDEX * p->size,
-         de->agent + (unif_rand() < p->pGbest?
+         de->agent + (doubleUniform < p->pGbest?
                         de->globalMin.index : NP_INDEX) * p->size,
                         p->size * sizeof(int));
 
@@ -122,19 +113,19 @@ void propose(dePtr de, int NP_INDEX, paramsPtr p){
 
 void mutate(dePtr de, int offset, paramsPtr p){
   // With probability pMut, consider mutating a column.
-  // mutatin involves the swap operator
+  // mutation involves the swap operator
   // where two randomly selected values in the column are swaped
-  if(unif_rand() < p->pMut)
+  if(doubleUniform < p->pMut)
     swapVecUsingVec(de->potential + offset, sampleTwo(p->n));
 }
 
 void crossOver(dePtr de, int offset, int changeJ, paramsPtr p){
   // Using the proposed design,
   // With a probability pCR choose between the mutated column
-  // and the original column. Note that ne column in the proposed
+  // and the original column. Note that one column in the proposed
   // must be maintained.
 
-  if(unif_rand() < p->pCR && changeJ)
+  if(doubleUniform > p->pCR && changeJ)
     memcpy(de->potential+offset,
            de->agent + offset, p->n*sizeof(int));
 }
@@ -197,7 +188,8 @@ void progressbar(int * completed, int replications){
 void DE_CC(int n, int m, int s, int NP, int itermax,
           double pMut, double pCR, double pGbest,
           int replications, double * vals,
-          double *timeTaken, int * bestX, int numCores, criteria phi, int r, int trace)
+          double *timeTaken, int * bestX, int numCores, criteria phi,
+          int r, int trace, int seed)
 {
   struct timespec start, end;
   clock_gettime(CLOCK_MONOTONIC, &start);
@@ -209,13 +201,9 @@ void DE_CC(int n, int m, int s, int NP, int itermax,
   int completed = 0;
   numThreads = numThreads > numCores? numCores: numThreads - 1;
   if(trace>1) Rprintf("%d\n", numThreads);
-  GetRNGstate();
   #pragma omp parallel for num_threads(numThreads)
   for(int reps = 0; reps < replications; reps++){
-    // trying to set seed
-    // unsigned int I1 =0, I2 =0;
-    // get_seed(&I1, &I2);
-    // Rprintf("%i: %u\t%u\n", reps, I1, I2);
+    srand(seed + reps);
     dePtr de = initialize(p, phi);
     #pragma omp parallel for
     for(int it = 0; it < itermax; it++)

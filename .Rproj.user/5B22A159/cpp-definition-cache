@@ -336,7 +336,7 @@
     },
     {
         "file": "C:/Work/final/UniPro/src/criteria.c",
-        "file_last_write": 1744609962.0,
+        "file_last_write": 1752623055.0,
         "definitions": [
             {
                 "usr": "c:@F@maxpro",
@@ -390,15 +390,25 @@
     },
     {
         "file": "C:/Work/final/UniPro/src/de.c",
-        "file_last_write": 1744612983.0,
+        "file_last_write": 1752688945.0,
         "definitions": [
             {
-                "usr": "c:de.c@310@macro@intUniform",
+                "usr": "c:de.c@93@macro@intUniform",
                 "kind": 9,
                 "parent_name": "",
                 "name": "intUniform",
                 "file": "C:/Work/final/UniPro/src/de.c",
-                "line": 13,
+                "line": 7,
+                "column": 9,
+                "hidden": false
+            },
+            {
+                "usr": "c:de.c@144@macro@doubleUniform",
+                "kind": 9,
+                "parent_name": "",
+                "name": "doubleUniform",
+                "file": "C:/Work/final/UniPro/src/de.c",
+                "line": 9,
                 "column": 9,
                 "hidden": false
             },
@@ -408,7 +418,7 @@
                 "parent_name": "",
                 "name": "allocVec(int)",
                 "file": "C:/Work/final/UniPro/src/de.c",
-                "line": 20,
+                "line": 11,
                 "column": 21,
                 "hidden": false
             },
@@ -418,7 +428,7 @@
                 "parent_name": "",
                 "name": "sampleTwo(int)",
                 "file": "C:/Work/final/UniPro/src/de.c",
-                "line": 25,
+                "line": 16,
                 "column": 6,
                 "hidden": false
             },
@@ -428,7 +438,7 @@
                 "parent_name": "",
                 "name": "swapVecAtPositions(int *, int, int)",
                 "file": "C:/Work/final/UniPro/src/de.c",
-                "line": 33,
+                "line": 24,
                 "column": 6,
                 "hidden": false
             },
@@ -438,7 +448,7 @@
                 "parent_name": "",
                 "name": "swapVecUsingVec(int *, int *)",
                 "file": "C:/Work/final/UniPro/src/de.c",
-                "line": 39,
+                "line": 30,
                 "column": 6,
                 "hidden": false
             },
@@ -448,7 +458,7 @@
                 "parent_name": "",
                 "name": "randomlhs(dePtr, paramsPtr, criteria)",
                 "file": "C:/Work/final/UniPro/src/de.c",
-                "line": 45,
+                "line": 36,
                 "column": 6,
                 "hidden": false
             },
@@ -458,7 +468,7 @@
                 "parent_name": "",
                 "name": "initializeParams(int, int, int, int, int, double, double, double, int, int)",
                 "file": "C:/Work/final/UniPro/src/de.c",
-                "line": 72,
+                "line": 63,
                 "column": 11,
                 "hidden": false
             },
@@ -468,7 +478,7 @@
                 "parent_name": "",
                 "name": "initialize(const paramsPtr, criteria)",
                 "file": "C:/Work/final/UniPro/src/de.c",
-                "line": 99,
+                "line": 90,
                 "column": 7,
                 "hidden": false
             },
@@ -478,7 +488,7 @@
                 "parent_name": "",
                 "name": "propose(dePtr, int, paramsPtr)",
                 "file": "C:/Work/final/UniPro/src/de.c",
-                "line": 112,
+                "line": 103,
                 "column": 6,
                 "hidden": false
             },
@@ -488,7 +498,7 @@
                 "parent_name": "",
                 "name": "mutate(dePtr, int, paramsPtr)",
                 "file": "C:/Work/final/UniPro/src/de.c",
-                "line": 123,
+                "line": 114,
                 "column": 6,
                 "hidden": false
             },
@@ -498,7 +508,7 @@
                 "parent_name": "",
                 "name": "crossOver(dePtr, int, int, paramsPtr)",
                 "file": "C:/Work/final/UniPro/src/de.c",
-                "line": 131,
+                "line": 122,
                 "column": 6,
                 "hidden": false
             },
@@ -508,7 +518,7 @@
                 "parent_name": "",
                 "name": "getTrial(dePtr, int, paramsPtr, criteria)",
                 "file": "C:/Work/final/UniPro/src/de.c",
-                "line": 142,
+                "line": 133,
                 "column": 6,
                 "hidden": false
             },
@@ -518,7 +528,7 @@
                 "parent_name": "",
                 "name": "print_progress(int, int)",
                 "file": "C:/Work/final/UniPro/src/de.c",
-                "line": 167,
+                "line": 158,
                 "column": 6,
                 "hidden": false
             },
@@ -528,7 +538,7 @@
                 "parent_name": "",
                 "name": "progressbar(int *, int)",
                 "file": "C:/Work/final/UniPro/src/de.c",
-                "line": 182,
+                "line": 173,
                 "column": 6,
                 "hidden": false
             },
@@ -538,7 +548,7 @@
                 "parent_name": "",
                 "name": "DE_CC(int, int, int, int, int, double, double, double, int, double *, double *, int *, int, criteria, int, int)",
                 "file": "C:/Work/final/UniPro/src/de.c",
-                "line": 197,
+                "line": 188,
                 "column": 6,
                 "hidden": false
             }
@@ -547,7 +557,7 @@
     },
     {
         "file": "C:/Work/final/UniPro/src/de.h",
-        "file_last_write": 1744584698.0,
+        "file_last_write": 1752688946.0,
         "definitions": [
             {
                 "usr": "c:de.h@94@macro@__UNIPRO__",
@@ -556,6 +566,16 @@
                 "name": "__UNIPRO__",
                 "file": "C:/Work/final/UniPro/src/de.h",
                 "line": 4,
+                "column": 9,
+                "hidden": false
+            },
+            {
+                "usr": "c:@SA@MinPair",
+                "kind": 3,
+                "parent_name": "",
+                "name": "",
+                "file": "C:/Work/final/UniPro/src/de.h",
+                "line": 15,
                 "column": 9,
                 "hidden": false
             },
@@ -577,6 +597,16 @@
                 "file": "C:/Work/final/UniPro/src/de.h",
                 "line": 25,
                 "column": 4,
+                "hidden": false
+            },
+            {
+                "usr": "c:@SA@params",
+                "kind": 3,
+                "parent_name": "",
+                "name": "",
+                "file": "C:/Work/final/UniPro/src/de.h",
+                "line": 28,
+                "column": 9,
                 "hidden": false
             },
             {
@@ -614,7 +644,7 @@
     },
     {
         "file": "C:/Work/final/UniPro/src/init.c",
-        "file_last_write": 1744610870.0,
+        "file_last_write": 1752689014.0,
         "definitions": [
             {
                 "usr": "c:@F@detectCores",

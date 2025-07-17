@@ -42,5 +42,5 @@ void DE_CC(int n, int m, int s, int NP, int itermax,
            double pMut, double pCR, double pGbest,
            int replications, double * vals,
            double *timeTaken, int * bestX,  int numCores,
-           criteria phi, int r, int trace);
+           criteria phi, int r, int trace, int seed);
 #endif

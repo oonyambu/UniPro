@@ -80,10 +80,10 @@ DE <-function(n, m, s = n, p = 15L, NP = 100L, itermax = 1500L, pMut = NULL,
                pMut = as.double(pMut), pCR = as.double(pCR),
                pGBest = as.double(pGBest), replicates = as.integer(replicates),
                ncores = as.integer(ncores), method = .method,
-               p = as.integer(p), trace = as.integer(trace))
+               p = as.integer(p), trace = as.integer(trace),
+               seed = as.integer(seed))
   u <- 0
   if(is.null(pMut) || is.null(pCR)){
-    set.seed(seed)
     args1 <- modifyList(args, list(trace = 0L, replicates = 1L, itermax = 100L))
     fn <- fn <- function(pMut, pCR){
       newargs <- modifyList(args1, list(pMut = pMut, pCR = pCR, seed=sample(1e7, 1)))
@@ -96,7 +96,6 @@ DE <-function(n, m, s = n, p = 15L, NP = 100L, itermax = 1500L, pMut = NULL,
     args$pCR <- 1 - pmut[idx]
     u <- sum(unlist(v["timeTaken",]))
   }
-  set.seed(seed)
   res <- do.call(.Call, c("DE", args, PACKAGE = 'UniPro'))
   res$timeTaken <- res$timeTaken + u
   structure(res, method = method[1])

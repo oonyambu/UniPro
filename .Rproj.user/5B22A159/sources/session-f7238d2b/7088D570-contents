@@ -1,0 +1,8 @@
+set.seed(5)
+a<-sample(4, 50, T)
+b <- proportions(diag(4)[a,]+ runif(50*4, 0, 0.1), 1)
+
+beta <- cbind(c(-1,-2,1,0), 1)
+X <- cbind(1, c(10, 20, 30, 40, -10))
+#crossprod(X, beta)
+apply(beta, 1, \(i) X%*%i)
