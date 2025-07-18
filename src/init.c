@@ -180,9 +180,9 @@ paramsPtr initParams(int n, int m, int s, int NP, int itermax,
   p->pGBest = pGBest == NULL? 0.95: *pGBest;
   p->estimate = pMut == NULL||pCR == NULL||pGBest == NULL;
   int numThreads = omp_get_max_threads();
-  if(trace >1) printf("\n Total number of Cores: %d ---- Using: ", numThreads);
+  if(trace >1) Rprintf("\n Total number of Cores: %d ---- Using: ", numThreads);
   p->cores = numThreads > cores? cores: numThreads - 1;
-  if(trace>1) printf("%d\n", p->cores);
+  if(trace>1) Rprintf("%d\n", p->cores);
   p->trace = trace;
   p->size = n*m;
   p->len = p->size * NP;
@@ -280,7 +280,7 @@ void print_progress(int completed, int total) {
   for (int i = 0; i < bar_width; ++i) {
     if (i < pos) Rprintf("=");
     else if (i == pos) Rprintf(">");
-    else printf(" ");
+    else Rprintf(" ");
   }
   Rprintf("] %d%%", (int)(progress * 100));
   fflush(stdout);
