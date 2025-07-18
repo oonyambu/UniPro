@@ -180,9 +180,9 @@ paramsPtr initParams(int n, int m, int s, int NP, int itermax,
   p->pGBest = pGBest == NULL? 0.95: *pGBest;
   p->estimate = pMut == NULL||pCR == NULL||pGBest == NULL;
   int numThreads = omp_get_max_threads();
-  if(trace >1) Rprintf("\n Total number of Cores: %d ---- Using: ", numThreads);
+  if(trace >1) printf("\n Total number of Cores: %d ---- Using: ", numThreads);
   p->cores = numThreads > cores? cores: numThreads - 1;
-  if(trace>1) Rprintf("%d\n", p->cores);
+  if(trace>1) printf("%d\n", p->cores);
   p->trace = trace;
   p->size = n*m;
   p->len = p->size * NP;
@@ -275,14 +275,14 @@ void print_progress(int completed, int total) {
   int bar_width = 50;
   float progress = (float)completed / total;
 
-  Rprintf("\r[");
+  printf("\r[");
   int pos = bar_width * progress;
   for (int i = 0; i < bar_width; ++i) {
-    if (i < pos) Rprintf("=");
-    else if (i == pos) Rprintf(">");
-    else Rprintf(" ");
+    if (i < pos) printf("=");
+    else if (i == pos) printf(">");
+    else printf(" ");
   }
-  Rprintf("] %d%%", (int)(progress * 100));
+  printf("] %d%%", (int)(progress * 100));
   fflush(stdout);
 }
 
@@ -302,11 +302,8 @@ void progressbar(int * completed, int replications){
 // Run DE for a single replicate
 double DE1(paramsPtr p, int *bestX, criteria phi) {
   double value = 0;
-
-#pragma omp parallel for num_threads(p->cores)
   for (int reps = 0; reps < 1; reps++) {
     dePtr de = initialize(p, phi);
-#pragma omp parallel for
     for (int it = 0; it < p->itermax; it++) {
       for (int i = 0; i < p->NP; ++i) {
         getTrial(de, i, p, phi);
@@ -383,6 +380,7 @@ void DE_C(const paramsPtr p, criteria phi, int replications, double * vals, int 
 
     free(localX);
   }
+  printf("\n");
 }
 
 // R interface: detect number of available CPU cores
@@ -455,16 +453,16 @@ SEXP DE(SEXP R_n, SEXP R_m, SEXP R_s, SEXP R_NP,
   if(trace)
     switch (method) {
     case 0:
-      Rprintf("UniPro\n");
+      printf("UniPro\n");
       break;
     case 2:
-      Rprintf("MaxPro\n");
+      printf("MaxPro\n");
       break;
     case 1:
-      Rprintf("maximinLHD\n");
+      printf("maximinLHD\n");
       break;
     default:
-      Rprintf("UniPro\n");
+      printf("UniPro\n");
     break;
     }
   criteria phi = PHI_FUNS[method];
@@ -513,7 +511,7 @@ SEXP DE(SEXP R_n, SEXP R_m, SEXP R_s, SEXP R_NP,
   classgets(R_out, className);
   clock_gettime(CLOCK_MONOTONIC, &end);
   *timeTaken = (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1e9;
-  if(trace > 1) Rprintf("  %8.3f Secs\n", *timeTaken);
+  if(trace > 1) printf("  %8.3f Secs\n", *timeTaken);
   UNPROTECT(7);
   return R_out;
 }
