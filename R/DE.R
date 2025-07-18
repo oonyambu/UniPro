@@ -57,11 +57,10 @@ NULL
 
 UniPro <-function(n, m, s = n, NP = 100L, itermax = 1500L, pMut = NULL,
                   pCR = NULL, pGBest = NULL, replicates = 1L,
-                  seed = sample(1e7,1), ncores = NULL, trace = FALSE,
-                  shared = FALSE){
+                  seed = sample(1e7,1), ncores = NULL, trace = FALSE){
   DE(n = n, m = m, s = s, NP = NP, itermax = itermax, pMut = pMut, pCR = pCR,
      pGBest = pGBest, replicates = replicates, seed = seed, ncores = ncores,
-     trace = trace, method = 'UniPro', shared = shared)
+     trace = trace, method = 'UniPro')
 }
 
 #' @export
@@ -69,7 +68,7 @@ UniPro <-function(n, m, s = n, NP = 100L, itermax = 1500L, pMut = NULL,
 DE <-function(n, m, s = n, p = 15L, NP = 100L, itermax = 1500L, pMut = NULL,
               pCR = NULL, pGBest = NULL, replicates = 1L,
               seed = sample(1e7,1), ncores = NULL, trace = FALSE,
-              method = c("UniPro", "maximinLHD"), shared = FALSE){
+              method = c("UniPro", "maximinLHD")){
 
   if(is.null(pGBest)) pGBest <- 0.95
   methods <- c("UniPro", "maximinLHD", "MaxPro")
@@ -85,7 +84,7 @@ DE <-function(n, m, s = n, p = 15L, NP = 100L, itermax = 1500L, pMut = NULL,
                pGBest = as.double(pGBest), replicates = as.integer(replicates),
                ncores = as.integer(ncores), method = .method,
                p = as.integer(p), trace = as.integer(trace),
-               seed = as.integer(seed), shared = shared, PACKAGE = 'UniPro')
+               seed = as.integer(seed), PACKAGE = 'UniPro')
   structure(res, method = method[1])
 }
 

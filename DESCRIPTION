@@ -1,17 +1,18 @@
-Package: UniPro2
+Package: UniPro
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Uniform Projection Designs Construction
 Version: 0.1.0
 Authors@R: c(
     person(
-      "Jane", "Doe",
-      email = "jane@example.com",
+      "Samuel", "Onyambu",
+      email = "oonyambu@gmail.com",
       role = c("aut", "cre")
     )
   )
-Description: More about what it does (maybe more than one line).
-    Continuation lines should be indented.
-License: What license is it under?
+Description: Package Used for the generation of Uniform Projection Designs Using 
+  the Differential Evolution Algorithm.
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.3.2
+Config/Makevars: yes

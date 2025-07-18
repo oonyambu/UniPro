@@ -1,5 +1,6 @@
 // Required R and C headers
 #include <R.h>
+#include <Rmath.h>
 #include <Rinternals.h>
 #include <R_ext/Rdynload.h>
 #include <time.h>
@@ -10,6 +11,7 @@ typedef struct {
   double value;
   int index;
 } MinPair;
+
 
 
 // Structure for Differential Evolution working memory
@@ -109,7 +111,9 @@ static criteria PHI_FUNS[3] = {unipro, maximinLHD, maxpro};
 
 
 // Uniform random integer and double utilities
+// Generate a random integer [0, n-1]
 #define intUniform(n) (n < 1 ? 0 : rand() % (n))
+// Generate a random number (0, 1)
 #define doubleUniform ((double)rand() / RAND_MAX)
 
 // Select two distinct integers between 0 and n-1
@@ -501,8 +505,6 @@ SEXP DE(SEXP R_n, SEXP R_m, SEXP R_s, SEXP R_NP,
   UNPROTECT(7);
   return R_out;
 }
-
-
 
 // Register the function
 static const R_CallMethodDef CallMethods[] = {
