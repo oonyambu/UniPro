@@ -369,16 +369,6 @@ void DE_C(const paramsPtr p, criteria phi, int replications, double * vals, int 
   }
 }
 
-
-// SEXP phi(SEXP R_X, SEXP R_s, SEXP R_r, SEXP R_METHOD);
-//
-// SEXP DE(SEXP R_n, SEXP R_m, SEXP R_s, SEXP R_NP,
-//         SEXP R_itermax, SEXP R_pMut, SEXP R_pCR,
-//         SEXP R_pGBest, SEXP R_replicates,
-//         SEXP R_cores, SEXP R_METHOD, SEXP R_r,
-//         SEXP R_trace, SEXP R_seed, SEXP R_shared);
-
-
 // R interface: detect number of available CPU cores
 SEXP detectCores(){
   SEXP R_out = PROTECT(allocVector(INTSXP, 1));
