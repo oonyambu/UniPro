@@ -57,17 +57,19 @@ NULL
 
 UniPro <-function(n, m, s = n, NP = 100L, itermax = 1500L, pMut = NULL,
                   pCR = NULL, pGBest = NULL, replicates = 1L,
-                  seed = sample(1e7,1), ncores = NULL, trace = FALSE){
+                  seed = sample(1e7,1), ncores = NULL, trace = FALSE,
+                  shared = FALSE){
   DE(n = n, m = m, s = s, NP = NP, itermax = itermax, pMut = pMut, pCR = pCR,
      pGBest = pGBest, replicates = replicates, seed = seed, ncores = ncores,
-     trace = trace, method = 'UniPro')
+     trace = trace, method = 'UniPro', shared = shared)
 }
 
 #' @export
+
 DE <-function(n, m, s = n, p = 15L, NP = 100L, itermax = 1500L, pMut = NULL,
               pCR = NULL, pGBest = NULL, replicates = 1L,
               seed = sample(1e7,1), ncores = NULL, trace = FALSE,
-              method = c("UniPro", "maximinLHD")){
+              method = c("UniPro", "maximinLHD"), shared = FALSE){
 
   if(is.null(pGBest)) pGBest <- 0.95
   methods <- c("UniPro", "maximinLHD", "MaxPro")
@@ -75,85 +77,19 @@ DE <-function(n, m, s = n, p = 15L, NP = 100L, itermax = 1500L, pMut = NULL,
   if(.method < 1 || .method > 3) stop("invalid method", method[1])
   if(is.null(ncores)) ncores <- as.integer(max(1, detectCores() - 2))
   if(ncores < 2) stop("ncores must be at least 2")
-  args <- list(n = as.integer(n), m = as.integer(m), s = as.integer(s),
+
+  res <- .Call('DE', n = as.integer(n), m = as.integer(m), s = as.integer(s),
                NP = as.integer(NP), itermax = as.integer(itermax),
-               pMut = as.double(pMut), pCR = as.double(pCR),
+               pMut = if(is.null(pMut)) NULL else as.double(pMut),
+               pCR = if(is.null(pCR)) NULL else as.double(pCR),
                pGBest = as.double(pGBest), replicates = as.integer(replicates),
                ncores = as.integer(ncores), method = .method,
                p = as.integer(p), trace = as.integer(trace),
-               seed = as.integer(seed))
-  u <- 0
-  if(is.null(pMut) || is.null(pCR)){
-    args1 <- modifyList(args, list(trace = 0L, replicates = 1L, itermax = 100L))
-    fn <- fn <- function(pMut, pCR){
-      newargs <- modifyList(args1, list(pMut = pMut, pCR = pCR))
-      do.call(.Call, c("DE", newargs))
-    }
-    pmut <- seq(0.1, 0.9, by = 0.2)
-    v <- mapply(fn, pmut, 1 - pmut)
-    idx <- which.min(unlist(v["measure", ]))
-    args$pMut <- pmut[idx]
-    args$pCR <- 1 - pmut[idx]
-    u <- sum(unlist(v["timeTaken",]))
-  }
-  res <- do.call(.Call, c("DE", args, PACKAGE = 'UniPro'))
-  res$timeTaken <- res$timeTaken + u
+               seed = as.integer(seed), shared = shared, PACKAGE = 'UniPro')
   structure(res, method = method[1])
 }
 
 
-
-# #' Maximum Projection Designs
-# #'
-# #' MaxPro: A function to construct a Maximum Projection Designs using Differential Evolution
-# #' algorithm
-# #'
-# #' @usage MaxPro(n, m, NP = 100L, itermax = 1000L, pMut =0.2, pCR = 0.3,
-# #'        pGBest = 0.9, replicates = 1L, seed = sample(1e7,1), ncores = NULL)
-# #'
-# #' @rdname DE
-# #' @examples
-# #' MaxPro(10, 3)
-# #' MaxPro(30, 3, replicates=10)
-# #'
-# #'
-# #' @name maxpro
-# NULL
-#
-#
-#
-# MaxPro <-function(n, m, NP = 100, itermax = 1500, pMut = 0.2,
-#                   pCR = 0.3, pGBest = 0.9, replicates = 1,
-#                   seed = sample(1e7,1), ncores = NULL){
-#   DE(n = n, m = m, NP = NP, itermax = itermax, pMut = pMut,
-#      pCR = pCR, pGBest = pGBest, replicates = replicates,
-#      seed = seed, ncores = ncores, method = "MaxPro")
-# }
-#
-# #' Maximin-Distance Latin Hypercube Designs
-# #'
-# #' maximinLHD: A function to construct  Maximin-Distance Latin Hypercube Designs using Differential Evolution
-# #' algorithm
-# #'
-# #' @usage maximinLHD(n, m, p = 15L, NP = 100L, itermax = 1000L, pMut = 0.2, pCR = 0.3,
-# #'        pGBest = 0.9, replicates = 1L, seed = sample(1e7,1), ncores = NULL)
-# #'
-# #' @examples
-# #' maximinLHD(10, 3)
-# #' maximinLHD(30, 3, replicates=10)
-# #'
-# #' @name maximin
-# NULL
-#
-#
-#
-# maximinLHD <-function(n, m, p = 15L, NP = 100, itermax = 1500, pMut = 0.2,
-#                   pCR = 0.3, pGBest = 0.9, replicates = 1,
-#                   seed = sample(1e7,1), ncores = NULL){
-#   DE(n = n, m = m, p = p, NP = NP, itermax = itermax, pMut = pMut,
-#      pCR = pCR, pGBest = pGBest, replicates = replicates,
-#      seed = seed, ncores = ncores, method = "maximinLHD")
-# }
 
 printFun <- function(x){
   len <- length(x)
@@ -204,46 +140,10 @@ measure <- function(x, s = nrow(x), p = 15L, method = c("UniPro", "maximinLHD"))
         as.integer(p), as.integer(m), PACKAGE = 'UniPro')
 }
 
-#
-#
-#
-# #' maxpromeasure
-# #'
-# #'
-# #' A function that computes the MaxPro criterion value for a given design.
-# #' Equation 5 of the  Maximum projection designs for computer experiments
-# #' paper BY V. ROSHAN JOSEPH,EVRENGUL
-# #'
-# #' @usage maxpromeasure(X)
-# #' @examples
-# #' maxpromeasure(replicate(3, sample(10)))
-# #'
-# #' @name maxpromeasure
-# NULL
-#
-# maxpromeasure <- function(x){
-#   measure(x = x, method = 'MaxPro')
-# }
-#
-# #' maxminmeasure
-# #'
-# #'
-# #' A function that computes the maximin criterion value for a given design.
-# #' (Morris and Mitchell 1995)
-# #'
-# #' @usage maximinmeasure(X)
-#
-# #' @examples
-# #' maximinmeasure(replicate(3, sample(10)))
-# #'
-# #' @name maximinmeasure
-# NULL
-#
-# maximinmeasure <- function(x, p = 15){
-#   measure(x = x, p = p, method = 'maximinLHD')
-# }
-#
-#
 detectCores <- function(){
   .Call("detectCores", PACKAGE = 'UniPro')
 }
+
+
+
+

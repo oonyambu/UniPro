@@ -1,4 +1,0 @@
-# UniPro
-
-The package uses the differential evolution algorithm to 
-construct efficient Uniform Projection Designs
