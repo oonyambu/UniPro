@@ -1,6 +1,6 @@
 Package: UniPro
 Type: Package
-Title: Uniform Projection Designs Construction
+Title: What the Package Does (Title Case)
 Version: 0.1.0
 Authors@R: c(
     person(
@@ -15,4 +15,3 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.3.2
-Config/Makevars: yes

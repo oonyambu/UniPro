@@ -351,9 +351,20 @@ free(localX);
   shared_p->pCR = best_pcr;
 }
 
+void printmat(int * d, int n, int m){
+  printf("\n");
+  for(int i=0; i<n; i++){
+    for(int j=0; j<m; j++){
+      printf("%2d  ", d[i + n*j]);
+    }
+    printf("\n");
+  }
+  printf("======================\n");
+}
+
 // Core DE loop with OpenMP parallelization across replicates
 void DE_C(const paramsPtr p, criteria phi, int replications, double * vals, int * bestX){
-  double min_val;
+  double min_val = 1e9;
   int completed = 0;
 #pragma omp parallel for num_threads(p->cores)
   for(int reps = 0; reps < replications; reps++){
@@ -369,6 +380,7 @@ void DE_C(const paramsPtr p, criteria phi, int replications, double * vals, int 
       memcpy(bestX, localX, p->size*sizeof(int));
     }
     if(p->trace > 1) progressbar(&completed, replications);
+
     free(localX);
   }
 }
@@ -520,5 +532,23 @@ void R_init_RcppProgressExample(DllInfo *Info) {
   R_useDynamicSymbols(Info, FALSE);
 }
 
+
+
+///// FOR MAKEFILE
+/*
+ * # ifeq ($(shell uname -s),Darwin)
+# 	PKG_CFLAGS = $(PKG_CFLAGS) -Xclang -fopenmp
+# 	PKG_LIBS = $(PKG_LIBS) -lomp
+# else
+# 	PKG_CFLAGS = $(PKG_CFLAGS) -fopenmp
+# 	PKG_LIBS = $(PKG_LIBS) -fopenmp
+# endif
+
+# PKG_CFLAGS = $(SHLIB_OPENMP_CFLAGS)
+# PKG_LIBS = $(SHLIB_OPENMP_CFLAGS)
+
+ PKG_CFLAGS = @OPENMP_CFLAGS@
+ PKG_LIBS = @OPENMP_LIBS@
+ */
 
 

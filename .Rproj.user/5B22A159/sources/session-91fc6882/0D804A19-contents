@@ -1,7 +1,5 @@
 #!/bin/sh
 export R_PACKAGE_NO_CONFIGURE_WARNING=1
-export OMP_STACKSIZE=64M
-
 echo "checking for OpenMP support..."
 
 # Detect OS
