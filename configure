@@ -4,18 +4,23 @@ export OMP_STACKSIZE=64M
 
 echo "checking for OpenMP support..."
 
-# Detect OS
 OS=`uname -s`
 
 if [ "$OS" = "Darwin" ]; then
   OPENMP_CFLAGS="-Xclang -fopenmp"
   OPENMP_LIBS="-lomp"
+
+  # Undefine 'match' after <omp.h> only on macOS to avoid R macro conflict
+  if ! grep -q '^#undef match' src/de.c; then
+    sed -i '' $'/#include *<R.h>/a\\\n#undef match' src/de.c
+  fi
+
 else
   OPENMP_CFLAGS="-fopenmp"
   OPENMP_LIBS="-fopenmp"
 fi
 
-# Output substitutions
+# Write compiler flags to Makevars
 cat <<EOF > src/Makevars
 PKG_CFLAGS = $OPENMP_CFLAGS
 PKG_LIBS = $OPENMP_LIBS
