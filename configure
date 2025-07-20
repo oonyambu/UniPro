@@ -12,7 +12,7 @@ if [ "$OS" = "Darwin" ]; then
 
   # Undefine 'match' after <omp.h> only on macOS to avoid R macro conflict
   if ! grep -q '^#undef match' src/de.c; then
-    sed -i '' '/#include *<R.h>/a\'$'\n''#undef match'$'\n' src/de.c
+    sed -i '' '/#include *<omp.h>/i\'$'\n''#undef match'$'\n' src/de.c
   fi
 
 else
