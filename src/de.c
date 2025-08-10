@@ -324,13 +324,13 @@ void estimate_params(paramsPtr shared_p, criteria phi) {
   double min_val = 999;
   double best_pmut = 0, best_pcr = 0;
 #pragma omp parallel for reduction(min:min_val)
-  for (int i = 0; i < 5; i++) {
+  for (double i = 0; i <= 1; i+=0.1) {
     params p = *shared_p;
     p.itermax = 100;
     p.trace = 0;
     int *localX = malloc(p.n * p.m * sizeof(int));
-    p.pMut = 0.1 + 0.2 * i;
-    p.pCR  = 0.9 - 0.2 * i;
+    p.pMut = i;
+    p.pCR  = 1.0 - i;
     double val = DE1(&p, localX, phi);
 
 #pragma omp critical
@@ -548,5 +548,6 @@ void R_init_RcppProgressExample(DllInfo *Info) {
  PKG_CFLAGS = @OPENMP_CFLAGS@
  PKG_LIBS = @OPENMP_LIBS@
  */
+
 
 
