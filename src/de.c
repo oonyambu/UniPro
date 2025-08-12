@@ -180,9 +180,9 @@ paramsPtr initParams(int n, int m, int s, int NP, int itermax,
   p->pGBest = pGBest == NULL? 0.95: *pGBest;
   p->estimate = pMut == NULL||pCR == NULL||pGBest == NULL;
   int numThreads = omp_get_max_threads();
-  if(trace >1) printf("\n Total number of Cores: %d ---- Using: ", numThreads);
+  if(trace >1) Rprintf("\n Total number of Cores: %d ---- Using: ", numThreads);
   p->cores = numThreads > cores? cores: numThreads - 1;
-  if(trace>1) printf("%d\n", p->cores);
+  if(trace>1) Rprintf("%d\n", p->cores);
   p->trace = trace;
   p->size = n*m;
   p->len = p->size * NP;
@@ -275,14 +275,14 @@ void print_progress(int completed, int total) {
   int bar_width = 50;
   float progress = (float)completed / total;
 
-  printf("\r[");
+  Rprintf("\r[");
   int pos = bar_width * progress;
   for (int i = 0; i < bar_width; ++i) {
-    if (i < pos) printf("=");
-    else if (i == pos) printf(">");
-    else printf(" ");
+    if (i < pos) Rprintf("=");
+    else if (i == pos) Rprintf(">");
+    else Rprintf(" ");
   }
-  printf("] %d%%", (int)(progress * 100));
+  Rprintf("] %d%%", (int)(progress * 100));
   fflush(stdout);
 }
 
@@ -324,13 +324,13 @@ void estimate_params(paramsPtr shared_p, criteria phi) {
   double min_val = 999;
   double best_pmut = 0, best_pcr = 0;
 #pragma omp parallel for reduction(min:min_val)
-  for (double i = 0; i <= 1; i+=0.1) {
+  for (int i = 0; i <= 10; i++) {
     params p = *shared_p;
     p.itermax = 100;
     p.trace = 0;
     int *localX = malloc(p.n * p.m * sizeof(int));
-    p.pMut = i;
-    p.pCR  = 1.0 - i;
+    p.pMut = i*0.1;
+    p.pCR  = 1 - i*0.1;
     double val = DE1(&p, localX, phi);
 
 #pragma omp critical
@@ -349,14 +349,14 @@ free(localX);
 }
 
 void printmat(int * d, int n, int m){
-  printf("\n");
+  Rprintf("\n");
   for(int i=0; i<n; i++){
     for(int j=0; j<m; j++){
-      printf("%2d  ", d[i + n*j]);
+      Rprintf("%2d  ", d[i + n*j]);
     }
-    printf("\n");
+    Rprintf("\n");
   }
-  printf("======================\n");
+  Rprintf("======================\n");
 }
 
 // Core DE loop with OpenMP parallelization across replicates
@@ -380,7 +380,6 @@ void DE_C(const paramsPtr p, criteria phi, int replications, double * vals, int 
 
     free(localX);
   }
-  printf("\n");
 }
 
 // R interface: detect number of available CPU cores
@@ -453,16 +452,16 @@ SEXP DE(SEXP R_n, SEXP R_m, SEXP R_s, SEXP R_NP,
   if(trace)
     switch (method) {
     case 0:
-      printf("UniPro\n");
+      Rprintf("UniPro\n");
       break;
     case 2:
-      printf("MaxPro\n");
+      Rprintf("MaxPro\n");
       break;
     case 1:
-      printf("maximinLHD\n");
+      Rprintf("maximinLHD\n");
       break;
     default:
-      printf("UniPro\n");
+      Rprintf("UniPro\n");
     break;
     }
   criteria phi = PHI_FUNS[method];
@@ -511,7 +510,7 @@ SEXP DE(SEXP R_n, SEXP R_m, SEXP R_s, SEXP R_NP,
   classgets(R_out, className);
   clock_gettime(CLOCK_MONOTONIC, &end);
   *timeTaken = (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1e9;
-  if(trace > 1) printf("  %8.3f Secs\n", *timeTaken);
+  if(trace > 1) Rprintf("  %8.3f Secs\n", *timeTaken);
   UNPROTECT(7);
   return R_out;
 }
@@ -529,25 +528,6 @@ void R_init_RcppProgressExample(DllInfo *Info) {
   R_registerRoutines(Info, NULL, CallMethods, NULL, NULL);
   R_useDynamicSymbols(Info, FALSE);
 }
-
-
-
-///// FOR MAKEFILE
-/*
- * # ifeq ($(shell uname -s),Darwin)
-# 	PKG_CFLAGS = $(PKG_CFLAGS) -Xclang -fopenmp
-# 	PKG_LIBS = $(PKG_LIBS) -lomp
-# else
-# 	PKG_CFLAGS = $(PKG_CFLAGS) -fopenmp
-# 	PKG_LIBS = $(PKG_LIBS) -fopenmp
-# endif
-
-# PKG_CFLAGS = $(SHLIB_OPENMP_CFLAGS)
-# PKG_LIBS = $(SHLIB_OPENMP_CFLAGS)
-
- PKG_CFLAGS = @OPENMP_CFLAGS@
- PKG_LIBS = @OPENMP_LIBS@
- */
 
 
 
