@@ -187,7 +187,7 @@ paramsPtr initParams(int n, int m, int s, int NP, int itermax,
   p->size = n*m;
   p->len = p->size * NP;
   p->r = r;
-  double p4 = pow(n, 4);
+  double p4 = pow(s, 4);
   double numerator = 4*(5.0*m - 2)*p4 + 30.0*(3*m-5)*s*s + 15*m + 33;
   double denom = 720.0*(m - 1)*p4;
   p->C =  numerator/ denom + (1.0 + pow(-1,s))/(64.0*p4);
@@ -528,6 +528,7 @@ void R_init_RcppProgressExample(DllInfo *Info) {
   R_registerRoutines(Info, NULL, CallMethods, NULL, NULL);
   R_useDynamicSymbols(Info, FALSE);
 }
+
 
 
 
