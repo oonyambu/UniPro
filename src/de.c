@@ -118,7 +118,7 @@ static criteria PHI_FUNS[3] = {unipro, maximinLHD, maxpro};
 
 // Select two distinct integers between 0 and n-1
 int *sampleTwo(int n){
-  int * vec =allocVec(n);
+  int * vec =allocVec(2);
   vec[0] = intUniform(n);
   do vec[1] = intUniform(n); while(vec[0] == vec[1]);
   return vec;
@@ -528,6 +528,7 @@ void R_init_RcppProgressExample(DllInfo *Info) {
   R_registerRoutines(Info, NULL, CallMethods, NULL, NULL);
   R_useDynamicSymbols(Info, FALSE);
 }
+
 
 
 
